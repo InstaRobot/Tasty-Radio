@@ -313,10 +313,10 @@
 			};
 			buildConfigurationList = 505E4D8C256935DA0090D11A /* Build configuration list for PBXProject "Tasty Radio" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				ru,
 				Base,
 			);
 			mainGroup = 505E4D88256935DA0090D11A;
