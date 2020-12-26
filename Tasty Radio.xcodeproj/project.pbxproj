@@ -114,8 +114,7 @@
 			children = (
 				505E4D94256935DA0090D11A /* AppDelegate.swift */,
 				500DE832256A71B9006D1310 /* LaunchManager.swift */,
-				50BDF4E1258F5C6A004AA51B /* ParseService.swift */,
-				50B53BCB2596972300BB6108 /* CloudKitService.swift */,
+				50DDCF182597BE020074DCE3 /* Services */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -255,6 +254,15 @@
 				50BDF4E9258F5F2A004AA51B /* ParseStation.swift */,
 			);
 			path = Parse;
+			sourceTree = "<group>";
+		};
+		50DDCF182597BE020074DCE3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				50BDF4E1258F5C6A004AA51B /* ParseService.swift */,
+				50B53BCB2596972300BB6108 /* CloudKitService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		9438E3E955CE50F04BAA1E02 /* Pods */ = {
