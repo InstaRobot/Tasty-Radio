@@ -1,0 +1,623 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FF986FAB575079996BB0619 /* Pods_Tasty_Radio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62662CDB9B23DBEE5C543DCF /* Pods_Tasty_Radio.framework */; };
+		500DE833256A71B9006D1310 /* LaunchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DE832256A71B9006D1310 /* LaunchManager.swift */; };
+		500DE838256A7A64006D1310 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DE837256A7A64006D1310 /* OnboardingViewController.swift */; };
+		500DE83B256A7A96006D1310 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DE83A256A7A96006D1310 /* OnboardingPageViewController.swift */; };
+		500DE83F256A8EF3006D1310 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DE83E256A8EF2006D1310 /* ItemView.swift */; };
+		500DE842256A8F08006D1310 /* ItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 500DE841256A8F08006D1310 /* ItemView.xib */; };
+		50296D37259748CA00F794AA /* FavouriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50296D36259748CA00F794AA /* FavouriteCollectionViewCell.swift */; };
+		50375C62258F5B7300BA6FF8 /* ConfigParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50375C61258F5B7300BA6FF8 /* ConfigParse.swift */; };
+		50461EA8256A63FF0076CDB1 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 50461EA7256A63FF0076CDB1 /* Podfile */; };
+		504B593E2572555500B936D0 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504B593D2572555500B936D0 /* UISearchBar+Extensions.swift */; };
+		504B594125725AB300B936D0 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504B594025725AB300B936D0 /* UIColor+Extensions.swift */; };
+		505E4D95256935DA0090D11A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505E4D94256935DA0090D11A /* AppDelegate.swift */; };
+		505E4D9C256935DA0090D11A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 505E4D9A256935DA0090D11A /* Main.storyboard */; };
+		505E4D9E256935DC0090D11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 505E4D9D256935DC0090D11A /* Assets.xcassets */; };
+		505E4DA1256935DC0090D11A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 505E4D9F256935DC0090D11A /* LaunchScreen.storyboard */; };
+		507D470025738CA900C051D9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D46FF25738CA900C051D9 /* GradientView.swift */; };
+		509CA3BC2572626400CFF990 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CA3BB2572626400CFF990 /* Genre.swift */; };
+		509CA3BF2572630B00CFF990 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CA3BE2572630B00CFF990 /* Station.swift */; };
+		509CA3DA25726CCD00CFF990 /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CA3D925726CCD00CFF990 /* GenreCollectionViewCell.swift */; };
+		50B53BC8259690B100BB6108 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B53BC7259690B100BB6108 /* CloudKit.framework */; };
+		50B53BCC2596972300BB6108 /* CloudKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B53BCB2596972300BB6108 /* CloudKitService.swift */; };
+		50BDF4E2258F5C6A004AA51B /* ParseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4E1258F5C6A004AA51B /* ParseService.swift */; };
+		50BDF4E6258F5F1D004AA51B /* ParseGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4E5258F5F1D004AA51B /* ParseGenre.swift */; };
+		50BDF4EA258F5F2A004AA51B /* ParseStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4E9258F5F2A004AA51B /* ParseStation.swift */; };
+		50BDF4EF258F9594004AA51B /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4EE258F9594004AA51B /* Bundle+Extensions.swift */; };
+		50C2C89C25728E840025B5A9 /* StationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C2C89B25728E840025B5A9 /* StationsViewController.swift */; };
+		50C2C89F25728F440025B5A9 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C2C89E25728F440025B5A9 /* NavigationController.swift */; };
+		50DCA5D92573A65800CB2E99 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCA5D82573A65800CB2E99 /* UIImage+Extensions.swift */; };
+		50DCA5DC2573A9DB00CB2E99 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCA5DB2573A9DB00CB2E99 /* UIView+Extensions.swift */; };
+		50DCA5DF2573B49600CB2E99 /* StationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCA5DE2573B49600CB2E99 /* StationCollectionViewCell.swift */; };
+		50DCA5E22573C07600CB2E99 /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCA5E12573C07600CB2E99 /* FavouriteViewController.swift */; };
+		50DCA5E52573C08600CB2E99 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCA5E42573C08600CB2E99 /* SettingsViewController.swift */; };
+		50DCA5E82573C09600CB2E99 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCA5E72573C09600CB2E99 /* InfoViewController.swift */; };
+		50DCA5EB2573C2A800CB2E99 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCA5EA2573C2A800CB2E99 /* PlayViewController.swift */; };
+		50F5B624256AB1890008F4E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5B623256AB1890008F4E0 /* MainViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		500DE832256A71B9006D1310 /* LaunchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchManager.swift; sourceTree = "<group>"; };
+		500DE837256A7A64006D1310 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		500DE83A256A7A96006D1310 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
+		500DE83E256A8EF2006D1310 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
+		500DE841256A8F08006D1310 /* ItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemView.xib; sourceTree = "<group>"; };
+		50296D36259748CA00F794AA /* FavouriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCollectionViewCell.swift; sourceTree = "<group>"; };
+		50375C61258F5B7300BA6FF8 /* ConfigParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigParse.swift; sourceTree = "<group>"; };
+		50461EA7256A63FF0076CDB1 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		504B593D2572555500B936D0 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
+		504B594025725AB300B936D0 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		505E4D91256935DA0090D11A /* Tasty Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tasty Radio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		505E4D94256935DA0090D11A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		505E4D9B256935DA0090D11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		505E4D9D256935DC0090D11A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		505E4DA0256935DC0090D11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		505E4DA2256935DC0090D11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		507D46FF25738CA900C051D9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		509CA3BB2572626400CFF990 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		509CA3BE2572630B00CFF990 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		509CA3D925726CCD00CFF990 /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCell.swift; sourceTree = "<group>"; };
+		50B53BC52596907C00BB6108 /* Tasty Radio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tasty Radio.entitlements"; sourceTree = "<group>"; };
+		50B53BC7259690B100BB6108 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		50B53BCB2596972300BB6108 /* CloudKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitService.swift; sourceTree = "<group>"; };
+		50BDF4E1258F5C6A004AA51B /* ParseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseService.swift; sourceTree = "<group>"; };
+		50BDF4E5258F5F1D004AA51B /* ParseGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseGenre.swift; sourceTree = "<group>"; };
+		50BDF4E9258F5F2A004AA51B /* ParseStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseStation.swift; sourceTree = "<group>"; };
+		50BDF4EE258F9594004AA51B /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		50C2C89B25728E840025B5A9 /* StationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsViewController.swift; sourceTree = "<group>"; };
+		50C2C89E25728F440025B5A9 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		50DCA5D82573A65800CB2E99 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		50DCA5DB2573A9DB00CB2E99 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		50DCA5DE2573B49600CB2E99 /* StationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationCollectionViewCell.swift; sourceTree = "<group>"; };
+		50DCA5E12573C07600CB2E99 /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		50DCA5E42573C08600CB2E99 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		50DCA5E72573C09600CB2E99 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		50DCA5EA2573C2A800CB2E99 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		50F5B623256AB1890008F4E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		62662CDB9B23DBEE5C543DCF /* Pods_Tasty_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tasty_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A376616B632A0665C458776C /* Pods-Tasty Radio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tasty Radio.release.xcconfig"; path = "Target Support Files/Pods-Tasty Radio/Pods-Tasty Radio.release.xcconfig"; sourceTree = "<group>"; };
+		C6A9351CFDA0848EA4BFFC6A /* Pods-Tasty Radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tasty Radio.debug.xcconfig"; path = "Target Support Files/Pods-Tasty Radio/Pods-Tasty Radio.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		505E4D8E256935DA0090D11A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FF986FAB575079996BB0619 /* Pods_Tasty_Radio.framework in Frameworks */,
+				50B53BC8259690B100BB6108 /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		480B04D054AD9364D6371222 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				50B53BC7259690B100BB6108 /* CloudKit.framework */,
+				62662CDB9B23DBEE5C543DCF /* Pods_Tasty_Radio.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		500DE82A256A66C4006D1310 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				505E4D94256935DA0090D11A /* AppDelegate.swift */,
+				500DE832256A71B9006D1310 /* LaunchManager.swift */,
+				50BDF4E1258F5C6A004AA51B /* ParseService.swift */,
+				50B53BCB2596972300BB6108 /* CloudKitService.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		500DE82C256A66D6006D1310 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				509CA3D825726CA800CFF990 /* Cells */,
+				500DE83D256A8EBC006D1310 /* VIews */,
+				509CA3D625726C2700CFF990 /* Onboarding */,
+				50C2C89E25728F440025B5A9 /* NavigationController.swift */,
+				50F5B623256AB1890008F4E0 /* MainViewController.swift */,
+				50C2C89B25728E840025B5A9 /* StationsViewController.swift */,
+				50DCA5E12573C07600CB2E99 /* FavouriteViewController.swift */,
+				50DCA5E42573C08600CB2E99 /* SettingsViewController.swift */,
+				50DCA5E72573C09600CB2E99 /* InfoViewController.swift */,
+				50DCA5EA2573C2A800CB2E99 /* PlayViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		500DE82D256A66E8006D1310 /* Boards */ = {
+			isa = PBXGroup;
+			children = (
+				505E4D9A256935DA0090D11A /* Main.storyboard */,
+				505E4D9F256935DC0090D11A /* LaunchScreen.storyboard */,
+			);
+			path = Boards;
+			sourceTree = "<group>";
+		};
+		500DE83D256A8EBC006D1310 /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				500DE83E256A8EF2006D1310 /* ItemView.swift */,
+				500DE841256A8F08006D1310 /* ItemView.xib */,
+				507D46FF25738CA900C051D9 /* GradientView.swift */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
+		50461EA6256A63C50076CDB1 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				504B593B2572552300B936D0 /* Helpers */,
+				505E4D9D256935DC0090D11A /* Assets.xcassets */,
+				50461EA7256A63FF0076CDB1 /* Podfile */,
+				505E4DA2256935DC0090D11A /* Info.plist */,
+				50375C61258F5B7300BA6FF8 /* ConfigParse.swift */,
+				50B53BC52596907C00BB6108 /* Tasty Radio.entitlements */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		504B593B2572552300B936D0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				504B593C2572553000B936D0 /* Extensions */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		504B593C2572553000B936D0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				504B593D2572555500B936D0 /* UISearchBar+Extensions.swift */,
+				504B594025725AB300B936D0 /* UIColor+Extensions.swift */,
+				50DCA5D82573A65800CB2E99 /* UIImage+Extensions.swift */,
+				50DCA5DB2573A9DB00CB2E99 /* UIView+Extensions.swift */,
+				50BDF4EE258F9594004AA51B /* Bundle+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		505E4D88256935DA0090D11A = {
+			isa = PBXGroup;
+			children = (
+				505E4D93256935DA0090D11A /* Tasty Radio */,
+				505E4D92256935DA0090D11A /* Products */,
+				9438E3E955CE50F04BAA1E02 /* Pods */,
+				480B04D054AD9364D6371222 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		505E4D92256935DA0090D11A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				505E4D91256935DA0090D11A /* Tasty Radio.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		505E4D93256935DA0090D11A /* Tasty Radio */ = {
+			isa = PBXGroup;
+			children = (
+				509CA3BA2572624100CFF990 /* Model */,
+				500DE82A256A66C4006D1310 /* Application */,
+				500DE82C256A66D6006D1310 /* Controllers */,
+				500DE82D256A66E8006D1310 /* Boards */,
+				50461EA6256A63C50076CDB1 /* Supporting files */,
+			);
+			path = "Tasty Radio";
+			sourceTree = "<group>";
+		};
+		509CA3BA2572624100CFF990 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				50BDF4E4258F5F05004AA51B /* Parse */,
+				509CA3BB2572626400CFF990 /* Genre.swift */,
+				509CA3BE2572630B00CFF990 /* Station.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		509CA3D625726C2700CFF990 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				500DE837256A7A64006D1310 /* OnboardingViewController.swift */,
+				500DE83A256A7A96006D1310 /* OnboardingPageViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		509CA3D825726CA800CFF990 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				509CA3D925726CCD00CFF990 /* GenreCollectionViewCell.swift */,
+				50DCA5DE2573B49600CB2E99 /* StationCollectionViewCell.swift */,
+				50296D36259748CA00F794AA /* FavouriteCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		50BDF4E4258F5F05004AA51B /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				50BDF4E5258F5F1D004AA51B /* ParseGenre.swift */,
+				50BDF4E9258F5F2A004AA51B /* ParseStation.swift */,
+			);
+			path = Parse;
+			sourceTree = "<group>";
+		};
+		9438E3E955CE50F04BAA1E02 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C6A9351CFDA0848EA4BFFC6A /* Pods-Tasty Radio.debug.xcconfig */,
+				A376616B632A0665C458776C /* Pods-Tasty Radio.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		505E4D90256935DA0090D11A /* Tasty Radio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 505E4DA5256935DC0090D11A /* Build configuration list for PBXNativeTarget "Tasty Radio" */;
+			buildPhases = (
+				A716901A5E433E54CC1FB65B /* [CP] Check Pods Manifest.lock */,
+				505E4D8D256935DA0090D11A /* Sources */,
+				505E4D8E256935DA0090D11A /* Frameworks */,
+				505E4D8F256935DA0090D11A /* Resources */,
+				701BA8B3D45FA1F2F9EFD975 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Tasty Radio";
+			productName = "Tasty Radio";
+			productReference = 505E4D91256935DA0090D11A /* Tasty Radio.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		505E4D89256935DA0090D11A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				ORGANIZATIONNAME = "DEVLAB, LLC";
+				TargetAttributes = {
+					505E4D90256935DA0090D11A = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = 505E4D8C256935DA0090D11A /* Build configuration list for PBXProject "Tasty Radio" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 505E4D88256935DA0090D11A;
+			productRefGroup = 505E4D92256935DA0090D11A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				505E4D90256935DA0090D11A /* Tasty Radio */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		505E4D8F256935DA0090D11A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50461EA8256A63FF0076CDB1 /* Podfile in Resources */,
+				505E4DA1256935DC0090D11A /* LaunchScreen.storyboard in Resources */,
+				500DE842256A8F08006D1310 /* ItemView.xib in Resources */,
+				505E4D9E256935DC0090D11A /* Assets.xcassets in Resources */,
+				505E4D9C256935DA0090D11A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		701BA8B3D45FA1F2F9EFD975 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tasty Radio/Pods-Tasty Radio-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tasty Radio/Pods-Tasty Radio-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tasty Radio/Pods-Tasty Radio-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A716901A5E433E54CC1FB65B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tasty Radio-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		505E4D8D256935DA0090D11A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509CA3BC2572626400CFF990 /* Genre.swift in Sources */,
+				50BDF4E2258F5C6A004AA51B /* ParseService.swift in Sources */,
+				500DE83B256A7A96006D1310 /* OnboardingPageViewController.swift in Sources */,
+				50BDF4EF258F9594004AA51B /* Bundle+Extensions.swift in Sources */,
+				507D470025738CA900C051D9 /* GradientView.swift in Sources */,
+				50DCA5E52573C08600CB2E99 /* SettingsViewController.swift in Sources */,
+				50DCA5EB2573C2A800CB2E99 /* PlayViewController.swift in Sources */,
+				505E4D95256935DA0090D11A /* AppDelegate.swift in Sources */,
+				500DE838256A7A64006D1310 /* OnboardingViewController.swift in Sources */,
+				50B53BCC2596972300BB6108 /* CloudKitService.swift in Sources */,
+				50C2C89C25728E840025B5A9 /* StationsViewController.swift in Sources */,
+				50DCA5DC2573A9DB00CB2E99 /* UIView+Extensions.swift in Sources */,
+				50375C62258F5B7300BA6FF8 /* ConfigParse.swift in Sources */,
+				50C2C89F25728F440025B5A9 /* NavigationController.swift in Sources */,
+				50BDF4E6258F5F1D004AA51B /* ParseGenre.swift in Sources */,
+				509CA3DA25726CCD00CFF990 /* GenreCollectionViewCell.swift in Sources */,
+				50296D37259748CA00F794AA /* FavouriteCollectionViewCell.swift in Sources */,
+				50DCA5E82573C09600CB2E99 /* InfoViewController.swift in Sources */,
+				504B594125725AB300B936D0 /* UIColor+Extensions.swift in Sources */,
+				504B593E2572555500B936D0 /* UISearchBar+Extensions.swift in Sources */,
+				50DCA5DF2573B49600CB2E99 /* StationCollectionViewCell.swift in Sources */,
+				509CA3BF2572630B00CFF990 /* Station.swift in Sources */,
+				50F5B624256AB1890008F4E0 /* MainViewController.swift in Sources */,
+				500DE83F256A8EF3006D1310 /* ItemView.swift in Sources */,
+				50DCA5E22573C07600CB2E99 /* FavouriteViewController.swift in Sources */,
+				500DE833256A71B9006D1310 /* LaunchManager.swift in Sources */,
+				50BDF4EA258F5F2A004AA51B /* ParseStation.swift in Sources */,
+				50DCA5D92573A65800CB2E99 /* UIImage+Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		505E4D9A256935DA0090D11A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				505E4D9B256935DA0090D11A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		505E4D9F256935DC0090D11A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				505E4DA0256935DC0090D11A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		505E4DA3256935DC0090D11A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		505E4DA4256935DC0090D11A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		505E4DA6256935DC0090D11A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6A9351CFDA0848EA4BFFC6A /* Pods-Tasty Radio.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Tasty Radio/Supporting files/Tasty Radio.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GA5QK7SQDU;
+				INFOPLIST_FILE = "$(SRCROOT)/Tasty Radio/Supporting files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "studio.devlab.tasty-radio";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		505E4DA7256935DC0090D11A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A376616B632A0665C458776C /* Pods-Tasty Radio.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Tasty Radio/Supporting files/Tasty Radio.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GA5QK7SQDU;
+				INFOPLIST_FILE = "$(SRCROOT)/Tasty Radio/Supporting files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "studio.devlab.tasty-radio";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		505E4D8C256935DA0090D11A /* Build configuration list for PBXProject "Tasty Radio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				505E4DA3256935DC0090D11A /* Debug */,
+				505E4DA4256935DC0090D11A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		505E4DA5256935DC0090D11A /* Build configuration list for PBXNativeTarget "Tasty Radio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				505E4DA6256935DC0090D11A /* Debug */,
+				505E4DA7256935DC0090D11A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 505E4D89256935DA0090D11A /* Project object */;
+}
