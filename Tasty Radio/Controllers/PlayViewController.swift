@@ -11,7 +11,6 @@ import Kingfisher
 import AVFoundation
 
 class PlayViewController: UIViewController {
-
     var stations: [Station] = []
     var currentIndex = 0
     
@@ -156,7 +155,6 @@ class PlayViewController: UIViewController {
             }
         }
     }
-
 }
 
 extension PlayViewController: CloudKitServiceDelegate {

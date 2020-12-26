@@ -112,7 +112,7 @@ class MainViewController: UIViewController {
     }
     
     private func showTabBar() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.bottomConstraint.constant = 8
             UIView.animate(withDuration: TimeInterval(0.2)) {
                 self.view.layoutIfNeeded()
@@ -154,7 +154,6 @@ class MainViewController: UIViewController {
             self.navigationController?.pushViewController(stationController, animated: true)
         }
     }
-
 }
 
 extension MainViewController: UISearchBarDelegate {
@@ -167,13 +166,11 @@ extension MainViewController: UISearchBarDelegate {
                 $0.name.lowercased().contains(searchText.lowercased())
             }
         }
-        
         self.collectionView.reloadData()
     }
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return genres.count
     }
@@ -194,7 +191,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         self.navigationController?.pushViewController(stationController, animated: true)
         stationController.genre = genre
     }
-    
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {

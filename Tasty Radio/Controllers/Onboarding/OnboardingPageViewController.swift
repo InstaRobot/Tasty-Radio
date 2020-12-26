@@ -80,24 +80,20 @@ class OnboardingPageViewController: UIPageViewController {
 }
 
 extension OnboardingPageViewController: UIPageViewControllerDataSource {
-    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard
             let viewControllerIndex = items.firstIndex(of: viewController) else {
             return nil
         }
-        
         let previousIndex = viewControllerIndex - 1
         guard
             previousIndex >= 0 else {
             return items.last
         }
-        
         guard
             items.count > previousIndex else {
             return nil
         }
-        
         return items[previousIndex]
     }
     
@@ -106,18 +102,15 @@ extension OnboardingPageViewController: UIPageViewControllerDataSource {
             let viewControllerIndex = items.firstIndex(of: viewController) else {
             return nil
         }
-        
         let nextIndex = viewControllerIndex + 1
         guard
             items.count != nextIndex else {
             return items.first
         }
-        
         guard
             items.count > nextIndex else {
             return nil
         }
-        
         return items[nextIndex]
     }
     
@@ -134,5 +127,4 @@ extension OnboardingPageViewController: UIPageViewControllerDataSource {
         
         return firstIndex
     }
-    
 }

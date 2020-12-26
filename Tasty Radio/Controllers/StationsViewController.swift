@@ -13,7 +13,6 @@ class StationsViewController: UIViewController {
     
     @IBOutlet var service: ParseService!
     
-    
     @IBOutlet weak var bottonConstraint: NSLayoutConstraint!
     @IBOutlet weak var spacingConstraint: NSLayoutConstraint!
     
@@ -221,7 +220,6 @@ extension StationsViewController: UISearchBarDelegate {
 }
 
 extension StationsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return stations.count
     }
