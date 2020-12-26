@@ -15,19 +15,21 @@ protocol CloudKitServiceDelegate: class {
 
 class CloudKitService {
     static let shared = CloudKitService()
+    weak var delegate: CloudKitServiceDelegate?
     
     var stations = [Station]() {
         didSet {
             self.delegate?.updateStations(stations: stations)
         }
     }
-    weak var delegate: CloudKitServiceDelegate?
     
-    private let recordType = "FavouriteBase"
+    private let recordFavourite = "FavouriteStation"
+    private let recordRate = "RatedStation"
+    
     private let privateCloudDatabase = CKContainer.default().publicCloudDatabase//.privateCloudDatabase
     
     func saveStationToCloud(station: Station) {
-        let record = CKRecord(recordType: recordType)
+        let record = CKRecord(recordType: recordFavourite)
         record.setValue(station.name, forKey: "name")
         record.setValue(station.city, forKey: "city")
         record.setValue(station.country, forKey: "country")
@@ -46,7 +48,7 @@ class CloudKitService {
     }
     
     func fetchStationsFromCloud() {
-        let query = CKQuery(recordType: recordType, predicate: NSPredicate(value: true))
+        let query = CKQuery(recordType: recordFavourite, predicate: NSPredicate(value: true))
         query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         self.privateCloudDatabase.perform(query, inZoneWith: nil) { records, error in
             if let error = error {
@@ -86,7 +88,7 @@ class CloudKitService {
     }
     
     func deleteStation(with stationId: String) {
-        let query = CKQuery(recordType: recordType, predicate: NSPredicate(value: true))
+        let query = CKQuery(recordType: recordFavourite, predicate: NSPredicate(value: true))
         self.privateCloudDatabase.perform(query, inZoneWith: nil) { records, error in
             if let error = error {
                 print(error.localizedDescription)
