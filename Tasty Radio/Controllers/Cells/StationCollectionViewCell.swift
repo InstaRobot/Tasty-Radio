@@ -14,7 +14,6 @@ protocol StationCollectionViewCellDelegate: class {
 }
 
 class StationCollectionViewCell: UICollectionViewCell {
-    
     @IBOutlet weak var stationImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
@@ -49,5 +48,4 @@ class StationCollectionViewCell: UICollectionViewCell {
             self.delegate?.playStation(with: station)
         }
     }
-    
 }
