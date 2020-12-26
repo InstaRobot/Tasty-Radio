@@ -62,27 +62,8 @@ class CloudKitService {
             self.stations.removeAll()
             
             records.forEach { record in
-                if
-                    let name = record.value(forKey: "name") as? String,
-                    let city = record.value(forKey: "city") as? String,
-                    let country = record.value(forKey: "country") as? String,
-                    let imageUrl = record.value(forKey: "imageUrl") as? String,
-                    let stationId = record.value(forKey: "stationId") as? String,
-                    let stationUrl = record.value(forKey: "stationUrl") as? String
-                {
-                    let station = Station(
-                        stationId: stationId,
-                        sortOrder: 0,
-                        name: name,
-                        city: city,
-                        country: country,
-                        imageUrl: URL(string: imageUrl),
-                        stationUrl: URL(string: stationUrl),
-                        rating: 0,
-                        info: ""
-                    )
-                    self.stations.append(station)
-                }
+                let station = Station(record: record)
+                self.stations.append(station)
             }
         }
     }
