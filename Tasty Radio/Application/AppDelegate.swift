@@ -29,6 +29,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ParseGenre.registerSubclass()
         ParseStation.registerSubclass()
     }
-
 }
 

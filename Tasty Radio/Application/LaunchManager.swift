@@ -9,7 +9,6 @@
 import UIKit
 
 class LaunchManager {
-    
     private var window: UIWindow?
     
     private var launch: Bool {
@@ -39,5 +38,4 @@ class LaunchManager {
         }
         window?.makeKeyAndVisible()
     }
-    
 }

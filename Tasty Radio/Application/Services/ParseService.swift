@@ -10,7 +10,6 @@ import Foundation
 import Parse
 
 class ParseService: NSObject {
-    
     override init() {
         super.init()
         self.connect()
@@ -41,5 +40,4 @@ class ParseService: NSObject {
             }
         }
     }
-    
 }
