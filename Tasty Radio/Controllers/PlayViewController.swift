@@ -25,15 +25,14 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
-    private var favouriteStations: [Station] = CloudKitService.shared.stations
+    private var favouriteStations = [Station]()
     private var cloudKitService = CloudKitService.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cloudKitService.delegate = self
-        
         let station = self.stations[self.currentIndex]
         self.playStation(with: station)
+        self.reloadStations()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,14 +49,16 @@ class PlayViewController: UIViewController {
     @IBAction func onFavourite(_ sender: UIButton) {
         sender.animateTap {
             let currentStation = self.stations[self.currentIndex]
-            if self.favouriteStations.contains(currentStation), let index = self.favouriteStations.firstIndex(of: currentStation) {
-                self.favouriteStations.remove(at: index)
-                CloudKitService.shared.deleteStation(with: currentStation.stationId)
+            if self.favouriteStations.contains(currentStation) {
+                CloudKitService.shared.deleteStation(with: currentStation.stationId) { [weak self] in
+                    self?.reloadStations()
+                }
             }
             else {
-                CloudKitService.shared.saveStationToCloud(station: currentStation)
+                CloudKitService.shared.saveStationToCloud(station: currentStation) { [weak self] in
+                    self?.reloadStations()
+                }
             }
-            self.updateFavouriteButtonState()
         }
     }
     
@@ -94,7 +95,6 @@ class PlayViewController: UIViewController {
     func playStation(with station: Station) {
         if let index = stations.firstIndex(of: station) {
             self.currentIndex = index
-            self.updateButtonsState()
         }
         
         if let url = station.imageUrl {
@@ -109,6 +109,7 @@ class PlayViewController: UIViewController {
         }
         nameLabel.text = station.name
         self.updatePlayButton()
+        self.updateButtonsState()
     }
 
     private func updateButtonsState() {
@@ -129,8 +130,6 @@ class PlayViewController: UIViewController {
             self.nextButton.isEnabled = true
             self.nextButton.tintColor = .dark10
         }
-        
-        updateFavouriteButtonState()
     }
     
     private func updatePlayButton() {
@@ -155,11 +154,11 @@ class PlayViewController: UIViewController {
             }
         }
     }
-}
-
-extension PlayViewController: CloudKitServiceDelegate {
-    func updateStations(stations: [Station]) {
-        self.favouriteStations = stations
-        self.updateFavouriteButtonState()
+    
+    private func reloadStations() {
+        CloudKitService.shared.fetchStationsFromCloud { [weak self] stations in
+            self?.favouriteStations = stations
+            self?.updateFavouriteButtonState()
+        }
     }
 }

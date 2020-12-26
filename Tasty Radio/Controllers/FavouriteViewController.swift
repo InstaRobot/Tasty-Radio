@@ -10,7 +10,22 @@ import UIKit
 
 class FavouriteViewController: UIViewController {
     
-    var stations: [Station] = CloudKitService.shared.stations
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        CloudKitService.shared.fetchStationsFromCloud { [weak self] stations in
+            self?.stations = stations
+            self?.reloadStations()
+        }
+    }
+    
+    var stations = [Station]()
+    
+    private func reloadStations() {
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
     
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -55,12 +70,5 @@ extension FavouriteViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(width: (view.frame.width - 60) / 2 - 12, height: 160)
         return size
-    }
-}
-
-extension FavouriteViewController: CloudKitServiceDelegate {
-    func updateStations(stations: [Station]) {
-        self.stations = stations
-        self.collectionView.reloadData()
     }
 }

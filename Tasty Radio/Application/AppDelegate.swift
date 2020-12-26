@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureParseSubclasses()
         Parse.initialize(with: ConfigParse().config())
-        
-        CloudKitService.shared.fetchStationsFromCloud()
         return true
     }
     
