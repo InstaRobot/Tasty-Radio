@@ -124,7 +124,6 @@ extension OnboardingPageViewController: UIPageViewControllerDataSource {
             let firstIndex = items.firstIndex(of: firstViewController) else {
             return 0
         }
-        
         return firstIndex
     }
 }
