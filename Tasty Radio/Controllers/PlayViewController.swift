@@ -8,9 +8,33 @@
 
 import UIKit
 import Kingfisher
-import AVFoundation
+import MediaPlayer
+import AVKit
+
+protocol PlayViewControllerDelegate: class {
+    func didPressPlayingButton()
+    func didPressStopButton()
+    func didPressNextButton()
+    func didPressPreviousButton()
+}
+
 
 class PlayViewController: UIViewController {
+    weak var delegate: PlayViewControllerDelegate?
+    
+    // MARK: - Properties
+    
+    var currentStation: RadioStation!
+    var currentTrack: Track!
+    
+    var newStation = true
+    var nowPlayingImageView: UIImageView!
+    let radioPlayer = FRadioPlayer.shared
+    
+    var mpVolumeSlider: UISlider?
+    
+    
+    
     var stations: [Station] = []
     var currentIndex = 0
     
@@ -25,14 +49,65 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
+    @IBOutlet weak var volumeParentView: UIView!
+    @IBOutlet weak var airPlayView: UIView!
+    
     private var favouriteStations = [Station]()
     private var cloudKitService = CloudKitService.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         let station = self.stations[self.currentIndex]
         self.playStation(with: station)
         self.reloadStations()
+    }
+    
+    func setupVolumeSlider() {
+        // Note: This slider implementation uses a MPVolumeView
+        // The volume slider only works in devices, not the simulator.
+        for subview in MPVolumeView().subviews {
+            guard let volumeSlider = subview as? UISlider else { continue }
+            mpVolumeSlider = volumeSlider
+        }
+        
+        guard let mpVolumeSlider = mpVolumeSlider else { return }
+        
+        volumeParentView.addSubview(mpVolumeSlider)
+        
+        mpVolumeSlider.translatesAutoresizingMaskIntoConstraints = false
+        mpVolumeSlider.leftAnchor.constraint(equalTo: volumeParentView.leftAnchor).isActive = true
+        mpVolumeSlider.rightAnchor.constraint(equalTo: volumeParentView.rightAnchor).isActive = true
+        mpVolumeSlider.centerYAnchor.constraint(equalTo: volumeParentView.centerYAnchor).isActive = true
+        
+        mpVolumeSlider.setThumbImage(#imageLiteral(resourceName: "slider-ball"), for: .normal)
+    }
+    
+    func setupAirPlayButton() {
+
+        if #available(iOS 11.0, *) {
+            let airPlayButton = AVRoutePickerView(frame: airPlayView.bounds)
+            airPlayButton.activeTintColor = .dark10
+            airPlayButton.tintColor = .gray
+            airPlayView.backgroundColor = .clear
+            airPlayView.addSubview(airPlayButton)
+        }
+        else {
+            let airPlayButton = MPVolumeView(frame: airPlayView.bounds)
+            airPlayButton.showsVolumeSlider = false
+            airPlayView.backgroundColor = .clear
+            airPlayView.addSubview(airPlayButton)
+        }
+    }
+    
+    func stationDidChange() {
+        radioPlayer.radioURL = URL(string: currentStation.streamURL)
+//        albumImageView.image = currentTrack.artworkImage
+//        stationDescLabel.text = currentStation.desc
+//        stationDescLabel.isHidden = currentTrack.artworkLoaded
+        title = currentStation.name
     }
     
     override func viewWillDisappear(_ animated: Bool) {
