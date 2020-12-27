@@ -60,8 +60,6 @@ extension FavouriteViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let playController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "PlayViewController") as! PlayViewController
         playController.modalPresentationStyle = .fullScreen
-        playController.stations = stations
-        playController.currentIndex = indexPath.item
         self.navigationController?.present(playController, animated: true, completion: nil)
     }
 }

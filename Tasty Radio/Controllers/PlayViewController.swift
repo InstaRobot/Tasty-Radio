@@ -20,6 +20,20 @@ protocol PlayViewControllerDelegate: class {
 
 
 class PlayViewController: UIViewController {
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet private(set) weak var stationDescLabel: UILabel!
+    @IBOutlet weak var albumImageView: SpringImageView!
+    @IBOutlet weak var favouriteButton: UIButton!
+    
+    @IBOutlet weak var playingButton: UIButton!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    
+    @IBOutlet weak var airPlayView: UIView!
+    
+    @IBOutlet weak var songLabel: SpringLabel!
+    @IBOutlet weak var artistLabel: UILabel!
+    
     weak var delegate: PlayViewControllerDelegate?
     
     // MARK: - Properties
@@ -31,38 +45,17 @@ class PlayViewController: UIViewController {
     var nowPlayingImageView: UIImageView!
     let radioPlayer = FRadioPlayer.shared
     
-    
-    
-    var stations: [RadioStation] = []
-    var currentIndex = 0
-    
-    private var player: AVPlayer?
-    private var isPlaying = false
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var stationImageView: UIImageView!
-    @IBOutlet weak var favouriteButton: UIButton!
-    
-    @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var previousButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
-    
-    @IBOutlet weak var airPlayView: UIView!
-    
-    @IBOutlet weak var songLabel: SpringLabel!
-    @IBOutlet weak var artistLabel: UILabel!
-//    @IBOutlet weak var nowPlayingImageView: UIImageView!
-    
-    private var favouriteStations = [RadioStation]()
-    private var cloudKitService = CloudKitService.shared
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupAirPlayButton()
+        createNowPlayingAnimation()
+        self.title = currentStation.name
         
-        let station = self.stations[self.currentIndex]
-        self.playStation(with: station)
-        self.reloadStations()
+        albumImageView.image = currentTrack.artworkImage
+        stationDescLabel.text = currentStation.info
+        stationDescLabel.isHidden = currentTrack.artworkLoaded
+        
+        newStation ? stationDidChange() : playerStateDidChange(radioPlayer.state, animate: false)
+        setupAirPlayButton()
     }
     
     func setupAirPlayButton() {
@@ -75,66 +68,40 @@ class PlayViewController: UIViewController {
     
     func stationDidChange() {
         radioPlayer.radioURL = currentStation.streamURL
-//        albumImageView.image = currentTrack.artworkImage
-//        stationDescLabel.text = currentStation.desc
-//        stationDescLabel.isHidden = currentTrack.artworkLoaded
+        albumImageView.image = currentTrack.artworkImage
+        stationDescLabel.text = currentStation.info
+        stationDescLabel.isHidden = currentTrack.artworkLoaded
         title = currentStation.name
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.player = nil
-    }
-    
     @IBAction func onBack(_ sender: UIButton) {
-        sender.animateTap {
-            self.dismiss(animated: true, completion: nil)
+        sender.animateTap { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
         }
     }
     
     @IBAction func onFavourite(_ sender: UIButton) {
-        sender.animateTap {
-            let currentStation = self.stations[self.currentIndex]
-            if self.favouriteStations.contains(currentStation) {
-                CloudKitService.shared.deleteStation(with: currentStation.stationId) { [weak self] in
-                    self?.reloadStations()
-                }
-            }
-            else {
-                CloudKitService.shared.saveStationToCloud(station: currentStation) { [weak self] in
-                    self?.reloadStations()
-                }
-            }
-        }
+//        sender.animateTap { [weak self] in
+//
+//        }
     }
     
     @IBAction func onPrevious(_ sender: UIButton) {
-        sender.animateTap {
-            if self.currentIndex > 0 {
-                self.playStation(with: self.stations[self.currentIndex - 1])
-            }
+        sender.animateTap {  [weak self] in
+            self?.delegate?.didPressPreviousButton()
         }
     }
     
     @IBAction func onPlayPause(_ sender: UIButton) {
-        sender.animateTap {
-            if self.isPlaying {
-                self.player?.pause()
-                self.isPlaying = false
-            }
-            else {
-                let station = self.stations[self.currentIndex]
-                self.playStation(with: station)
-            }
-            self.updatePlayButton()
+        sender.animateTap { [weak self] in
+            self?.delegate?.didPressPlayingButton()
+//            self?.delegate?.didPressStopButton()
         }
     }
     
     @IBAction func onNext(_ sender: UIButton) {
-        sender.animateTap {
-            if self.currentIndex < self.stations.count - 1 {
-                self.playStation(with: self.stations[self.currentIndex + 1])
-            }
+        sender.animateTap {  [weak self] in
+            self?.delegate?.didPressNextButton()
         }
     }
     
@@ -161,74 +128,140 @@ class PlayViewController: UIViewController {
             self.present(activityViewController, animated: true, completion: nil)
         }
     }
-    
-    func playStation(with station: RadioStation) {
-        if let index = stations.firstIndex(of: station) {
-            self.currentIndex = index
-        }
-        
-        if let url = station.imageURL {
-            stationImageView.kf.indicatorType = .activity
-            stationImageView.kf.setImage(with: url)
-        }
-        
-        if let url = station.streamURL {
-            self.player = AVPlayer(url: url)
-            self.player?.play()
-            self.isPlaying = true
-        }
-        nameLabel.text = station.name
-        self.updatePlayButton()
-        self.updateButtonsState()
-    }
+}
 
-    private func updateButtonsState() {
-        if currentIndex == 0 {
-            self.previousButton.isEnabled = false
-            self.previousButton.tintColor = .dark5
+extension PlayViewController {
+    func load(station: RadioStation?, track: Track?, isNewStation: Bool = true) {
+        guard
+            let station = station else {
+            return
+        }
+        currentStation = station
+        currentTrack = track
+        newStation = isNewStation
+    }
+    
+    func updateTrackMetadata(with track: Track?) {
+        guard
+            let track = track else {
+            return
+        }
+        currentTrack.artist = track.artist
+        currentTrack.title = track.title
+        updateLabels()
+    }
+    
+    func updateTrackArtwork(with track: Track?) {
+        guard
+            let track = track else {
+            return
+        }
+        currentTrack.artworkImage = track.artworkImage
+        currentTrack.artworkLoaded = track.artworkLoaded
+        albumImageView.image = currentTrack.artworkImage
+        
+        if track.artworkLoaded {
+            albumImageView.animation = "wobble"
+            albumImageView.duration = 2
+            albumImageView.animate()
+            stationDescLabel.isHidden = true
         }
         else {
-            self.previousButton.isEnabled = true
-            self.previousButton.tintColor = .dark10
+            stationDescLabel.isHidden = false
+        }
+        view.setNeedsDisplay()
+    }
+    
+    private func isPlayingDidChange(_ isPlaying: Bool) {
+        playingButton.isSelected = isPlaying
+        startNowPlayingAnimation(isPlaying)
+    }
+    
+    func playbackStateDidChange(_ playbackState: FRadioPlaybackState, animate: Bool) {
+        let message: String?
+        switch playbackState {
+        case .paused:
+            message = "Station Paused..."
+        case .playing:
+            message = nil
+        case .stopped:
+            message = "Station Stopped..."
+        }
+        updateLabels(with: message, animate: animate)
+        isPlayingDidChange(radioPlayer.isPlaying)
+    }
+    
+    func playerStateDidChange(_ state: FRadioPlayerState, animate: Bool) {
+        let message: String?
+        switch state {
+        case .loading:
+            message = "Loading Station ..."
+        case .urlNotSet:
+            message = "Station URL not valide"
+        case .readyToPlay, .loadingFinished:
+            playbackStateDidChange(radioPlayer.playbackState, animate: animate)
+            return
+        case .error:
+            message = "Error Playing"
+        }
+        updateLabels(with: message, animate: animate)
+    }
+    
+    func updateLabels(with statusMessage: String? = nil, animate: Bool = true) {
+        guard
+            let statusMessage = statusMessage else {
+            songLabel.text = currentTrack.title
+            artistLabel.text = currentTrack.artist
+            shouldAnimateSongLabel(animate)
+            return
+        }
+        guard
+            songLabel.text != statusMessage else {
+            return
         }
         
-        if currentIndex == stations.count - 1 {
-            self.nextButton.isEnabled = false
-            self.nextButton.tintColor = .dark5
-        }
-        else {
-            self.nextButton.isEnabled = true
-            self.nextButton.tintColor = .dark10
-        }
-    }
-    
-    private func updatePlayButton() {
-        DispatchQueue.main.async {
-            if self.isPlaying {
-                self.playPauseButton.setImage(UIImage(named: "pause-button"), for: .normal)
-            }
-            else {
-                self.playPauseButton.setImage(UIImage(named: "play-button"), for: .normal)
-            }
+        songLabel.text = statusMessage
+        artistLabel.text = currentStation.name
+        if animate {
+            songLabel.animation = "flash"
+            songLabel.repeatCount = 3
+            songLabel.animate()
         }
     }
     
-    private func updateFavouriteButtonState() {
-        let currentStation = self.stations[self.currentIndex]
-        DispatchQueue.main.async { [unowned self] in
-            if self.favouriteStations.contains(currentStation) {
-                self.favouriteButton.tintColor = .favourite
-            }
-            else {
-                self.favouriteButton.tintColor = .dark8
-            }
+    // Animations
+    
+    func shouldAnimateSongLabel(_ animate: Bool) {
+        guard
+            animate,
+            currentTrack.title != currentStation.name else {
+            return
         }
+        
+        songLabel.animation = "zoomIn"
+        songLabel.duration = 1.5
+        songLabel.damping = 1
+        songLabel.animate()
     }
     
-    private func reloadStations() {
-        CloudKitService.shared.fetchStationsFromCloud { [weak self] stations in
-            self?.favouriteStations = stations
-            self?.updateFavouriteButtonState()
-        }
+    func createNowPlayingAnimation() {
+        nowPlayingImageView = UIImageView(image: UIImage(named: "NowPlayingBars-3"))
+        nowPlayingImageView.autoresizingMask = []
+        nowPlayingImageView.contentMode = UIView.ContentMode.center
+        
+        nowPlayingImageView.animationImages = AnimationFrames.createFrames()
+        nowPlayingImageView.animationDuration = 0.7
+        
+        let barButton = UIButton(type: .custom)
+        barButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        barButton.addSubview(nowPlayingImageView)
+        nowPlayingImageView.center = barButton.center
+        
+        let barItem = UIBarButtonItem(customView: barButton)
+        self.navigationItem.rightBarButtonItem = barItem
+    }
+    
+    func startNowPlayingAnimation(_ animate: Bool) {
+        animate ? nowPlayingImageView.startAnimating() : nowPlayingImageView.stopAnimating()
     }
 }
