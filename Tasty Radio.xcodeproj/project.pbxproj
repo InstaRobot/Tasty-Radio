@@ -202,8 +202,6 @@
 		500DE82C256A66D6006D1310 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				509CA3D825726CA800CFF990 /* Cells */,
-				500DE83D256A8EBC006D1310 /* VIews */,
 				509CA3D625726C2700CFF990 /* Onboarding */,
 				50C2C89E25728F440025B5A9 /* NavigationController.swift */,
 				50F5B623256AB1890008F4E0 /* MainViewController.swift */,
@@ -238,12 +236,13 @@
 		50461EA6256A63C50076CDB1 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				500DE83D256A8EBC006D1310 /* VIews */,
+				509CA3D825726CA800CFF990 /* Cells */,
 				50641E062598BA63002A2E5B /* LIBs */,
 				504B593B2572552300B936D0 /* Helpers */,
-				505E4D9D256935DC0090D11A /* Assets.xcassets */,
+				50641E6C2598F68F002A2E5B /* Assets */,
 				50461EA7256A63FF0076CDB1 /* Podfile */,
 				505E4DA2256935DC0090D11A /* Info.plist */,
-				50FD33232598AA8B009E2DF7 /* fly-music.json */,
 				50375C61258F5B7300BA6FF8 /* ConfigParse.swift */,
 				50B53BC52596907C00BB6108 /* Tasty Radio.entitlements */,
 			);
@@ -366,6 +365,15 @@
 				50641E532598BD9D002A2E5B /* LogoShareView.swift */,
 			);
 			path = LogoShareView;
+			sourceTree = "<group>";
+		};
+		50641E6C2598F68F002A2E5B /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				505E4D9D256935DC0090D11A /* Assets.xcassets */,
+				50FD33232598AA8B009E2DF7 /* fly-music.json */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		509CA3BA2572624100CFF990 /* Model */ = {
