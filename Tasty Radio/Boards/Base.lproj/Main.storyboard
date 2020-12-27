@@ -1012,6 +1012,9 @@
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" image="share-icon"/>
+                                <connections>
+                                    <action selector="onShare:" destination="8Dz-wc-zWg" eventType="touchUpInside" id="LM7-En-XY2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="536-C3-2mg"/>

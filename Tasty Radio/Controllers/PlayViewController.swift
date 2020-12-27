@@ -53,6 +53,7 @@ class PlayViewController: UIViewController {
     
     @IBOutlet weak var songLabel: SpringLabel!
     @IBOutlet weak var artistLabel: UILabel!
+//    @IBOutlet weak var nowPlayingImageView: UIImageView!
     
     private var favouriteStations = [Station]()
     private var cloudKitService = CloudKitService.shared
@@ -136,6 +137,30 @@ class PlayViewController: UIViewController {
             if self.currentIndex < self.stations.count - 1 {
                 self.playStation(with: self.stations[self.currentIndex + 1])
             }
+        }
+    }
+    
+    @IBAction private func onShare(_ sender: UIButton) {
+        sender.animateTap { [unowned self] in
+            guard
+                self.currentStation != nil,
+                self.currentTrack != nil else {
+                return
+            }
+            let radioShoutout = "Я слушаю \(self.currentStation.name) через Tasty Radio"
+            let shareImage = ShareImageGenerator(radioShoutout: radioShoutout, track: self.currentTrack).generate()
+            
+            let activityViewController = UIActivityViewController(activityItems: [radioShoutout, shareImage], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceRect = CGRect(x: self.view.center.x, y: self.view.center.y, width: 0, height: 0)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            
+            activityViewController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed:Bool, returnedItems:[Any]?, error: Error?) in
+                if completed {
+                    // do something on completion if you want
+                }
+            }
+            self.present(activityViewController, animated: true, completion: nil)
         }
     }
     
