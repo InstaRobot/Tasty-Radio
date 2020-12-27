@@ -33,7 +33,7 @@ class PlayViewController: UIViewController {
     
     
     
-    var stations: [Station] = []
+    var stations: [RadioStation] = []
     var currentIndex = 0
     
     private var player: AVPlayer?
@@ -53,7 +53,7 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var artistLabel: UILabel!
 //    @IBOutlet weak var nowPlayingImageView: UIImageView!
     
-    private var favouriteStations = [Station]()
+    private var favouriteStations = [RadioStation]()
     private var cloudKitService = CloudKitService.shared
     
     override func viewDidLoad() {
@@ -74,7 +74,7 @@ class PlayViewController: UIViewController {
     }
     
     func stationDidChange() {
-        radioPlayer.radioURL = URL(string: currentStation.streamURL)
+        radioPlayer.radioURL = currentStation.streamURL
 //        albumImageView.image = currentTrack.artworkImage
 //        stationDescLabel.text = currentStation.desc
 //        stationDescLabel.isHidden = currentTrack.artworkLoaded
@@ -162,17 +162,17 @@ class PlayViewController: UIViewController {
         }
     }
     
-    func playStation(with station: Station) {
+    func playStation(with station: RadioStation) {
         if let index = stations.firstIndex(of: station) {
             self.currentIndex = index
         }
         
-        if let url = station.imageUrl {
+        if let url = station.imageURL {
             stationImageView.kf.indicatorType = .activity
             stationImageView.kf.setImage(with: url)
         }
         
-        if let url = station.stationUrl {
+        if let url = station.streamURL {
             self.player = AVPlayer(url: url)
             self.player?.play()
             self.isPlaying = true

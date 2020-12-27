@@ -19,7 +19,7 @@ class FavouriteViewController: UIViewController {
         }
     }
     
-    var stations = [Station]()
+    var stations = [RadioStation]()
     
     private func reloadStations() {
         DispatchQueue.main.async { [weak self] in

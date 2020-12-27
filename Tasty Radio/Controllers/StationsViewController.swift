@@ -273,7 +273,7 @@ extension StationsViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension StationsViewController: StationCollectionViewCellDelegate {
-    func playStation(with station: Station) {
+    func playStation(with station: RadioStation) {
 //        if let index = stations.firstIndex(of: station) {
 //            self.selectedStationIndex = index
 //            self.updateButtonsState()

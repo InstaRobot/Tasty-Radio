@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 protocol StationCollectionViewCellDelegate: class {
-    func playStation(with station: Station)
+    func playStation(with station: RadioStation)
 }
 
 class StationCollectionViewCell: UICollectionViewCell {
@@ -20,13 +20,13 @@ class StationCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: StationCollectionViewCellDelegate?
     
-    private var station: Station? {
+    private var station: RadioStation? {
         didSet {
             guard
                 let station = station else {
                 return
             }
-            if let url = station.imageUrl {
+            if let url = station.imageURL {
                 stationImageView.kf.indicatorType = .activity
                 stationImageView.kf.setImage(with: url)
             }
@@ -35,7 +35,7 @@ class StationCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configure(with station: Station) {
+    func configure(with station: RadioStation) {
         self.station = station
     }
     

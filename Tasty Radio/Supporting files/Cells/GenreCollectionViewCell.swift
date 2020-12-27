@@ -19,7 +19,7 @@ class GenreCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
     func configure(with genre: Genre) {
-        if let url = genre.imageUrl {
+        if let url = genre.imageURL {
             genreImageView.kf.indicatorType = .activity
             genreImageView.kf.setImage(with: url)
         }

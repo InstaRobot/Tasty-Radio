@@ -72,7 +72,7 @@ class RadioPlayer {
             track = nil
             return
         }
-        updateTrackMetadata(artistName: station.desc, trackName: station.name)
+        updateTrackMetadata(artistName: station.info, trackName: station.name)
         resetArtwork(with: station)
     }
     
@@ -93,13 +93,13 @@ class RadioPlayer {
     //*****************************************************************
     
     private func getStationImage(from station: RadioStation, completionHandler: @escaping (_ image: UIImage) -> ()) {
-        if station.imageURL.range(of: "http") != nil {
-            ImageLoader.sharedLoader.imageForUrl(urlString: station.imageURL) { (image, stringURL) in
+        if station.imageURL?.absoluteString.range(of: "http") != nil {
+            ImageLoader.sharedLoader.imageForUrl(urlString: station.imageURL?.absoluteString ?? "") { (image, stringURL) in
                 completionHandler(image ?? #imageLiteral(resourceName: "cube-icon"))
             }
         }
         else {
-            let image = UIImage(named: station.imageURL) ?? #imageLiteral(resourceName: "cube-icon")
+            let image = UIImage(named: station.imageURL?.absoluteString ?? "") ?? #imageLiteral(resourceName: "cube-icon")
             completionHandler(image)
         }
     }

@@ -97,9 +97,7 @@ class MainViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func onMain(_ sender: UIButton) {
-        sender.animateTap {
-            
-        }
+        sender.animateTap { }
     }
     
     @IBAction func onStations(_ sender: UIButton) {
@@ -191,7 +189,7 @@ extension MainViewController {
                 Genre(genreId: $0.objectId ?? "",
                       sortOrder: 0,
                       name: $0.name ?? "",
-                      imageUrl: URL(string: $0.cover?.url ?? "")
+                      imageURL: URL(string: $0.cover?.url ?? "")
                 )
             }
             self.genresReserved = self.genres
