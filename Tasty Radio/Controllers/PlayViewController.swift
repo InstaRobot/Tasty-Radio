@@ -58,7 +58,7 @@ class PlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        setupAirPlayButton()
         
         let station = self.stations[self.currentIndex]
         self.playStation(with: station)
@@ -86,20 +86,11 @@ class PlayViewController: UIViewController {
     }
     
     func setupAirPlayButton() {
-
-        if #available(iOS 11.0, *) {
-            let airPlayButton = AVRoutePickerView(frame: airPlayView.bounds)
-            airPlayButton.activeTintColor = .dark10
-            airPlayButton.tintColor = .gray
-            airPlayView.backgroundColor = .clear
-            airPlayView.addSubview(airPlayButton)
-        }
-        else {
-            let airPlayButton = MPVolumeView(frame: airPlayView.bounds)
-            airPlayButton.showsVolumeSlider = false
-            airPlayView.backgroundColor = .clear
-            airPlayView.addSubview(airPlayButton)
-        }
+        let airPlayButton = AVRoutePickerView(frame: airPlayView.bounds)
+        airPlayButton.activeTintColor = .dark10
+        airPlayButton.tintColor = .gray
+        airPlayView.backgroundColor = .clear
+        airPlayView.addSubview(airPlayButton)
     }
     
     func stationDidChange() {
