@@ -23,6 +23,9 @@ class GenreCollectionViewCell: UICollectionViewCell {
             genreImageView.kf.indicatorType = .activity
             genreImageView.kf.setImage(with: url)
         }
+        else {
+            genreImageView.image = UIImage(named: "back_genre_cell")
+        }
         nameLabel.text = genre.name
     }
 }
