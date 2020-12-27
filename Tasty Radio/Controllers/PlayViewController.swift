@@ -44,45 +44,26 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var stationImageView: UIImageView!
     @IBOutlet weak var favouriteButton: UIButton!
-    @IBOutlet weak var playPauseButton: UIButton!
     
+    @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
-    @IBOutlet weak var volumeParentView: UIView!
     @IBOutlet weak var airPlayView: UIView!
+    
+    @IBOutlet weak var songLabel: SpringLabel!
+    @IBOutlet weak var artistLabel: UILabel!
     
     private var favouriteStations = [Station]()
     private var cloudKitService = CloudKitService.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupAirPlayButton()
         
         let station = self.stations[self.currentIndex]
         self.playStation(with: station)
         self.reloadStations()
-    }
-    
-    func setupVolumeSlider() {
-        // Note: This slider implementation uses a MPVolumeView
-        // The volume slider only works in devices, not the simulator.
-        for subview in MPVolumeView().subviews {
-            guard let volumeSlider = subview as? UISlider else { continue }
-            mpVolumeSlider = volumeSlider
-        }
-        
-        guard let mpVolumeSlider = mpVolumeSlider else { return }
-        
-        volumeParentView.addSubview(mpVolumeSlider)
-        
-        mpVolumeSlider.translatesAutoresizingMaskIntoConstraints = false
-        mpVolumeSlider.leftAnchor.constraint(equalTo: volumeParentView.leftAnchor).isActive = true
-        mpVolumeSlider.rightAnchor.constraint(equalTo: volumeParentView.rightAnchor).isActive = true
-        mpVolumeSlider.centerYAnchor.constraint(equalTo: volumeParentView.centerYAnchor).isActive = true
-        
-        mpVolumeSlider.setThumbImage(#imageLiteral(resourceName: "slider-ball"), for: .normal)
     }
     
     func setupAirPlayButton() {

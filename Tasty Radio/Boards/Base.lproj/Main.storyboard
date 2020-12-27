@@ -896,52 +896,6 @@
                                 <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1uo-HU-r8h" customClass="AirPlayUIView">
-                                <rect key="frame" x="135" y="518" width="50" height="50"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="AtW-u3-qQx"/>
-                                    <constraint firstAttribute="height" constant="50" id="d3t-ML-cYY"/>
-                                </constraints>
-                            </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kO9-Zc-uSr">
-                                <rect key="frame" x="60" y="114" width="200" height="200"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eg6-Oi-N2X">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9HW-SW-3EZ">
-                                        <rect key="frame" x="160" y="15" width="25" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="cxL-nE-SmG"/>
-                                            <constraint firstAttribute="width" constant="25" id="d4c-8l-5Vx"/>
-                                        </constraints>
-                                        <color key="tintColor" name="Favourite"/>
-                                        <state key="normal" image="star-icon"/>
-                                        <connections>
-                                            <action selector="onFavourite:" destination="8Dz-wc-zWg" eventType="touchUpInside" id="jpQ-DB-EZs"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" name="Dark7"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="eg6-Oi-N2X" secondAttribute="trailing" id="0gc-6j-slp"/>
-                                    <constraint firstItem="eg6-Oi-N2X" firstAttribute="top" secondItem="kO9-Zc-uSr" secondAttribute="top" id="EEy-ho-IeL"/>
-                                    <constraint firstAttribute="bottom" secondItem="eg6-Oi-N2X" secondAttribute="bottom" id="G9M-ac-cpx"/>
-                                    <constraint firstItem="9HW-SW-3EZ" firstAttribute="top" secondItem="kO9-Zc-uSr" secondAttribute="top" constant="15" id="XRy-Kj-WE1"/>
-                                    <constraint firstItem="eg6-Oi-N2X" firstAttribute="leading" secondItem="kO9-Zc-uSr" secondAttribute="leading" id="YIx-bH-uxm"/>
-                                    <constraint firstAttribute="width" constant="200" id="c5a-OA-Cig"/>
-                                    <constraint firstAttribute="trailing" secondItem="9HW-SW-3EZ" secondAttribute="trailing" constant="15" id="cKc-w9-qcv"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="dsV-vJ-sXL"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="k2W-hI-xdK"/>
-                                    <constraint firstAttribute="height" constant="200" id="tlR-pl-OCA"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zL-5U-CkJ">
                                 <rect key="frame" x="0.0" y="408" width="320" height="60"/>
                                 <subviews>
@@ -992,30 +946,107 @@
                                     <constraint firstItem="xdo-We-Mj7" firstAttribute="centerY" secondItem="6zL-5U-CkJ" secondAttribute="centerY" id="t7Z-fF-udv"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1uo-HU-r8h" customClass="AirPlayUIView">
+                                <rect key="frame" x="135" y="518" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="AtW-u3-qQx"/>
+                                    <constraint firstAttribute="height" constant="50" id="d3t-ML-cYY"/>
+                                </constraints>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kO9-Zc-uSr">
+                                <rect key="frame" x="60" y="114" width="200" height="200"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eg6-Oi-N2X">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9HW-SW-3EZ">
+                                        <rect key="frame" x="160" y="15" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="cxL-nE-SmG"/>
+                                            <constraint firstAttribute="width" constant="25" id="d4c-8l-5Vx"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Favourite"/>
+                                        <state key="normal" image="star-icon"/>
+                                        <connections>
+                                            <action selector="onFavourite:" destination="8Dz-wc-zWg" eventType="touchUpInside" id="jpQ-DB-EZs"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="Dark7"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="eg6-Oi-N2X" secondAttribute="trailing" id="0gc-6j-slp"/>
+                                    <constraint firstItem="eg6-Oi-N2X" firstAttribute="top" secondItem="kO9-Zc-uSr" secondAttribute="top" id="EEy-ho-IeL"/>
+                                    <constraint firstAttribute="bottom" secondItem="eg6-Oi-N2X" secondAttribute="bottom" id="G9M-ac-cpx"/>
+                                    <constraint firstItem="9HW-SW-3EZ" firstAttribute="top" secondItem="kO9-Zc-uSr" secondAttribute="top" constant="15" id="XRy-Kj-WE1"/>
+                                    <constraint firstItem="eg6-Oi-N2X" firstAttribute="leading" secondItem="kO9-Zc-uSr" secondAttribute="leading" id="YIx-bH-uxm"/>
+                                    <constraint firstAttribute="width" constant="200" id="c5a-OA-Cig"/>
+                                    <constraint firstAttribute="trailing" secondItem="9HW-SW-3EZ" secondAttribute="trailing" constant="15" id="cKc-w9-qcv"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="dsV-vJ-sXL"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="k2W-hI-xdK"/>
+                                    <constraint firstAttribute="height" constant="200" id="tlR-pl-OCA"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="T1Q-UJ-5BC" userLabel="Song Label" customClass="SpringLabel" customModule="SwiftRadio" customModuleProvider="target">
+                                <rect key="frame" x="25" y="329" width="270" height="31.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zUj-Kz-hbb" userLabel="Artist Label">
+                                <rect key="frame" x="30" y="374.5" width="260" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBe-QF-IY3">
+                                <rect key="frame" x="260" y="523" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="AVw-AD-493"/>
+                                    <constraint firstAttribute="width" constant="40" id="gu2-G6-BQr"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <state key="normal" image="share-icon"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="536-C3-2mg"/>
                         <color key="backgroundColor" name="Dark1"/>
                         <constraints>
                             <constraint firstItem="536-C3-2mg" firstAttribute="trailing" secondItem="qGR-EI-95w" secondAttribute="trailing" constant="30" id="0zS-Ex-fKz"/>
+                            <constraint firstItem="zUj-Kz-hbb" firstAttribute="top" secondItem="T1Q-UJ-5BC" secondAttribute="bottom" constant="14" id="3w4-Jl-Qan"/>
                             <constraint firstItem="536-C3-2mg" firstAttribute="bottom" secondItem="1uo-HU-r8h" secondAttribute="bottom" id="CS7-zy-IOt"/>
                             <constraint firstItem="536-C3-2mg" firstAttribute="trailing" secondItem="6zL-5U-CkJ" secondAttribute="trailing" id="HIT-3L-SWS"/>
                             <constraint firstItem="536-C3-2mg" firstAttribute="bottom" secondItem="6zL-5U-CkJ" secondAttribute="bottom" constant="100" id="Hof-uJ-tLg"/>
                             <constraint firstItem="RTi-tV-ajw" firstAttribute="centerX" secondItem="sqf-sq-wa8" secondAttribute="centerX" id="M1C-hS-SQO"/>
+                            <constraint firstItem="IBe-QF-IY3" firstAttribute="centerY" secondItem="1uo-HU-r8h" secondAttribute="centerY" id="PvP-vG-hJT"/>
+                            <constraint firstItem="T1Q-UJ-5BC" firstAttribute="top" secondItem="kO9-Zc-uSr" secondAttribute="bottom" constant="15" id="XfW-6V-En0"/>
                             <constraint firstItem="RTi-tV-ajw" firstAttribute="centerY" secondItem="qGR-EI-95w" secondAttribute="centerY" id="aMS-mg-ZPL"/>
                             <constraint firstItem="kO9-Zc-uSr" firstAttribute="top" secondItem="qGR-EI-95w" secondAttribute="bottom" constant="40" id="eRd-KL-FnU"/>
+                            <constraint firstItem="T1Q-UJ-5BC" firstAttribute="leading" secondItem="536-C3-2mg" secondAttribute="leading" constant="25" id="h6H-Ui-JIc"/>
                             <constraint firstItem="6zL-5U-CkJ" firstAttribute="leading" secondItem="536-C3-2mg" secondAttribute="leading" id="i7c-nv-deu"/>
+                            <constraint firstItem="536-C3-2mg" firstAttribute="trailing" secondItem="zUj-Kz-hbb" secondAttribute="trailing" constant="30" id="jOP-qj-FzZ"/>
+                            <constraint firstItem="536-C3-2mg" firstAttribute="trailing" secondItem="T1Q-UJ-5BC" secondAttribute="trailing" constant="25" id="kyc-cE-e1T"/>
                             <constraint firstItem="qGR-EI-95w" firstAttribute="top" secondItem="536-C3-2mg" secondAttribute="top" constant="34" id="m7V-Yi-k3L"/>
                             <constraint firstItem="kO9-Zc-uSr" firstAttribute="centerX" secondItem="sqf-sq-wa8" secondAttribute="centerX" id="ryr-qt-e9h"/>
+                            <constraint firstItem="536-C3-2mg" firstAttribute="trailing" secondItem="IBe-QF-IY3" secondAttribute="trailing" constant="20" id="v6f-3e-QNd"/>
+                            <constraint firstItem="zUj-Kz-hbb" firstAttribute="leading" secondItem="536-C3-2mg" secondAttribute="leading" constant="30" id="vrY-Sg-dxj"/>
                             <constraint firstItem="1uo-HU-r8h" firstAttribute="centerX" secondItem="sqf-sq-wa8" secondAttribute="centerX" id="ymR-Eh-lFo"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="airPlayView" destination="1uo-HU-r8h" id="jYO-UZ-Zrp"/>
+                        <outlet property="artistLabel" destination="zUj-Kz-hbb" id="2f0-yt-Rem"/>
                         <outlet property="favouriteButton" destination="9HW-SW-3EZ" id="baX-WS-ubG"/>
                         <outlet property="nameLabel" destination="RTi-tV-ajw" id="r6N-Lw-fZK"/>
                         <outlet property="nextButton" destination="uer-HB-Rpc" id="Y0X-z0-x32"/>
                         <outlet property="playPauseButton" destination="xdo-We-Mj7" id="5BX-Eu-lJ5"/>
                         <outlet property="previousButton" destination="Fe0-9y-rwc" id="owT-bs-NG6"/>
+                        <outlet property="songLabel" destination="T1Q-UJ-5BC" id="cv0-LG-1MC"/>
                         <outlet property="stationImageView" destination="eg6-Oi-N2X" id="7ZH-Lh-TJ8"/>
                     </connections>
                 </viewController>
@@ -1039,6 +1070,7 @@
         <image name="play-button-icon" width="512" height="512"/>
         <image name="previous-button" width="330" height="330"/>
         <image name="settings-icon" width="939" height="939"/>
+        <image name="share-icon" width="512" height="512"/>
         <image name="star-icon" width="512" height="512"/>
         <image name="stop-button" width="330" height="330"/>
         <namedColor name="Dark1">
