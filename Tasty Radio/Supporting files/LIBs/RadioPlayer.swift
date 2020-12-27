@@ -20,13 +20,14 @@ protocol RadioPlayerDelegate: class {
 //*****************************************************************
 
 class RadioPlayer {
-    
     weak var delegate: RadioPlayerDelegate?
     
     let player = FRadioPlayer.shared
     
     var station: RadioStation? {
-        didSet { resetTrack(with: station) }
+        didSet {
+            resetTrack(with: station)
+        }
     }
     
     private(set) var track: Track?
@@ -49,11 +50,11 @@ class RadioPlayer {
     func updateTrackMetadata(artistName: String, trackName: String) {
         if track == nil {
             track = Track(title: trackName, artist: artistName)
-        } else {
+        }
+        else {
             track?.title = trackName
             track?.artist = artistName
         }
-        
         delegate?.trackDidUpdate(track)
     }
     
@@ -66,14 +67,22 @@ class RadioPlayer {
     
     // Reset the track metadata and artwork to use the current station infos
     func resetTrack(with station: RadioStation?) {
-        guard let station = station else { track = nil; return }
+        guard
+            let station = station else {
+            track = nil
+            return
+        }
         updateTrackMetadata(artistName: station.desc, trackName: station.name)
         resetArtwork(with: station)
     }
     
     // Reset the track Artwork to current station image
     func resetArtwork(with station: RadioStation?) {
-        guard let station = station else { track = nil; return }
+        guard
+            let station = station else {
+            track = nil
+            return
+        }
         getStationImage(from: station) { image in
             self.updateTrackArtwork(with: image, artworkLoaded: false)
         }
@@ -86,10 +95,11 @@ class RadioPlayer {
     private func getStationImage(from station: RadioStation, completionHandler: @escaping (_ image: UIImage) -> ()) {
         if station.imageURL.range(of: "http") != nil {
             ImageLoader.sharedLoader.imageForUrl(urlString: station.imageURL) { (image, stringURL) in
-                completionHandler(image ?? #imageLiteral(resourceName: "albumArt"))
+                completionHandler(image ?? #imageLiteral(resourceName: "cube-icon"))
             }
-        } else {
-            let image = UIImage(named: station.imageURL) ?? #imageLiteral(resourceName: "albumArt")
+        }
+        else {
+            let image = UIImage(named: station.imageURL) ?? #imageLiteral(resourceName: "cube-icon")
             completionHandler(image)
         }
     }
@@ -106,18 +116,29 @@ extension RadioPlayer: FRadioPlayerDelegate {
     
     func radioPlayer(_ player: FRadioPlayer, metadataDidChange artistName: String?, trackName: String?) {
         guard
-            let artistName = artistName, !artistName.isEmpty,
-            let trackName = trackName, !trackName.isEmpty else {
-                resetTrack(with: station)
-                return
+            let artistName = artistName,
+            !artistName.isEmpty,
+            let trackName = trackName,
+            !trackName.isEmpty
+        else {
+            resetTrack(with: station)
+            return
         }
         updateTrackMetadata(artistName: artistName, trackName: trackName)
     }
     
     func radioPlayer(_ player: FRadioPlayer, artworkDidChange artworkURL: URL?) {
-        guard let artworkURL = artworkURL else { resetArtwork(with: station); return }
+        guard
+            let artworkURL = artworkURL else {
+            resetArtwork(with: station)
+            return
+        }
         ImageLoader.sharedLoader.imageForUrl(urlString: artworkURL.absoluteString) { (image, stringURL) in
-            guard let image = image else { self.resetArtwork(with: self.station); return }
+            guard
+                let image = image else {
+                self.resetArtwork(with: self.station)
+                return
+            }
             self.updateTrackArtwork(with: image, artworkLoaded: true)
         }
     }
