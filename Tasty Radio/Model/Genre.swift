@@ -15,3 +15,9 @@ struct Genre {
     var imageURL: URL?
     var stations: [RadioStation] = []
 }
+
+extension Genre: Equatable {
+    static func == (lhs: Genre, rhs: Genre) -> Bool {
+        return lhs.genreId == rhs.genreId
+    }
+}

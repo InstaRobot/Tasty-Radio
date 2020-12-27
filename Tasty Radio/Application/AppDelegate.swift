@@ -12,18 +12,32 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    weak var stationsViewController: StationsViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
         self.window = UIWindow(frame: UIScreen.main.bounds)
         LaunchManager().createWindow(window: window)
         
         configureParseSubclasses()
         Parse.initialize(with: ConfigParse().config())
         
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        
         FRadioPlayer.shared.isAutoPlay = true
         FRadioPlayer.shared.enableArtwork = true
         FRadioPlayer.shared.artworkSize = 600
+        
+        // FIXME: - Connect right index for stations controller
+        
+        if let navigationController = window?.rootViewController as? UINavigationController {
+            navigationController.viewControllers.forEach { controller in
+                if let viewController = controller as? StationsViewController {
+                    self.stationsViewController = viewController
+                }
+            }
+//            stationsViewController = navigationController.viewControllers.first as? StationsViewController
+        }
+        
         return true
     }
     
@@ -45,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             event.type == .remoteControl else {
             return
         }
-        
         switch event.subtype {
         case .remoteControlPlay:
             FRadioPlayer.shared.play()
@@ -53,10 +66,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FRadioPlayer.shared.pause()
         case .remoteControlTogglePlayPause:
             FRadioPlayer.shared.togglePlaying()
-//        case .remoteControlNextTrack:
-//            stationsViewController?.didPressNextButton()
-//        case .remoteControlPreviousTrack:
-//            stationsViewController?.didPressPreviousButton()
+        case .remoteControlNextTrack:
+            stationsViewController?.didPressNextButton()
+        case .remoteControlPreviousTrack:
+            stationsViewController?.didPressPreviousButton()
         default:
             break
         }

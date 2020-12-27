@@ -58,8 +58,7 @@ struct RadioStation: Codable {
 }
 
 extension RadioStation: Equatable {
-    
     static func == (lhs: RadioStation, rhs: RadioStation) -> Bool {
-        return (lhs.stationId == rhs.stationId)
+        return lhs.stationId == rhs.stationId
     }
 }
