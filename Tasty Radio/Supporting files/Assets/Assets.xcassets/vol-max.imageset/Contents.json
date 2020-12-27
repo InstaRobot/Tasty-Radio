@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "vol-max.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "vol-max@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "vol-max@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "vol-max~universal.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
