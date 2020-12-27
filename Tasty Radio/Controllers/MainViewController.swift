@@ -52,7 +52,16 @@ class MainViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var plateView: UIView!
+    @IBOutlet weak var plateView: UIView! {
+        didSet {
+            plateView.layer.cornerRadius = 30
+            plateView.layer.shadowColor = UIColor.dark5.cgColor
+            plateView.layer.backgroundColor = UIColor.clear.cgColor
+            plateView.layer.shadowOffset = .zero
+            plateView.layer.shadowRadius = 10
+            plateView.layer.shadowOpacity = 0.3
+        }
+    }
     
     private var gestureRecognizer: UITapGestureRecognizer {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(hideCursor))
@@ -71,22 +80,8 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.addGestureRecognizer(gestureRecognizer)
         setupPullToRefresh()
-        
-        plateView.layer.cornerRadius = 30
-        plateView.layer.shadowColor = UIColor.dark5.cgColor
-        plateView.layer.backgroundColor = UIColor.clear.cgColor
-        plateView.layer.shadowOffset = .zero
-        plateView.layer.shadowRadius = 10
-        plateView.layer.shadowOpacity = 0.3
-        
         hideTabBar()
-        
         fetchGenres()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        hideTabBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,56 +89,12 @@ class MainViewController: UIViewController {
         showTabBar()
     }
     
-    @objc private func hideCursor() {
-        view.endEditing(true)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        hideTabBar()
     }
     
-    private func setupPullToRefresh() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Обновление жанров", attributes: [.foregroundColor: UIColor.white])
-        refreshControl.backgroundColor = .dark1
-        refreshControl.tintColor = .white
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        collectionView.addSubview(refreshControl)
-    }
-    
-    @objc func refresh(sender: AnyObject) {
-        fetchGenres()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.refreshControl.endRefreshing()
-            self.view.setNeedsDisplay()
-        }
-    }
-    
-    fileprivate func fetchGenres() {
-        service.fetchGenres { parseGenres in
-            self.genres = parseGenres.map {
-                Genre(genreId: $0.objectId ?? "",
-                      sortOrder: 0,
-                      name: $0.name ?? "",
-                      imageUrl: URL(string: $0.cover?.url ?? "")
-                )
-            }
-            self.genresReserved = self.genres
-            
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
-    
-    private func hideTabBar() {
-        self.bottomConstraint.constant = -100
-        self.view.layoutIfNeeded()
-    }
-    
-    private func showTabBar() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.bottomConstraint.constant = 8
-            UIView.animate(withDuration: TimeInterval(0.2)) {
-                self.view.layoutIfNeeded()
-            }
-        }
-    }
+    // MARK: - Actions
     
     @IBAction func onMain(_ sender: UIButton) {
         sender.animateTap {
@@ -222,5 +173,58 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(width: (view.frame.width - 60) / 2 - 12, height: 70)
         return size
+    }
+}
+
+extension MainViewController {
+    private func setupPullToRefresh() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Обновление жанров", attributes: [.foregroundColor: UIColor.white])
+        refreshControl.backgroundColor = .dark1
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        collectionView.addSubview(refreshControl)
+    }
+    
+    fileprivate func fetchGenres() {
+        service.fetchGenres { parseGenres in
+            self.genres = parseGenres.map {
+                Genre(genreId: $0.objectId ?? "",
+                      sortOrder: 0,
+                      name: $0.name ?? "",
+                      imageUrl: URL(string: $0.cover?.url ?? "")
+                )
+            }
+            self.genresReserved = self.genres
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    private func hideTabBar() {
+        self.bottomConstraint.constant = -100
+        self.view.layoutIfNeeded()
+    }
+    
+    private func showTabBar() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.bottomConstraint.constant = 8
+            UIView.animate(withDuration: TimeInterval(0.2)) {
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    @objc private func hideCursor() {
+        view.endEditing(true)
+    }
+    
+    @objc func refresh(sender: AnyObject) {
+        fetchGenres()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.refreshControl.endRefreshing()
+            self.view.setNeedsDisplay()
+        }
     }
 }
