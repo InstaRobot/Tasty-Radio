@@ -280,7 +280,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A4U-PU-UMN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <customObject id="dSU-dK-Aal" customClass="ParseService" customModule="Tasty_Radio" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="2039.1304347826087" y="106.47321428571428"/>
+            <point key="canvasLocation" x="984" y="116"/>
         </scene>
         <!--Onboarding Page View Controller-->
         <scene sceneID="Jx4-ja-ULe">
@@ -645,7 +645,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I3X-Ga-pFh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <customObject id="flm-Ib-K6z" customClass="ParseService" customModule="Tasty_Radio" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="3044.9275362318845" y="95.758928571428569"/>
+            <point key="canvasLocation" x="1774" y="116"/>
         </scene>
         <!--Favourite View Controller-->
         <scene sceneID="iy6-8h-Fu8">
@@ -737,7 +737,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SST-nh-mAN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3978.75" y="95.070422535211264"/>
+            <point key="canvasLocation" x="2558" y="116"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="zrW-cK-hr4">
@@ -769,7 +769,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="An8-jf-F30" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4846.875" y="95.070422535211264"/>
+            <point key="canvasLocation" x="3341" y="116"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="VGM-UK-sC8">
@@ -865,7 +865,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hV3-Sf-cnV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6114.375" y="95.070422535211264"/>
+            <point key="canvasLocation" x="4054" y="115"/>
         </scene>
         <!--Play View Controller-->
         <scene sceneID="Hqi-2R-P17">
@@ -1005,7 +1005,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dlp-hx-ivZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7186" y="96"/>
+            <point key="canvasLocation" x="1774" y="827"/>
         </scene>
     </scenes>
     <designables>

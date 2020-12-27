@@ -20,12 +20,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         configureParseSubclasses()
         Parse.initialize(with: ConfigParse().config())
+        
+        FRadioPlayer.shared.isAutoPlay = true
+        FRadioPlayer.shared.enableArtwork = true
+        FRadioPlayer.shared.artworkSize = 600
         return true
     }
     
     private func configureParseSubclasses() {
         ParseGenre.registerSubclass()
         ParseStation.registerSubclass()
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        UIApplication.shared.endReceivingRemoteControlEvents()
+    }
+    
+    // MARK: - Remote Controls
+
+    override func remoteControlReceived(with event: UIEvent?) {
+        super.remoteControlReceived(with: event)
+        guard
+            let event = event,
+            event.type == .remoteControl else {
+            return
+        }
+        
+        switch event.subtype {
+        case .remoteControlPlay:
+            FRadioPlayer.shared.play()
+        case .remoteControlPause:
+            FRadioPlayer.shared.pause()
+        case .remoteControlTogglePlayPause:
+            FRadioPlayer.shared.togglePlaying()
+//        case .remoteControlNextTrack:
+//            stationsViewController?.didPressNextButton()
+//        case .remoteControlPreviousTrack:
+//            stationsViewController?.didPressPreviousButton()
+        default:
+            break
+        }
     }
 }
 
