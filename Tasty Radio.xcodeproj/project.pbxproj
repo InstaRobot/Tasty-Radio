@@ -42,6 +42,7 @@
 		50DCA5E82573C09600CB2E99 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCA5E72573C09600CB2E99 /* InfoViewController.swift */; };
 		50DCA5EB2573C2A800CB2E99 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCA5EA2573C2A800CB2E99 /* PlayViewController.swift */; };
 		50F5B624256AB1890008F4E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5B623256AB1890008F4E0 /* MainViewController.swift */; };
+		50FD33242598AA8B009E2DF7 /* fly-music.json in Resources */ = {isa = PBXBuildFile; fileRef = 50FD33232598AA8B009E2DF7 /* fly-music.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		50DCA5E72573C09600CB2E99 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		50DCA5EA2573C2A800CB2E99 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		50F5B623256AB1890008F4E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		50FD33232598AA8B009E2DF7 /* fly-music.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "fly-music.json"; sourceTree = "<group>"; };
 		62662CDB9B23DBEE5C543DCF /* Pods_Tasty_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tasty_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A376616B632A0665C458776C /* Pods-Tasty Radio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tasty Radio.release.xcconfig"; path = "Target Support Files/Pods-Tasty Radio/Pods-Tasty Radio.release.xcconfig"; sourceTree = "<group>"; };
 		C6A9351CFDA0848EA4BFFC6A /* Pods-Tasty Radio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tasty Radio.debug.xcconfig"; path = "Target Support Files/Pods-Tasty Radio/Pods-Tasty Radio.debug.xcconfig"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				505E4D9D256935DC0090D11A /* Assets.xcassets */,
 				50461EA7256A63FF0076CDB1 /* Podfile */,
 				505E4DA2256935DC0090D11A /* Info.plist */,
+				50FD33232598AA8B009E2DF7 /* fly-music.json */,
 				50375C61258F5B7300BA6FF8 /* ConfigParse.swift */,
 				50B53BC52596907C00BB6108 /* Tasty Radio.entitlements */,
 			);
@@ -337,6 +340,7 @@
 				50461EA8256A63FF0076CDB1 /* Podfile in Resources */,
 				505E4DA1256935DC0090D11A /* LaunchScreen.storyboard in Resources */,
 				500DE842256A8F08006D1310 /* ItemView.xib in Resources */,
+				50FD33242598AA8B009E2DF7 /* fly-music.json in Resources */,
 				505E4D9E256935DC0090D11A /* Assets.xcassets in Resources */,
 				505E4D9C256935DA0090D11A /* Main.storyboard in Resources */,
 			);

@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Lottie
 
 class InfoViewController: UIViewController {
     
+    @IBOutlet weak var musicAnimationView: AnimationView!
     @IBOutlet weak var containerView: UIView! {
         didSet {
             containerView.layer.borderWidth = 1
@@ -37,8 +39,34 @@ class InfoViewController: UIViewController {
             }
         }
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.startAnimation()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.stopAnimation()
+    }
  
     @IBAction func onBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func startAnimation() {
+        musicAnimationView.loopMode = .loop
+        musicAnimationView.animationSpeed = 0.5
+        musicAnimationView.frame = .zero
+        musicAnimationView.contentMode = .scaleAspectFit
+        musicAnimationView.play()
+    }
+
+    private func stopAnimation() {
+        musicAnimationView.stop()
     }
 }
