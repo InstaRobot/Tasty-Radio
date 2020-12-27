@@ -60,12 +60,17 @@ class MainViewController: UIViewController {
         return gesture
     }
     
+    private var refreshControl: UIRefreshControl = {
+        return UIRefreshControl()
+    }()
+    
     private var genres: [Genre] = []
     private var genresReserved: [Genre] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(gestureRecognizer)
+        setupPullToRefresh()
         
         plateView.layer.cornerRadius = 30
         plateView.layer.shadowColor = UIColor.dark5.cgColor
@@ -76,20 +81,7 @@ class MainViewController: UIViewController {
         
         hideTabBar()
         
-        service.fetchGenres { parseGenres in
-            self.genres = parseGenres.map {
-                Genre(genreId: $0.objectId ?? "",
-                      sortOrder: 0,
-                      name: $0.name ?? "",
-                      imageUrl: URL(string: $0.cover?.url ?? "")
-                )
-            }
-            self.genresReserved = self.genres
-            
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
+        fetchGenres()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -104,6 +96,39 @@ class MainViewController: UIViewController {
     
     @objc private func hideCursor() {
         view.endEditing(true)
+    }
+    
+    private func setupPullToRefresh() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Обновление жанров", attributes: [.foregroundColor: UIColor.white])
+        refreshControl.backgroundColor = .dark1
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        collectionView.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(sender: AnyObject) {
+        fetchGenres()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.refreshControl.endRefreshing()
+            self.view.setNeedsDisplay()
+        }
+    }
+    
+    fileprivate func fetchGenres() {
+        service.fetchGenres { parseGenres in
+            self.genres = parseGenres.map {
+                Genre(genreId: $0.objectId ?? "",
+                      sortOrder: 0,
+                      name: $0.name ?? "",
+                      imageUrl: URL(string: $0.cover?.url ?? "")
+                )
+            }
+            self.genresReserved = self.genres
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     private func hideTabBar() {
