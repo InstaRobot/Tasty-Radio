@@ -31,8 +31,6 @@ class PlayViewController: UIViewController {
     var nowPlayingImageView: UIImageView!
     let radioPlayer = FRadioPlayer.shared
     
-    var mpVolumeSlider: UISlider?
-    
     
     
     var stations: [Station] = []

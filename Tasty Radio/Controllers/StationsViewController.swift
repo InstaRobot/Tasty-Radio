@@ -7,16 +7,16 @@
 //
 
 import UIKit
+import MediaPlayer
 import AVFoundation
 
 class StationsViewController: UIViewController {
-    
     @IBOutlet var service: ParseService!
     
     @IBOutlet weak var bottonConstraint: NSLayoutConstraint!
     @IBOutlet weak var spacingConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var genreImageView: UIImageView!
+    @IBOutlet weak var nowPlayingAnimationImageView: UIImageView!
     
     @IBOutlet weak var searchBar: UISearchBar! {
         didSet {
@@ -46,15 +46,15 @@ class StationsViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var leftIndicatorView: UIView! {
+    @IBOutlet weak var leftSegmentIndicatorView: UIView! {
         didSet {
-            leftIndicatorView.layer.cornerRadius = 2
+            leftSegmentIndicatorView.layer.cornerRadius = 2
         }
     }
-    @IBOutlet weak var rightIndicatorView: UIView! {
+    @IBOutlet weak var rightSegmentIndicatorView: UIView! {
         didSet {
-            rightIndicatorView.layer.cornerRadius = 2
-            rightIndicatorView.backgroundColor = .clear
+            rightSegmentIndicatorView.layer.cornerRadius = 2
+            rightSegmentIndicatorView.backgroundColor = .clear
         }
     }
     
@@ -90,18 +90,28 @@ class StationsViewController: UIViewController {
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
+    let radioPlayer = RadioPlayer()
+    weak var playViewController: PlayViewController?
+    
     var genre: Genre? {
         didSet {
             self.reloadStations(name: genre?.name)
-            if let url = genre?.imageUrl {
-                self.genreImageView.kf.indicatorType = .activity
-                self.genreImageView.kf.setImage(with: url)
-            }
         }
     }
+    var isPlaying = false
     
-    var stations: [Station] = []
-    var reservedStations: [Station] = []
+    var reservedStations: [RadioStation] = []
+    
+    var stations = [RadioStation]() {
+        didSet {
+            guard
+                stations != oldValue else {
+                return
+            }
+            stationsDidUpdate()
+        }
+    }
+    var previousStation: RadioStation?
     
     private var selectedIndex = 0
     private var selectedStationIndex = 0
@@ -111,37 +121,45 @@ class StationsViewController: UIViewController {
         gesture.cancelsTouchesInView = false
         return gesture
     }
-    
-    private var isPlaying = false {
-        didSet {
-            updatePlayView()
-        }
-    }
-    private var player: AVPlayer?
+    private var refreshControl: UIRefreshControl = {
+        return UIRefreshControl()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        radioPlayer.delegate = self
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch {
+            print("audioSession could not be activated")
+        }
+        
         view.addGestureRecognizer(gestureRecognizer)
         self.bottonConstraint.constant = -84
         self.spacingConstraint.constant = 34
         self.view.layoutIfNeeded()
+        
+        setupPullToRefresh()
+        setupRemoteCommandCenter()
+        setupHandoffUserActivity()
     }
     
     @IBAction func onBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func onLeft(_ sender: UIButton) {
+    @IBAction func onOrderedSegment(_ sender: UIButton) {
         sender.animateTap {
             self.selectedIndex = 0
-            self.updateSortOrders()
+            self.configureSegments()
         }
     }
     
-    @IBAction func onRight(_ sender: UIButton) {
+    @IBAction func onPopularSegment(_ sender: UIButton) {
         sender.animateTap {
             self.selectedIndex = 1
-            self.updateSortOrders()
+            self.configureSegments()
         }
     }
     
@@ -149,14 +167,14 @@ class StationsViewController: UIViewController {
         view.endEditing(true)
     }
     
-    private func updateSortOrders() {
+    private func configureSegments() {
         switch selectedIndex {
         case 0:
-            leftIndicatorView.backgroundColor = .dark10
-            rightIndicatorView.backgroundColor = .clear
+            leftSegmentIndicatorView.backgroundColor = .dark10
+            rightSegmentIndicatorView.backgroundColor = .clear
         default:
-            leftIndicatorView.backgroundColor = .clear
-            rightIndicatorView.backgroundColor = .dark10
+            leftSegmentIndicatorView.backgroundColor = .clear
+            rightSegmentIndicatorView.backgroundColor = .dark10
         }
         self.collectionView.reloadData()
     }
@@ -177,24 +195,24 @@ class StationsViewController: UIViewController {
     
     @IBAction func onPrevious(_ sender: UIButton) {
         sender.animateTap {
-            if self.selectedStationIndex > 0 {
-                self.playStation(with: self.stations[self.selectedStationIndex - 1])
-            }
+//            if self.selectedStationIndex > 0 {
+//                self.playStation(with: self.stations[self.selectedStationIndex - 1])
+//            }
         }
     }
     
     @IBAction func onStop(_ sender: UIButton) {
         sender.animateTap {
             self.isPlaying = false
-            self.player = nil
+//            self.player = nil
         }
     }
     
     @IBAction func onNext(_ sender: UIButton) {
         sender.animateTap {
-            if self.selectedStationIndex < self.stations.count - 1 {
-                self.playStation(with: self.stations[self.selectedStationIndex + 1])
-            }
+//            if self.selectedStationIndex < self.stations.count - 1 {
+//                self.playStation(with: self.stations[self.selectedStationIndex + 1])
+//            }
         }
     }
     
@@ -202,20 +220,20 @@ class StationsViewController: UIViewController {
 
 extension StationsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            self.stations = self.reservedStations
-        }
-        else {
-            self.stations = self.reservedStations.filter {
-                $0.name.lowercased().contains(searchText.lowercased())
-                    || $0.city.lowercased().contains(searchText.lowercased())
-                    || $0.country.lowercased().contains(searchText.lowercased())
-            }
-        }
-        
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
+//        if searchText.isEmpty {
+//            self.stations = self.reservedStations
+//        }
+//        else {
+//            self.stations = self.reservedStations.filter {
+//                $0.name.lowercased().contains(searchText.lowercased())
+//                    || $0.city.lowercased().contains(searchText.lowercased())
+//                    || $0.country.lowercased().contains(searchText.lowercased())
+//            }
+//        }
+//
+//        DispatchQueue.main.async {
+//            self.collectionView.reloadData()
+//        }
     }
 }
 
@@ -227,7 +245,7 @@ extension StationsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StationCollectionViewCell", for: indexPath) as! StationCollectionViewCell
         cell.backgroundColor = .clear
-        cell.configure(with: stations[indexPath.item])
+//        cell.configure(with: stations[indexPath.item])
         cell.delegate = self
         return cell
     }
@@ -239,12 +257,12 @@ extension StationsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let playController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "PlayViewController") as! PlayViewController
         playController.modalPresentationStyle = .fullScreen
-        playController.stations = stations
+//        playController.stations = stations
         playController.currentIndex = indexPath.item
         self.navigationController?.present(playController, animated: true, completion: nil)
         
         self.isPlaying = false
-        self.player = nil
+//        self.player = nil
     }
 }
 
@@ -256,23 +274,23 @@ extension StationsViewController: UICollectionViewDelegateFlowLayout {
 
 extension StationsViewController: StationCollectionViewCellDelegate {
     func playStation(with station: Station) {
-        if let index = stations.firstIndex(of: station) {
-            self.selectedStationIndex = index
-            self.updateButtonsState()
-        }
-        
-        if let url = station.imageUrl {
-            playImageView.kf.indicatorType = .activity
-            playImageView.kf.setImage(with: url)
-        }
-        
-        if let url = station.stationUrl {
-            self.player = AVPlayer(url: url)
-            self.player?.play()
-            self.isPlaying = true
-        }
-        playTitleLabel.text = station.name
-        playSubtitleLabel.text = station.info
+//        if let index = stations.firstIndex(of: station) {
+//            self.selectedStationIndex = index
+//            self.updateButtonsState()
+//        }
+//
+//        if let url = station.imageUrl {
+//            playImageView.kf.indicatorType = .activity
+//            playImageView.kf.setImage(with: url)
+//        }
+//
+//        if let url = station.stationUrl {
+//            self.player = AVPlayer(url: url)
+//            self.player?.play()
+//            self.isPlaying = true
+//        }
+//        playTitleLabel.text = station.name
+//        playSubtitleLabel.text = station.info
     }
 
     private func updateButtonsState() {
@@ -296,49 +314,213 @@ extension StationsViewController: StationCollectionViewCellDelegate {
     }
     
     func reloadStations(name: String?) {
-        if let name = name {
-            self.service.fetchStations(for: name) { parseStations in
-                self.stations = parseStations.map {
-                    Station(
-                        stationId: $0.objectId ?? "",
-                        sortOrder: 0,
-                        name: $0.name ?? "",
-                        city: $0.city ?? "",
-                        country: $0.country ?? "",
-                        imageUrl: URL(string: $0.cover?.url ?? ""),
-                        stationUrl: URL(string: $0.stream ?? ""),
-                        rating: 0,
-                        info: ""
-                    )
-                }
-                self.reservedStations = self.stations
-                
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
+//        if let name = name {
+//            self.service.fetchStations(for: name) { parseStations in
+//                self.stations = parseStations.map {
+//                    Station(
+//                        stationId: $0.objectId ?? "",
+//                        sortOrder: 0,
+//                        name: $0.name ?? "",
+//                        city: $0.city ?? "",
+//                        country: $0.country ?? "",
+//                        imageUrl: URL(string: $0.cover?.url ?? ""),
+//                        stationUrl: URL(string: $0.stream ?? ""),
+//                        rating: 0,
+//                        info: ""
+//                    )
+//                }
+//                self.reservedStations = self.stations
+//
+//                DispatchQueue.main.async {
+//                    self.collectionView.reloadData()
+//                }
+//            }
+//        }
+//        else {
+//            service.fetchStations { parseStations in
+//                self.stations = parseStations.map {
+//                    Station(
+//                        stationId: $0.objectId ?? "",
+//                        sortOrder: 0,
+//                        name: $0.name ?? "",
+//                        city: $0.city ?? "",
+//                        country: $0.country ?? "",
+//                        imageUrl: URL(string: $0.cover?.url ?? ""),
+//                        stationUrl: URL(string: $0.stream ?? ""),
+//                        rating: 0,
+//                        info: ""
+//                    )
+//                }
+//                self.reservedStations = self.stations
+//
+//                DispatchQueue.main.async {
+//                    self.collectionView.reloadData()
+//                }
+//            }
+//        }
+    }
+}
+
+extension StationsViewController: RadioPlayerDelegate {
+    func playerStateDidChange(_ playerState: FRadioPlayerState) {
+//        playViewController?.playerStateDidChange(playerState, animate: true)
+    }
+    
+    func playbackStateDidChange(_ playbackState: FRadioPlaybackState) {
+//        playViewController?.playbackStateDidChange(playbackState, animate: true)
+        startNowPlayingAnimation(radioPlayer.player.isPlaying)
+    }
+    
+    func trackDidUpdate(_ track: Track?) {
+        updateLockScreen(with: track)
+//        updateNowPlayingButton(station: radioPlayer.station, track: track)
+        updateHandoffUserActivity(userActivity, station: radioPlayer.station, track: track)
+//        playViewController?.updateTrackMetadata(with: track)
+    }
+    
+    func trackArtworkDidUpdate(_ track: Track?) {
+        updateLockScreen(with: track)
+//        playViewController?.updateTrackArtwork(with: track)
+    }
+}
+
+extension StationsViewController {
+    func setupRemoteCommandCenter() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.addTarget { event in
+            return .success
+        }
+        commandCenter.pauseCommand.addTarget { event in
+            return .success
+        }
+        commandCenter.nextTrackCommand.addTarget { event in
+            return .success
+        }
+        commandCenter.previousTrackCommand.addTarget { event in
+            return .success
+        }
+    }
+
+    func updateLockScreen(with track: Track?) {
+        var nowPlayingInfo = [String : Any]()
+        if let image = track?.artworkImage {
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { size -> UIImage in
+                return image
+            })
+        }
+        if let artist = track?.artist {
+            nowPlayingInfo[MPMediaItemPropertyArtist] = artist
+        }
+        if let title = track?.title {
+            nowPlayingInfo[MPMediaItemPropertyTitle] = title
+        }
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+}
+
+extension StationsViewController {
+    func setupHandoffUserActivity() {
+        userActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
+        userActivity?.becomeCurrent()
+    }
+    
+    func updateHandoffUserActivity(_ activity: NSUserActivity?, station: RadioStation?, track: Track?) {
+        guard let activity = activity else { return }
+        activity.webpageURL = (track?.title == station?.name) ? nil : getHandoffURL(from: track)
+        updateUserActivityState(activity)
+    }
+    
+    override func updateUserActivityState(_ activity: NSUserActivity) {
+        super.updateUserActivityState(activity)
+    }
+    
+    private func getHandoffURL(from track: Track?) -> URL? {
+        guard let track = track else { return nil }
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "google.com"
+        components.path = "/search"
+        components.queryItems = [URLQueryItem]()
+        components.queryItems?.append(URLQueryItem(name: "q", value: "\(track.artist) \(track.title)"))
+        return components.url
+    }
+}
+
+extension StationsViewController: PlayViewControllerDelegate {
+    func didPressPlayingButton() {
+        radioPlayer.player.togglePlaying()
+    }
+    
+    func didPressStopButton() {
+        radioPlayer.player.stop()
+    }
+    
+    func didPressNextButton() {
+        guard let index = getIndex(of: radioPlayer.station) else { return }
+        radioPlayer.station = (index + 1 == stations.count) ? stations[0] : stations[index + 1]
+        handleRemoteStationChange()
+    }
+    
+    func didPressPreviousButton() {
+        guard let index = getIndex(of: radioPlayer.station) else { return }
+        radioPlayer.station = (index == 0) ? stations.last : stations[index - 1]
+        handleRemoteStationChange()
+    }
+    
+    func handleRemoteStationChange() {
+//        if let nowPlayingVC = playViewController {
+//            // If nowPlayingVC is presented
+//            nowPlayingVC.load(station: radioPlayer.station, track: radioPlayer.track)
+//            nowPlayingVC.stationDidChange()
+//        } else if let station = radioPlayer.station {
+//            // If nowPlayingVC is not presented (change from remote controls)
+//            radioPlayer.player.radioURL = URL(string: station.streamURL)
+//        }
+    }
+}
+
+extension StationsViewController {
+    private func stationsDidUpdate() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            guard let currentStation = self.radioPlayer.station else { return }
+            if self.stations.firstIndex(of: currentStation) == nil {
+                self.resetCurrentStation()
             }
         }
-        else {
-            service.fetchStations { parseStations in
-                self.stations = parseStations.map {
-                    Station(
-                        stationId: $0.objectId ?? "",
-                        sortOrder: 0,
-                        name: $0.name ?? "",
-                        city: $0.city ?? "",
-                        country: $0.country ?? "",
-                        imageUrl: URL(string: $0.cover?.url ?? ""),
-                        stationUrl: URL(string: $0.stream ?? ""),
-                        rating: 0,
-                        info: ""
-                    )
-                }
-                self.reservedStations = self.stations
-                
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }
+    }
+    
+    private func resetCurrentStation() {
+        radioPlayer.resetRadioPlayer()
+        nowPlayingAnimationImageView.stopAnimating()
+    }
+    
+    func startNowPlayingAnimation(_ animate: Bool) {
+        animate ? nowPlayingAnimationImageView.startAnimating() : nowPlayingAnimationImageView.stopAnimating()
+    }
+    
+    private func getIndex(of station: RadioStation?) -> Int? {
+        guard
+            let station = station,
+            let index = stations.firstIndex(of: station) else {
+            return nil
+        }
+        return index
+    }
+    
+    private func setupPullToRefresh() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Обновление станций", attributes: [.foregroundColor: UIColor.white])
+        refreshControl.backgroundColor = .dark1
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        collectionView.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(sender: AnyObject) {
+//        fetchGenres()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.refreshControl.endRefreshing()
+            self.view.setNeedsDisplay()
         }
     }
 }

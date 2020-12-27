@@ -12,21 +12,21 @@ import CloudKit
 class CloudKitService {
     static let shared = CloudKitService()
     
-    var stations = [Station]()
+    var stations = [RadioStation]()
     
     private let recordFavourite = "FavouriteStation"
     private let recordRate = "RatedStation"
     
     private let privateCloudDatabase = CKContainer.default().publicCloudDatabase//.privateCloudDatabase
     
-    func saveStationToCloud(station: Station, callback: @escaping () -> Void) {
+    func saveStationToCloud(station: RadioStation, callback: @escaping () -> Void) {
         let record = CKRecord(recordType: recordFavourite)
         record.setValue(station.name, forKey: "name")
         record.setValue(station.city, forKey: "city")
         record.setValue(station.country, forKey: "country")
-        record.setValue(station.imageUrl?.absoluteString, forKey: "imageUrl")
+        record.setValue(station.imageURL?.absoluteString, forKey: "imageUrl")
         record.setValue(station.stationId, forKey: "stationId")
-        record.setValue(station.stationUrl?.absoluteString, forKey: "stationUrl")
+        record.setValue(station.streamURL?.absoluteString, forKey: "stationUrl")
         
         privateCloudDatabase.save(record) { (ckRecord, error) in
             if let error = error {
@@ -37,7 +37,7 @@ class CloudKitService {
         }
     }
     
-    func fetchStationsFromCloud(callback: @escaping ([Station]) -> Void) {
+    func fetchStationsFromCloud(callback: @escaping ([RadioStation]) -> Void) {
         self.stations = []
         
         let query = CKQuery(recordType: recordFavourite, predicate: NSPredicate(value: true))
@@ -48,7 +48,7 @@ class CloudKitService {
         queryOperation.queuePriority = .veryHigh
         
         queryOperation.recordFetchedBlock = { record in
-            let station = Station(record: record)
+            let station = RadioStation(record: record)
             self.stations.append(station)
         }
         

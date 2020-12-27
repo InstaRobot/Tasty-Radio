@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import Kingfisher
 
 struct Genre {
     var genreId = UUID().uuidString
     var sortOrder: Int
     var name: String
-    var imageUrl: URL?
-    var stations: [Station] = []
+    var imageURL: URL?
+    var stations: [RadioStation] = []
 }

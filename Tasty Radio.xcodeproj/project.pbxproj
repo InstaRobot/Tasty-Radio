@@ -63,7 +63,6 @@
 		50641E652598C016002A2E5B /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50641E642598C016002A2E5B /* UIImageView+Extensions.swift */; };
 		507D470025738CA900C051D9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D46FF25738CA900C051D9 /* GradientView.swift */; };
 		509CA3BC2572626400CFF990 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CA3BB2572626400CFF990 /* Genre.swift */; };
-		509CA3BF2572630B00CFF990 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CA3BE2572630B00CFF990 /* Station.swift */; };
 		509CA3DA25726CCD00CFF990 /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CA3D925726CCD00CFF990 /* GenreCollectionViewCell.swift */; };
 		50B53BC8259690B100BB6108 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B53BC7259690B100BB6108 /* CloudKit.framework */; };
 		50B53BCC2596972300BB6108 /* CloudKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B53BCB2596972300BB6108 /* CloudKitService.swift */; };
@@ -142,7 +141,6 @@
 		50641E642598C016002A2E5B /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		507D46FF25738CA900C051D9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		509CA3BB2572626400CFF990 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
-		509CA3BE2572630B00CFF990 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		509CA3D925726CCD00CFF990 /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCell.swift; sourceTree = "<group>"; };
 		50B53BC52596907C00BB6108 /* Tasty Radio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tasty Radio.entitlements"; sourceTree = "<group>"; };
 		50B53BC7259690B100BB6108 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -389,7 +387,6 @@
 			children = (
 				50BDF4E4258F5F05004AA51B /* Parse */,
 				509CA3BB2572626400CFF990 /* Genre.swift */,
-				509CA3BE2572630B00CFF990 /* Station.swift */,
 				50641E5D2598BDE4002A2E5B /* RadioStation.swift */,
 				50641E602598BE30002A2E5B /* Track.swift */,
 			);
@@ -616,7 +613,6 @@
 				50641E582598BD9E002A2E5B /* LogoShareView.swift in Sources */,
 				504B593E2572555500B936D0 /* UISearchBar+Extensions.swift in Sources */,
 				50DCA5DF2573B49600CB2E99 /* StationCollectionViewCell.swift in Sources */,
-				509CA3BF2572630B00CFF990 /* Station.swift in Sources */,
 				50F5B624256AB1890008F4E0 /* MainViewController.swift in Sources */,
 				500DE83F256A8EF3006D1310 /* ItemView.swift in Sources */,
 				50DCA5E22573C07600CB2E99 /* FavouriteViewController.swift in Sources */,

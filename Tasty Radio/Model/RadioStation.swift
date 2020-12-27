@@ -7,36 +7,59 @@
 //
 
 import UIKit
+import CloudKit
 
 struct RadioStation: Codable {
+    var stationId: String
+    var sortOrder: Int
     var name: String
-    var streamURL: String
-    var imageURL: String
-    var desc: String
-    var longDesc: String
+    var city: String
+    var country: String
+    var streamURL: URL?
+    var imageURL: URL?
+    var rating: Int
+    var info: String
     
     init(
+        stationId: String,
+        sortOrder: Int,
         name: String,
-        streamURL: String,
-        imageURL: String,
-        desc: String,
-        longDesc: String = ""
+        city: String,
+        country: String,
+        streamURL: URL?,
+        imageURL: URL?,
+        rating: Int = 0,
+        info: String = ""
     ) {
-        self.name = name
-        self.streamURL = streamURL
-        self.imageURL = imageURL
-        self.desc = desc
-        self.longDesc = longDesc
+        self.stationId  = stationId
+        self.sortOrder  = sortOrder
+        self.name       = name
+        self.city       = city
+        self.country    = country
+        self.streamURL  = streamURL
+        self.imageURL   = imageURL
+        self.rating     = rating
+        self.info       = info
+    }
+    
+    init(
+        record: CKRecord
+    ) {
+        self.stationId  = record.value(forKey: "stationId") as? String ?? ""
+        self.name       = record.value(forKey: "name") as? String ?? ""
+        self.city       = record.value(forKey: "city") as? String ?? ""
+        self.country    = record.value(forKey: "country") as? String ?? ""
+        self.imageURL   = URL(string: record.value(forKey: "imageURL") as? String ?? "")
+        self.streamURL  = URL(string: record.value(forKey: "streamURL") as? String ?? "")
+        self.sortOrder  = 0
+        self.rating     = 0
+        self.info       = ""
     }
 }
 
 extension RadioStation: Equatable {
     
     static func == (lhs: RadioStation, rhs: RadioStation) -> Bool {
-        return (lhs.name == rhs.name)
-            && (lhs.streamURL == rhs.streamURL)
-            && (lhs.imageURL == rhs.imageURL)
-            && (lhs.desc == rhs.desc)
-            && (lhs.longDesc == rhs.longDesc)
+        return (lhs.stationId == rhs.stationId)
     }
 }
