@@ -221,11 +221,7 @@ extension StationsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let playController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "PlayViewController") as! PlayViewController
-        playController.modalPresentationStyle = .fullScreen
-        self.navigationController?.present(playController, animated: true, completion: nil)
-        
-        self.isPlaying = false
+        self.showPlayController(from: indexPath)
     }
 }
 
@@ -236,6 +232,25 @@ extension StationsViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension StationsViewController: StationCollectionViewCellDelegate {
+    private func showPlayController(from indexPath: IndexPath?) {
+        let newStation: Bool
+        if let indexPath = indexPath {
+            radioPlayer.station = stations[indexPath.item]
+            newStation = radioPlayer.station != previousStation
+            previousStation = radioPlayer.station
+        }
+        else {
+            newStation = false
+        }
+        
+        let playController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "PlayViewController") as! PlayViewController
+        playController.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(playController, animated: true, completion: nil)
+        self.playViewController = playController
+        playController.load(station: radioPlayer.station, track: radioPlayer.track, isNewStation: newStation)
+        playController.delegate = self
+    }
+    
     func playStation(with station: RadioStation) {
         if let index = stations.firstIndex(of: station) {
             self.selectedStationIndex = index
