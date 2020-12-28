@@ -20,19 +20,21 @@ protocol PlayViewControllerDelegate: class {
 
 
 class PlayViewController: UIViewController {
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet private(set) weak var nameLabel: UILabel!
     @IBOutlet private(set) weak var stationDescLabel: UILabel!
-    @IBOutlet weak var albumImageView: SpringImageView!
-    @IBOutlet weak var favouriteButton: UIButton!
     
-    @IBOutlet weak var playingButton: UIButton!
-    @IBOutlet weak var previousButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var springView: SpringView!
+    @IBOutlet private(set) weak var albumImageView: SpringImageView!
+    @IBOutlet private(set) weak var favouriteButton: UIButton!
     
-    @IBOutlet weak var airPlayView: UIView!
+    @IBOutlet private(set) weak var playingButton: UIButton!
+    @IBOutlet private(set) weak var previousButton: UIButton!
+    @IBOutlet private(set) weak var nextButton: UIButton!
     
-    @IBOutlet weak var songLabel: SpringLabel!
-    @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet private(set) weak var airPlayView: UIView!
+    
+    @IBOutlet private(set) weak var songLabel: SpringLabel!
+    @IBOutlet private(set) weak var artistLabel: UILabel!
     
     weak var delegate: PlayViewControllerDelegate?
     
@@ -48,13 +50,13 @@ class PlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createNowPlayingAnimation()
-        self.title = currentStation.name
+//        self.title = currentStation.name
         
-        albumImageView.image = currentTrack.artworkImage
-        stationDescLabel.text = currentStation.info
-        stationDescLabel.isHidden = currentTrack.artworkLoaded
-        
-        newStation ? stationDidChange() : playerStateDidChange(radioPlayer.state, animate: false)
+//        albumImageView.image = currentTrack.artworkImage
+//        stationDescLabel.text = currentStation.info
+//        stationDescLabel.isHidden = currentTrack.artworkLoaded
+//
+//        newStation ? stationDidChange() : playerStateDidChange(radioPlayer.state, animate: false)
         setupAirPlayButton()
     }
     
@@ -161,9 +163,9 @@ extension PlayViewController {
         albumImageView.image = currentTrack.artworkImage
         
         if track.artworkLoaded {
-            albumImageView.animation = "wobble"
-            albumImageView.duration = 2
-            albumImageView.animate()
+            springView.animation = "squeeze"
+            springView.duration = 2
+            springView.animate()
             stationDescLabel.isHidden = true
         }
         else {

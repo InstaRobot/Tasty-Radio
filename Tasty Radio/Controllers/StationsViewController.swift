@@ -261,12 +261,6 @@ extension StationsViewController: StationCollectionViewCellDelegate {
             playImageView.kf.indicatorType = .activity
             playImageView.kf.setImage(with: url)
         }
-
-//        if let url = station.streamURL {
-//            self.player = AVPlayer(url: url)
-//            self.player?.play()
-//            self.isPlaying = true
-//        }
         playTitleLabel.text = station.name
         playSubtitleLabel.text = station.info
     }
@@ -456,7 +450,7 @@ extension StationsViewController {
 
 extension StationsViewController: PlayViewControllerDelegate {
     func didPressPlayingButton() {
-        radioPlayer.player.togglePlaying()
+        radioPlayer.player.play()
     }
     
     func didPressStopButton() {
@@ -490,7 +484,10 @@ extension StationsViewController {
     private func stationsDidUpdate() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
-            guard let currentStation = self.radioPlayer.station else { return }
+            guard
+                let currentStation = self.radioPlayer.station else {
+                return
+            }
             if self.stations.firstIndex(of: currentStation) == nil {
                 self.resetCurrentStation()
             }
