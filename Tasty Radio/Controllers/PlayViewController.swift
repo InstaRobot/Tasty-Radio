@@ -254,7 +254,6 @@ extension PlayViewController {
     
     func createNowPlayingAnimation() {
         nowPlayingImageView = UIImageView(image: UIImage(named: "NowPlayingBars-3"))
-        nowPlayingImageView.tintColor = .dark10
         nowPlayingImageView.autoresizingMask = []
         nowPlayingImageView.contentMode = UIView.ContentMode.center
         
@@ -263,10 +262,11 @@ extension PlayViewController {
         
         let barButton = UIButton(type: .custom)
         barButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        barButton.tintColor = .dark10
         barButton.addSubview(nowPlayingImageView)
         nowPlayingImageView.center = barButton.center
         backAnimationView.addSubview(barButton)
+        
+        nowPlayingImageView.tintColor = .dark10
     }
     
     func startNowPlayingAnimation(_ animate: Bool) {
