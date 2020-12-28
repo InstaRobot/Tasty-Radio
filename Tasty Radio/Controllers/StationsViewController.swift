@@ -250,10 +250,10 @@ extension StationsViewController: StationCollectionViewCellDelegate {
         
         let playController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "PlayViewController") as! PlayViewController
         playController.modalPresentationStyle = .fullScreen
-        self.navigationController?.present(playController, animated: true, completion: nil)
         self.playViewController = playController
         playController.load(station: radioPlayer.station, track: radioPlayer.track, isNewStation: newStation)
         playController.delegate = self
+        self.navigationController?.present(playController, animated: true, completion: nil)
     }
     
     func playStation(with station: RadioStation) {
@@ -370,21 +370,6 @@ extension StationsViewController: StationCollectionViewCellDelegate {
 }
 
 extension StationsViewController: RadioPlayerDelegate {
-    private func addObservers() {
-        NotificationCenter.default.addObserver(
-            forName: NSNotification.Name("remoteControlNextTrack"),
-            object: nil,
-            queue: .main) { [weak self] (_) in
-            self?.didPressNextButton()
-        }
-        NotificationCenter.default.addObserver(
-            forName: NSNotification.Name("remoteControlPreviousTrack"),
-            object: nil,
-            queue: .main) { [weak self] (_) in
-            self?.didPressPreviousButton()
-        }
-    }
-    
     func playerStateDidChange(_ playerState: FRadioPlayerState) {
         playViewController?.playerStateDidChange(playerState, animate: true)
     }
@@ -407,6 +392,21 @@ extension StationsViewController: RadioPlayerDelegate {
 }
 
 extension StationsViewController {
+    private func addObservers() {
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name("remoteControlNextTrack"),
+            object: nil,
+            queue: .main) { [weak self] (_) in
+            self?.didPressNextButton()
+        }
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name("remoteControlPreviousTrack"),
+            object: nil,
+            queue: .main) { [weak self] (_) in
+            self?.didPressPreviousButton()
+        }
+    }
+    
     func setupRemoteCommandCenter() {
         let commandCenter = MPRemoteCommandCenter.shared()
         commandCenter.playCommand.addTarget { event in

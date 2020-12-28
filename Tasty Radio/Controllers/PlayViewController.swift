@@ -50,14 +50,18 @@ class PlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createNowPlayingAnimation()
-//        self.title = currentStation.name
-        
-//        albumImageView.image = currentTrack.artworkImage
-//        stationDescLabel.text = currentStation.info
-//        stationDescLabel.isHidden = currentTrack.artworkLoaded
-//
-//        newStation ? stationDidChange() : playerStateDidChange(radioPlayer.state, animate: false)
         setupAirPlayButton()
+        
+        if currentStation != nil {
+            stationDescLabel.text = currentStation.info
+        }
+        
+        if currentTrack != nil {
+            albumImageView.image = currentTrack.artworkImage
+            stationDescLabel.isHidden = currentTrack.artworkLoaded
+        }
+        
+        newStation ? stationDidChange() : playerStateDidChange(radioPlayer.state, animate: false)
     }
     
     func setupAirPlayButton() {
@@ -97,7 +101,6 @@ class PlayViewController: UIViewController {
     @IBAction func onPlayPause(_ sender: UIButton) {
         sender.animateTap { [weak self] in
             self?.delegate?.didPressPlayingButton()
-//            self?.delegate?.didPressStopButton()
         }
     }
     
