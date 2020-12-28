@@ -144,6 +144,11 @@ class StationsViewController: UIViewController {
         setupHandoffUserActivity()
         
         view.addGestureRecognizer(gestureRecognizer)
+        addObservers()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func onBack(_ sender: UIButton) {
@@ -365,6 +370,21 @@ extension StationsViewController: StationCollectionViewCellDelegate {
 }
 
 extension StationsViewController: RadioPlayerDelegate {
+    private func addObservers() {
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name("remoteControlNextTrack"),
+            object: nil,
+            queue: .main) { [weak self] (_) in
+            self?.didPressNextButton()
+        }
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name("remoteControlPreviousTrack"),
+            object: nil,
+            queue: .main) { [weak self] (_) in
+            self?.didPressPreviousButton()
+        }
+    }
+    
     func playerStateDidChange(_ playerState: FRadioPlayerState) {
         playViewController?.playerStateDidChange(playerState, animate: true)
     }
@@ -450,7 +470,7 @@ extension StationsViewController {
 
 extension StationsViewController: PlayViewControllerDelegate {
     func didPressPlayingButton() {
-        radioPlayer.player.play()
+        radioPlayer.player.togglePlaying()
     }
     
     func didPressStopButton() {

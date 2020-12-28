@@ -163,7 +163,7 @@ extension PlayViewController {
         albumImageView.image = currentTrack.artworkImage
         
         if track.artworkLoaded {
-            springView.animation = "squeeze"
+            springView.animation = "swing"
             springView.duration = 2
             springView.animate()
             stationDescLabel.isHidden = true

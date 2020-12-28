@@ -12,8 +12,7 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    weak var stationsViewController: StationsViewController?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         LaunchManager().createWindow(window: window)
@@ -23,21 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.beginReceivingRemoteControlEvents()
         
-        FRadioPlayer.shared.isAutoPlay = true
-        FRadioPlayer.shared.enableArtwork = true
-        FRadioPlayer.shared.artworkSize = 600
-        
-        // FIXME: - Connect right index for stations controller
-        
-        if let navigationController = window?.rootViewController as? UINavigationController {
-            navigationController.viewControllers.forEach { controller in
-                if let viewController = controller as? StationsViewController {
-                    self.stationsViewController = viewController
-                }
-            }
-//            stationsViewController = navigationController.viewControllers.first as? StationsViewController
-        }
-        
+        setRadioPlayer()
         return true
     }
     
@@ -67,11 +52,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case .remoteControlTogglePlayPause:
             FRadioPlayer.shared.togglePlaying()
         case .remoteControlNextTrack:
-            stationsViewController?.didPressNextButton()
+            postName(name: "remoteControlNextTrack")
         case .remoteControlPreviousTrack:
-            stationsViewController?.didPressPreviousButton()
+            postName(name: "remoteControlPreviousTrack")
         default:
             break
         }
+    }
+    
+    private func postName(name: String) {
+        NotificationCenter.default.post(name: NSNotification.Name(name), object: nil)
+    }
+    
+    private func setRadioPlayer() {
+        FRadioPlayer.shared.isAutoPlay = true
+        FRadioPlayer.shared.enableArtwork = true
+        FRadioPlayer.shared.artworkSize = 600
     }
 }
