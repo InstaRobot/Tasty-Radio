@@ -139,7 +139,7 @@ open class FRadioPlayer: NSObject {
     
     /// Returns the singleton `FRadioPlayer` instance.
     public static let shared = FRadioPlayer()
-    
+
     /**
      The delegate object for the `FRadioPlayer`.
      Implement the methods declared by the `FRadioPlayerDelegate` object to respond to user interactions and the player output.
@@ -174,6 +174,19 @@ open class FRadioPlayer: NSObject {
             return true
         case .stopped, .paused:
             return false
+        }
+    }
+    
+    /// Read and set the current AVPlayer volume, a value of 0.0 indicates silence; a value of 1.0 indicates full audio volume for the player instance.
+    open var volume: Float? {
+        get {
+            return player?.volume
+        }
+        set {
+            guard
+                let newValue = newValue,
+                0.0...1.0 ~= newValue else { return }
+            player?.volume = newValue
         }
     }
     
@@ -221,17 +234,30 @@ open class FRadioPlayer: NSObject {
     
     private override init() {
         super.init()
-        
+
+        #if !os(macOS)
+        let options: AVAudioSession.CategoryOptions
+
         // Enable bluetooth playback
+        #if os(iOS)
+        options = [.defaultToSpeaker, .allowBluetooth, .allowAirPlay]
+        #else
+        options = []
+        #endif
+
+        // Start audio session
         let audioSession = AVAudioSession.sharedInstance()
-        try? audioSession.setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [.defaultToSpeaker, .allowBluetooth, .allowAirPlay])
-        
+        try? audioSession.setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: options)
+        #endif
+
         // Notifications
         setupNotifications()
         
         // Check for headphones
+        #if os(iOS)
         checkHeadphonesConnection(outputs: AVAudioSession.sharedInstance().currentRoute.outputs)
-        
+        #endif
+
         // Reachability config
         try? reachability.startNotifier()
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
@@ -270,9 +296,9 @@ open class FRadioPlayer: NSObject {
      */
     open func stop() {
         guard let player = player else { return }
+        playbackState = .stopped
         player.replaceCurrentItem(with: nil)
         timedMetadataDidChange(rawValue: nil)
-        playbackState = .stopped
     }
     
     /**
@@ -302,15 +328,19 @@ open class FRadioPlayer: NSObject {
     }
     
     private func setupPlayer(with asset: AVAsset) {
+
         if player == nil {
             player = AVPlayer()
-            //Removes black screen when connecting to appleTV
+            // Removes black screen when connecting to appleTV
             player?.allowsExternalPlayback = false
         }
         
         playerItem = AVPlayerItem(asset: asset)
+        let metadataOutput = AVPlayerItemMetadataOutput(identifiers: nil)
+        metadataOutput.setDelegate(self, queue: DispatchQueue.main)
+        playerItem?.add(metadataOutput)
     }
-    
+        
     /** Reset all player item observers and create new ones
      
      */
@@ -325,7 +355,6 @@ open class FRadioPlayer: NSObject {
             item.removeObserver(self, forKeyPath: "status")
             item.removeObserver(self, forKeyPath: "playbackBufferEmpty")
             item.removeObserver(self, forKeyPath: "playbackLikelyToKeepUp")
-            item.removeObserver(self, forKeyPath: "timedMetadata")
         }
         
         lastPlayerItem = playerItem
@@ -336,7 +365,6 @@ open class FRadioPlayer: NSObject {
             item.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.new, context: nil)
             item.addObserver(self, forKeyPath: "playbackBufferEmpty", options: NSKeyValueObservingOptions.new, context: nil)
             item.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: NSKeyValueObservingOptions.new, context: nil)
-            item.addObserver(self, forKeyPath: "timedMetadata", options: NSKeyValueObservingOptions.new, context: nil)
             
             player?.replaceCurrentItem(with: item)
             if isAutoPlay { play() }
@@ -373,7 +401,8 @@ open class FRadioPlayer: NSObject {
     }
     
     private func timedMetadataDidChange(rawValue: String?) {
-        let parts = rawValue?.components(separatedBy: " - ")
+        let metadataCleaned = cleanMetadata(rawValue)
+        let parts = metadataCleaned?.components(separatedBy: " - ")
         delegate?.radioPlayer?(self, metadataDidChange: parts?.first, trackName: parts?.last)
         delegate?.radioPlayer?(self, metadataDidChange: rawValue)
         shouldGetArtwork(for: rawValue, enableArtwork)
@@ -386,13 +415,22 @@ open class FRadioPlayer: NSObject {
             return
         }
         
-        FRadioAPI.getArtwork(for: rawValue, size: artworkSize, completionHandler: { [unowned self] artworlURL in
+        FRadioAPI.getArtwork(for: rawValue as String, size: artworkSize, completionHandler: { [unowned self] artworlURL in
             DispatchQueue.main.async {
                 self.delegate?.radioPlayer?(self, artworkDidChange: artworlURL)
             }
         })
     }
-
+    
+    private func cleanMetadata(_ rawValue: String?) -> String? {
+        guard let rawValue = rawValue else { return nil }
+        return rawValue.replacingOccurrences(
+            of: #"(\(.*?\)\w*)|(\[.*?\]\w*)"#,
+            with: "",
+            options: .regularExpression
+        )
+    }
+    
     private func reloadItem() {
         player?.replaceCurrentItem(with: nil)
         player?.replaceCurrentItem(with: playerItem)
@@ -413,20 +451,22 @@ open class FRadioPlayer: NSObject {
     // MARK: - Notifications
     
     private func setupNotifications() {
+        #if os(iOS)
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(handleInterruption), name: AVAudioSession.interruptionNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(handleRouteChange), name: AVAudioSession.routeChangeNotification, object: nil)
+        #endif
     }
     
     // MARK: - Responding to Interruptions
     
     @objc private func handleInterruption(notification: Notification) {
+        #if os(iOS)
         guard let userInfo = notification.userInfo,
             let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
             let type = AVAudioSession.InterruptionType(rawValue: typeValue) else {
                 return
         }
-        
         switch type {
         case .began:
             DispatchQueue.main.async { self.pause() }
@@ -437,6 +477,7 @@ open class FRadioPlayer: NSObject {
         @unknown default:
             break
         }
+        #endif
     }
     
     @objc func reachabilityChanged(note: Notification) {
@@ -468,7 +509,7 @@ open class FRadioPlayer: NSObject {
     }
     
     // MARK: - Responding to Route Changes
-    
+    #if os(iOS)
     private func checkHeadphonesConnection(outputs: [AVAudioSessionPortDescription]) {
         for output in outputs where output.portType == .headphones {
             headphonesConnected = true
@@ -478,6 +519,7 @@ open class FRadioPlayer: NSObject {
     }
     
     @objc private func handleRouteChange(notification: Notification) {
+
         guard let userInfo = notification.userInfo,
             let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
             let reason = AVAudioSession.RouteChangeReason(rawValue:reasonValue) else { return }
@@ -492,7 +534,7 @@ open class FRadioPlayer: NSObject {
         default: break
         }
     }
-    
+    #endif
     // MARK: - KVO
     
     /// :nodoc:
@@ -520,14 +562,24 @@ open class FRadioPlayer: NSObject {
             case "playbackLikelyToKeepUp":
                 
                 self.state = item.isPlaybackLikelyToKeepUp ? .loadingFinished : .loading
-            
-            case "timedMetadata":
-                let rawValue = item.timedMetadata?.first?.value as? String
-                timedMetadataDidChange(rawValue: rawValue)
                 
             default:
                 break
             }
         }
+    }
+}
+
+extension FRadioPlayer: AVPlayerItemMetadataOutputPushDelegate {
+    
+    public func metadataOutput(_ output: AVPlayerItemMetadataOutput, didOutputTimedMetadataGroups groups: [AVTimedMetadataGroup], from track: AVPlayerItemTrack?) {
+        
+        // make this an AVMetadata item
+        guard let item = groups.first?.items.first else {
+            timedMetadataDidChange(rawValue: nil)
+            return
+        }
+        
+        timedMetadataDidChange(rawValue: item.value as? String)
     }
 }

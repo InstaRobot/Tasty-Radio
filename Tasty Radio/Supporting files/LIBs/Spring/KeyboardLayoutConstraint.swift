@@ -52,18 +52,19 @@ public class KeyboardLayoutConstraint: NSLayoutConstraint {
             self.updateConstant()
             switch (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber) {
             case let (.some(duration), .some(curve)):
-                
-                let options = UIView.AnimationOptions(rawValue: curve.uintValue)
-                
-                UIView.animate(
-                    withDuration: TimeInterval(duration.doubleValue),
-                    delay: 0,
-                    options: options,
-                    animations: {
-                        UIApplication.shared.keyWindow?.layoutIfNeeded()
-                        return
-                    }, completion: { finished in
-                })
+                if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+                    let options = UIView.AnimationOptions(rawValue: curve.uintValue)
+                    
+                    UIView.animate(
+                        withDuration: TimeInterval(duration.doubleValue),
+                        delay: 0,
+                        options: options,
+                        animations: {
+                            window.layoutIfNeeded()
+                            return
+                        }, completion: { finished in
+                    })
+                }
             default:
                 
                 break
@@ -81,18 +82,19 @@ public class KeyboardLayoutConstraint: NSLayoutConstraint {
             
             switch (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber) {
             case let (.some(duration), .some(curve)):
-                
-                let options = UIView.AnimationOptions(rawValue: curve.uintValue)
-                
-                UIView.animate(
-                    withDuration: TimeInterval(duration.doubleValue),
-                    delay: 0,
-                    options: options,
-                    animations: {
-                        UIApplication.shared.keyWindow?.layoutIfNeeded()
-                        return
-                    }, completion: { finished in
-                })
+                if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+                    let options = UIView.AnimationOptions(rawValue: curve.uintValue)
+                    
+                    UIView.animate(
+                        withDuration: TimeInterval(duration.doubleValue),
+                        delay: 0,
+                        options: options,
+                        animations: {
+                            window.layoutIfNeeded()
+                            return
+                        }, completion: { finished in
+                    })
+                }
             default:
                 break
             }
