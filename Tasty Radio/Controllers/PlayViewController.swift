@@ -36,6 +36,8 @@ class PlayViewController: UIViewController {
     @IBOutlet private(set) weak var songLabel: SpringLabel!
     @IBOutlet private(set) weak var artistLabel: UILabel!
     
+    @IBOutlet private(set) weak var backAnimationView: UIView!
+    
     weak var delegate: PlayViewControllerDelegate?
     
     // MARK: - Properties
@@ -53,6 +55,7 @@ class PlayViewController: UIViewController {
         setupAirPlayButton()
         
         if currentStation != nil {
+            nameLabel.text = currentStation.name
             stationDescLabel.text = currentStation.info
         }
         
@@ -75,9 +78,9 @@ class PlayViewController: UIViewController {
     func stationDidChange() {
         radioPlayer.radioURL = currentStation.streamURL
         albumImageView.image = currentTrack.artworkImage
+        nameLabel.text = currentStation.name
         stationDescLabel.text = currentStation.info
         stationDescLabel.isHidden = currentTrack.artworkLoaded
-        title = currentStation.name
     }
     
     @IBAction func onBack(_ sender: UIButton) {
@@ -117,7 +120,7 @@ class PlayViewController: UIViewController {
                 self.currentTrack != nil else {
                 return
             }
-            let radioShoutout = "Я слушаю \(self.currentStation.name) через Tasty Radio"
+            let radioShoutout = "Я слушаю радио \(self.currentStation.name) через Tasty Radio"
             let shareImage = ShareImageGenerator(radioShoutout: radioShoutout, track: self.currentTrack).generate()
             
             let activityViewController = UIActivityViewController(activityItems: [radioShoutout, shareImage], applicationActivities: nil)
@@ -186,11 +189,11 @@ extension PlayViewController {
         let message: String?
         switch playbackState {
         case .paused:
-            message = "Station Paused..."
+            message = "Пауза воспроизведения"
         case .playing:
             message = nil
         case .stopped:
-            message = "Station Stopped..."
+            message = "Остановлено"
         }
         updateLabels(with: message, animate: animate)
         isPlayingDidChange(radioPlayer.isPlaying)
@@ -200,14 +203,14 @@ extension PlayViewController {
         let message: String?
         switch state {
         case .loading:
-            message = "Loading Station ..."
+            message = "Загружаю ..."
         case .urlNotSet:
-            message = "Station URL not valide"
+            message = "Неверная ссылка на поток"
         case .readyToPlay, .loadingFinished:
             playbackStateDidChange(radioPlayer.playbackState, animate: animate)
             return
         case .error:
-            message = "Error Playing"
+            message = "Ошибка воспроизведения"
         }
         updateLabels(with: message, animate: animate)
     }
@@ -251,6 +254,7 @@ extension PlayViewController {
     
     func createNowPlayingAnimation() {
         nowPlayingImageView = UIImageView(image: UIImage(named: "NowPlayingBars-3"))
+        nowPlayingImageView.tintColor = .dark10
         nowPlayingImageView.autoresizingMask = []
         nowPlayingImageView.contentMode = UIView.ContentMode.center
         
@@ -259,11 +263,10 @@ extension PlayViewController {
         
         let barButton = UIButton(type: .custom)
         barButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        barButton.tintColor = .dark10
         barButton.addSubview(nowPlayingImageView)
         nowPlayingImageView.center = barButton.center
-        
-        let barItem = UIBarButtonItem(customView: barButton)
-        self.navigationItem.rightBarButtonItem = barItem
+        backAnimationView.addSubview(barButton)
     }
     
     func startNowPlayingAnimation(_ animate: Bool) {
