@@ -120,15 +120,16 @@ class PlayViewController: UIViewController {
                 self.currentTrack != nil else {
                 return
             }
-            let radioShoutout = "Я слушаю радио \(self.currentStation.name) через Tasty Radio"
+            let radioShoutout = "Я слушаю \(self.currentStation.name) через Tasty Radio"
             let shareImage = ShareImageGenerator(radioShoutout: radioShoutout, track: self.currentTrack).generate()
-            
-            let activityViewController = UIActivityViewController(activityItems: [radioShoutout, shareImage], applicationActivities: nil)
+            let appLink = "https://devlab.studio"
+            let tags = " #tastyradio #musicapp #freeradio"
+            let activityViewController = UIActivityViewController(activityItems: [radioShoutout + ". : " + appLink + tags,  shareImage], applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceRect = CGRect(x: self.view.center.x, y: self.view.center.y, width: 0, height: 0)
             activityViewController.popoverPresentationController?.sourceView = self.view
             activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             
-            activityViewController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed:Bool, returnedItems:[Any]?, error: Error?) in
+            activityViewController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
                 if completed {
                     // do something on completion if you want
                 }

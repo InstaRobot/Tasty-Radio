@@ -15,54 +15,78 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sgO-Os-qNc" userLabel="Main Stack">
-                    <rect key="frame" x="8" y="8" width="584" height="584"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8QA-Hw-VYj" customClass="GradientView" customModule="Tasty_Radio" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zmo-M8-m9o" userLabel="Album Art">
-                            <rect key="frame" x="0.0" y="0.0" width="584" height="435"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zmo-M8-m9o" userLabel="Album Art">
+                            <rect key="frame" x="10" y="10" width="580" height="580"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IaB-LZ-fmj" customClass="GradientView" customModule="Tasty_Radio" customModuleProvider="target">
+                            <rect key="frame" x="10" y="10" width="580" height="580"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wb0-C0-hGr" userLabel="Logo">
+                            <rect key="frame" x="30" y="470" width="100" height="100"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="435" id="odw-Xz-Dzz"/>
+                                <constraint firstAttribute="height" constant="100" id="cC4-gW-0qS"/>
+                                <constraint firstAttribute="width" constant="100" id="usm-7T-aKT"/>
                             </constraints>
                         </imageView>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tPe-Vc-KR3" userLabel="Track Info">
-                            <rect key="frame" x="0.0" y="455" width="584" height="88"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptC-tD-gdN" userLabel="Title">
-                                    <rect key="frame" x="0.0" y="0.0" width="181.5" height="88"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" systemColor="lightTextColor"/>
-                                    <color key="highlightedColor" systemColor="lightTextColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhH-FP-Yas" userLabel="Artist">
-                                    <rect key="frame" x="201.5" y="0.0" width="181" height="88"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" systemColor="lightTextColor"/>
-                                    <color key="highlightedColor" systemColor="lightTextColor"/>
-                                </label>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wb0-C0-hGr" userLabel="Logo">
-                                    <rect key="frame" x="402.5" y="0.0" width="181.5" height="88"/>
-                                </imageView>
-                            </subviews>
-                        </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsP-Sq-acL" userLabel="Radio Shoutout">
-                            <rect key="frame" x="0.0" y="563" width="584" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="gRG-0o-oJ8"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" systemColor="lightTextColor"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="track artist label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UhH-FP-Yas" userLabel="Artist">
+                            <rect key="frame" x="160" y="524.5" width="410" height="29"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <color key="textColor" name="Dark9"/>
+                            <color key="highlightedColor" systemColor="lightTextColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="track title label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ptC-tD-gdN" userLabel="Title">
+                            <rect key="frame" x="160" y="485" width="410" height="31.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
+                            <color key="textColor" name="Dark10"/>
+                            <color key="highlightedColor" systemColor="lightTextColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="radio shoutout label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsP-Sq-acL" userLabel="Radio Shoutout">
+                            <rect key="frame" x="30" y="423.5" width="540" height="26.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <color key="textColor" name="Dark7"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                </stackView>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="LsP-Sq-acL" secondAttribute="trailing" constant="30" id="0ao-g4-7RH"/>
+                        <constraint firstItem="zmo-M8-m9o" firstAttribute="leading" secondItem="8QA-Hw-VYj" secondAttribute="leading" constant="10" id="1mD-cM-VW0"/>
+                        <constraint firstItem="UhH-FP-Yas" firstAttribute="top" secondItem="ptC-tD-gdN" secondAttribute="bottom" constant="8" id="3Vo-UM-SRC"/>
+                        <constraint firstAttribute="trailing" secondItem="UhH-FP-Yas" secondAttribute="trailing" constant="30" id="7Iq-gh-x2D"/>
+                        <constraint firstItem="UhH-FP-Yas" firstAttribute="leading" secondItem="Wb0-C0-hGr" secondAttribute="trailing" constant="30" id="EFt-oE-GN5"/>
+                        <constraint firstAttribute="trailing" secondItem="ptC-tD-gdN" secondAttribute="trailing" constant="30" id="FI9-8g-uEE"/>
+                        <constraint firstItem="Wb0-C0-hGr" firstAttribute="top" secondItem="LsP-Sq-acL" secondAttribute="bottom" constant="20" id="Fc4-eb-tzv"/>
+                        <constraint firstAttribute="bottom" secondItem="IaB-LZ-fmj" secondAttribute="bottom" constant="10" id="Ge9-p6-L9x"/>
+                        <constraint firstItem="IaB-LZ-fmj" firstAttribute="leading" secondItem="8QA-Hw-VYj" secondAttribute="leading" constant="10" id="MLn-Kg-gjA"/>
+                        <constraint firstAttribute="bottom" secondItem="Wb0-C0-hGr" secondAttribute="bottom" constant="30" id="ScU-FL-T0H"/>
+                        <constraint firstItem="LsP-Sq-acL" firstAttribute="leading" secondItem="8QA-Hw-VYj" secondAttribute="leading" constant="30" id="VA0-v1-JTp"/>
+                        <constraint firstAttribute="trailing" secondItem="zmo-M8-m9o" secondAttribute="trailing" constant="10" id="WaO-x2-QLu"/>
+                        <constraint firstItem="ptC-tD-gdN" firstAttribute="leading" secondItem="Wb0-C0-hGr" secondAttribute="trailing" constant="30" id="XbB-NH-cSc"/>
+                        <constraint firstAttribute="trailing" secondItem="IaB-LZ-fmj" secondAttribute="trailing" constant="10" id="c0D-oA-utz"/>
+                        <constraint firstItem="Wb0-C0-hGr" firstAttribute="leading" secondItem="8QA-Hw-VYj" secondAttribute="leading" constant="30" id="dRd-Cw-pRP"/>
+                        <constraint firstItem="zmo-M8-m9o" firstAttribute="top" secondItem="8QA-Hw-VYj" secondAttribute="top" constant="10" id="h03-bF-nyX"/>
+                        <constraint firstItem="ptC-tD-gdN" firstAttribute="top" secondItem="Wb0-C0-hGr" secondAttribute="top" constant="15" id="ngc-cG-Apj"/>
+                        <constraint firstAttribute="bottom" secondItem="zmo-M8-m9o" secondAttribute="bottom" constant="10" id="vHq-22-BCp"/>
+                        <constraint firstItem="IaB-LZ-fmj" firstAttribute="top" secondItem="8QA-Hw-VYj" secondAttribute="top" constant="10" id="xGW-hz-ydB"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="Dark1"/>
             <constraints>
-                <constraint firstItem="sgO-Os-qNc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="Mtg-2A-d5g"/>
-                <constraint firstItem="sgO-Os-qNc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="PAp-lT-AWa"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sgO-Os-qNc" secondAttribute="trailing" constant="8" id="Ydx-tF-aHS"/>
-                <constraint firstAttribute="bottom" secondItem="sgO-Os-qNc" secondAttribute="bottom" constant="8" id="f80-X9-fsP"/>
+                <constraint firstAttribute="bottom" secondItem="8QA-Hw-VYj" secondAttribute="bottom" id="EEf-9W-hBP"/>
+                <constraint firstItem="8QA-Hw-VYj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="S4A-Rs-rOu"/>
+                <constraint firstItem="8QA-Hw-VYj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="X1e-9b-Byh"/>
+                <constraint firstItem="8QA-Hw-VYj" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="uvV-si-vOh"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -73,22 +97,22 @@
                 <outlet property="trackArtistLabel" destination="UhH-FP-Yas" id="NR4-tS-aF6"/>
                 <outlet property="trackTitleLabel" destination="ptC-tD-gdN" id="EHQ-oR-a74"/>
             </connections>
-            <point key="canvasLocation" x="139" y="153"/>
+            <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>
         </view>
     </objects>
     <resources>
         <namedColor name="Dark1">
             <color red="0.0039215686274509803" green="0.16470588235294117" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="lightTextColor">
-            <color white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="lightTextColor">
-            <color white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="lightTextColor">
-            <color white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="Dark10">
+            <color red="0.66274509803921566" green="0.83921568627450982" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Dark7">
+            <color red="0.27450980392156865" green="0.5607843137254902" blue="0.68627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Dark9">
+            <color red="0.53725490196078429" green="0.76078431372549016" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="lightTextColor">
             <color white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

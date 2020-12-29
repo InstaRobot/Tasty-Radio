@@ -21,7 +21,7 @@ class ShareImageGenerator {
         let logoShareView = LogoShareView.instanceFromNib()
         let songToShare = radioShoutout
         logoShareView.shareSetup(
-            albumArt: track.artworkImage ?? #imageLiteral(resourceName: "cube-icon"),
+            albumArt: track.artworkImage,
             radioShoutout: songToShare,
             trackTitle: track.title,
             trackArtist: track.artist

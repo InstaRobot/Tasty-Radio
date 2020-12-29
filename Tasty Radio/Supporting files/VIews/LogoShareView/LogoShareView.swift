@@ -9,7 +9,11 @@
 import UIKit
 
 class LogoShareView: UIView {
-    @IBOutlet weak var albumArtImageView: UIImageView!
+    @IBOutlet weak var albumArtImageView: UIImageView! {
+        didSet {
+            albumArtImageView.layer.cornerRadius = 12
+        }
+    }
     @IBOutlet weak var radioShoutoutLabel: UILabel!
     @IBOutlet weak var trackTitleLabel: UILabel!
     @IBOutlet weak var trackArtistLabel: UILabel!
@@ -22,7 +26,12 @@ class LogoShareView: UIView {
         ).instantiate(withOwner: nil, options: nil)[0] as! LogoShareView
     }
     
-    func shareSetup(albumArt: UIImage, radioShoutout: String, trackTitle: String, trackArtist: String) {
+    func shareSetup(
+        albumArt: UIImage?,
+        radioShoutout: String,
+        trackTitle: String,
+        trackArtist: String
+    ) {
         self.albumArtImageView.image = albumArt
         self.radioShoutoutLabel.text = radioShoutout
         self.trackTitleLabel.text = trackTitle
