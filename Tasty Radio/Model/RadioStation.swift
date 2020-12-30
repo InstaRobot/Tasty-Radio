@@ -51,7 +51,7 @@ struct RadioStation: Codable {
         self.country    = record.value(forKey: "country") as? String ?? ""
         self.imageURL   = URL(string: record.value(forKey: "imageURL") as? String ?? "")
         self.streamURL  = URL(string: record.value(forKey: "streamURL") as? String ?? "")
-        self.sortOrder  = 0
+        self.sortOrder  = record.value(forKey: "sortOrder") as? Int ?? 0
         self.rating     = 0
         self.info       = ""
     }
