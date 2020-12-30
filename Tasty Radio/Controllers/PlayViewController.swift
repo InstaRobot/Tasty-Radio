@@ -38,6 +38,9 @@ class PlayViewController: UIViewController {
     
     @IBOutlet private(set) weak var backAnimationView: UIView!
     
+    @IBOutlet private(set) weak var dislikeButton: UIButton!
+    @IBOutlet private(set) weak var likeButton: UIButton!
+    
     weak var delegate: PlayViewControllerDelegate?
     
     // MARK: - Properties
@@ -83,33 +86,45 @@ class PlayViewController: UIViewController {
         stationDescLabel.isHidden = currentTrack.artworkLoaded
     }
     
-    @IBAction func onBack(_ sender: UIButton) {
+    @IBAction private func onBack(_ sender: UIButton) {
         sender.animateTap { [weak self] in
             self?.dismiss(animated: true, completion: nil)
         }
     }
     
-    @IBAction func onFavourite(_ sender: UIButton) {
+    @IBAction private func onFavourite(_ sender: UIButton) {
 //        sender.animateTap { [weak self] in
 //
 //        }
     }
     
-    @IBAction func onPrevious(_ sender: UIButton) {
+    @IBAction private func onPrevious(_ sender: UIButton) {
         sender.animateTap {  [weak self] in
             self?.delegate?.didPressPreviousButton()
         }
     }
     
-    @IBAction func onPlayPause(_ sender: UIButton) {
+    @IBAction private func onPlayPause(_ sender: UIButton) {
         sender.animateTap { [weak self] in
             self?.delegate?.didPressPlayingButton()
         }
     }
     
-    @IBAction func onNext(_ sender: UIButton) {
+    @IBAction private func onNext(_ sender: UIButton) {
         sender.animateTap {  [weak self] in
             self?.delegate?.didPressNextButton()
+        }
+    }
+    
+    @IBAction private func onLike(_ sender: UIButton) {
+        sender.animateTap {
+            
+        }
+    }
+    
+    @IBAction private func onDislike(_ sender: UIButton) {
+        sender.animateTap {
+            
         }
     }
     

@@ -1041,17 +1041,45 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pww-Ky-b2T">
+                                <rect key="frame" x="22" y="199" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="54g-Wa-oZ3"/>
+                                    <constraint firstAttribute="height" constant="30" id="nft-a6-zAc"/>
+                                </constraints>
+                                <color key="tintColor" name="Dark5"/>
+                                <state key="normal" image="dislike-icon"/>
+                                <connections>
+                                    <action selector="onDislike:" destination="8Dz-wc-zWg" eventType="touchUpInside" id="Dmj-e2-5Km"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8OL-MS-qr5">
+                                <rect key="frame" x="268" y="199" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="fge-Nf-PZX"/>
+                                    <constraint firstAttribute="height" constant="30" id="tO4-SW-TI0"/>
+                                </constraints>
+                                <color key="tintColor" name="Dark5"/>
+                                <state key="normal" image="like-icon"/>
+                                <connections>
+                                    <action selector="onLike:" destination="8Dz-wc-zWg" eventType="touchUpInside" id="IRb-UI-f0n"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="536-C3-2mg"/>
                         <color key="backgroundColor" name="Dark1"/>
                         <constraints>
                             <constraint firstItem="536-C3-2mg" firstAttribute="trailing" secondItem="qGR-EI-95w" secondAttribute="trailing" constant="30" id="0zS-Ex-fKz"/>
+                            <constraint firstItem="8OL-MS-qr5" firstAttribute="leading" secondItem="kO9-Zc-uSr" secondAttribute="trailing" constant="8" symbolic="YES" id="C4i-uM-Xwd"/>
                             <constraint firstItem="536-C3-2mg" firstAttribute="bottom" secondItem="1uo-HU-r8h" secondAttribute="bottom" id="CS7-zy-IOt"/>
                             <constraint firstItem="zUj-Kz-hbb" firstAttribute="leading" secondItem="536-C3-2mg" secondAttribute="leading" constant="30" id="Dea-qR-Edx"/>
                             <constraint firstItem="536-C3-2mg" firstAttribute="trailing" secondItem="6zL-5U-CkJ" secondAttribute="trailing" id="HIT-3L-SWS"/>
                             <constraint firstItem="536-C3-2mg" firstAttribute="bottom" secondItem="6zL-5U-CkJ" secondAttribute="bottom" constant="80" id="Hof-uJ-tLg"/>
                             <constraint firstItem="RTi-tV-ajw" firstAttribute="centerX" secondItem="sqf-sq-wa8" secondAttribute="centerX" id="M1C-hS-SQO"/>
                             <constraint firstItem="536-C3-2mg" firstAttribute="trailing" secondItem="zUj-Kz-hbb" secondAttribute="trailing" constant="30" id="MF6-FV-Pyg"/>
+                            <constraint firstItem="kO9-Zc-uSr" firstAttribute="leading" secondItem="pww-Ky-b2T" secondAttribute="trailing" constant="8" symbolic="YES" id="NL7-sX-auM"/>
+                            <constraint firstItem="pww-Ky-b2T" firstAttribute="centerY" secondItem="eg6-Oi-N2X" secondAttribute="centerY" id="PiP-XV-U7X"/>
+                            <constraint firstItem="8OL-MS-qr5" firstAttribute="centerY" secondItem="eg6-Oi-N2X" secondAttribute="centerY" id="S9H-gk-T8X"/>
                             <constraint firstItem="T1Q-UJ-5BC" firstAttribute="top" secondItem="zUj-Kz-hbb" secondAttribute="bottom" constant="10" id="SxX-Av-5CZ"/>
                             <constraint firstItem="RTi-tV-ajw" firstAttribute="centerY" secondItem="qGR-EI-95w" secondAttribute="centerY" id="aMS-mg-ZPL"/>
                             <constraint firstItem="zUj-Kz-hbb" firstAttribute="top" secondItem="kO9-Zc-uSr" secondAttribute="bottom" constant="40" id="bXO-Uo-jhB"/>
@@ -1075,7 +1103,9 @@
                         <outlet property="albumImageView" destination="eg6-Oi-N2X" id="v9N-Iw-aeq"/>
                         <outlet property="artistLabel" destination="zUj-Kz-hbb" id="2f0-yt-Rem"/>
                         <outlet property="backAnimationView" destination="j6m-TB-1Ri" id="E4r-ib-chm"/>
+                        <outlet property="dislikeButton" destination="pww-Ky-b2T" id="mTw-kA-jDY"/>
                         <outlet property="favouriteButton" destination="9HW-SW-3EZ" id="baX-WS-ubG"/>
+                        <outlet property="likeButton" destination="8OL-MS-qr5" id="hZp-44-LeZ"/>
                         <outlet property="nameLabel" destination="RTi-tV-ajw" id="r6N-Lw-fZK"/>
                         <outlet property="nextButton" destination="uer-HB-Rpc" id="Y0X-z0-x32"/>
                         <outlet property="playingButton" destination="xdo-We-Mj7" id="5BX-Eu-lJ5"/>
@@ -1094,7 +1124,9 @@
         <image name="back-button" width="18" height="12"/>
         <image name="close-button-icon" width="457" height="457"/>
         <image name="cube-icon" width="512" height="512"/>
+        <image name="dislike-icon" width="511" height="512"/>
         <image name="info-icon" width="939" height="939"/>
+        <image name="like-icon" width="511" height="512"/>
         <image name="logo" width="341.5" height="341.5"/>
         <image name="microphone-icon" width="512" height="512"/>
         <image name="next-button" width="330" height="330"/>
