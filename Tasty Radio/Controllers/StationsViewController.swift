@@ -142,6 +142,7 @@ class StationsViewController: UIViewController {
         setupPullToRefresh()
         setupRemoteCommandCenter()
         setupHandoffUserActivity()
+        createNowPlayingAnimation()
         
         view.addGestureRecognizer(gestureRecognizer)
         addObservers()
@@ -151,36 +152,39 @@ class StationsViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    @IBAction func onBack(_ sender: UIButton) {
+    @IBAction private func onBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
+    @IBAction private func onAnimation() {
+        print(#function)
+    }
     
-    @IBAction func onOrderedSegment(_ sender: UIButton) {
+    @IBAction private func onOrderedSegment(_ sender: UIButton) {
         sender.animateTap {
             self.selectedSegmentIndex = 0
             self.configureSegments()
         }
     }
-    @IBAction func onPopularSegment(_ sender: UIButton) {
+    @IBAction private func onPopularSegment(_ sender: UIButton) {
         sender.animateTap {
             self.selectedSegmentIndex = 1
             self.configureSegments()
         }
     }
     
-    @IBAction func onPrevious(_ sender: UIButton) {
+    @IBAction private func onPrevious(_ sender: UIButton) {
         sender.animateTap {
             if self.selectedStationIndex > 0 {
                 self.playStation(with: self.stations[self.selectedStationIndex - 1])
             }
         }
     }
-    @IBAction func onStop(_ sender: UIButton) {
+    @IBAction private func onStop(_ sender: UIButton) {
         sender.animateTap {
             self.isPlaying = false
         }
     }
-    @IBAction func onNext(_ sender: UIButton) {
+    @IBAction private func onNext(_ sender: UIButton) {
         sender.animateTap {
             if self.selectedStationIndex < self.stations.count - 1 {
                 self.playStation(with: self.stations[self.selectedStationIndex + 1])
@@ -202,8 +206,8 @@ extension StationsViewController: UISearchBarDelegate {
             }
         }
 
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
         }
     }
 }
@@ -325,7 +329,7 @@ extension StationsViewController: StationCollectionViewCellDelegate {
     
     func reloadStations(name: String?) {
         if let name = name {
-            self.service.fetchStations(for: name) { parseStations in
+            self.service.fetchStations(for: name) { [unowned self] parseStations in
                 self.stations = parseStations.map {
                     RadioStation(
                         stationId: $0.objectId ?? "",
@@ -340,13 +344,13 @@ extension StationsViewController: StationCollectionViewCellDelegate {
                 }
                 self.reservedStations = self.stations
 
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+                DispatchQueue.main.async { [weak self] in
+                    self?.collectionView.reloadData()
                 }
             }
         }
         else {
-            service.fetchStations { parseStations in
+            service.fetchStations {  [unowned self] parseStations in
                 self.stations = parseStations.map {
                     RadioStation(
                         stationId: $0.objectId ?? "",
@@ -361,8 +365,8 @@ extension StationsViewController: StationCollectionViewCellDelegate {
                 }
                 self.reservedStations = self.stations
 
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+                DispatchQueue.main.async { [weak self] in
+                    self?.collectionView.reloadData()
                 }
             }
         }
@@ -517,6 +521,23 @@ extension StationsViewController {
     private func resetCurrentStation() {
         radioPlayer.resetRadioPlayer()
         nowPlayingAnimationImageView.stopAnimating()
+    }
+    
+    func createNowPlayingAnimation() {
+//        nowPlayingImageView = UIImageView(image: UIImage(named: "NowPlayingBars-3"))
+//        nowPlayingImageView.autoresizingMask = []
+//        nowPlayingImageView.contentMode = UIView.ContentMode.center
+        
+        nowPlayingAnimationImageView.animationImages = AnimationFrames.createFrames()
+        nowPlayingAnimationImageView.animationDuration = 0.7
+        
+//        let barButton = UIButton(type: .custom)
+//        barButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+//        barButton.addSubview(nowPlayingImageView)
+//        nowPlayingAnimationImageView.center = barButton.center
+//        backAnimationView.addSubview(barButton)
+        
+        nowPlayingAnimationImageView.tintColor = .dark10
     }
     
     func startNowPlayingAnimation(_ animate: Bool) {
