@@ -524,19 +524,8 @@ extension StationsViewController {
     }
     
     func createNowPlayingAnimation() {
-//        nowPlayingImageView = UIImageView(image: UIImage(named: "NowPlayingBars-3"))
-//        nowPlayingImageView.autoresizingMask = []
-//        nowPlayingImageView.contentMode = UIView.ContentMode.center
-        
         nowPlayingAnimationImageView.animationImages = AnimationFrames.createFrames()
         nowPlayingAnimationImageView.animationDuration = 0.7
-        
-//        let barButton = UIButton(type: .custom)
-//        barButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-//        barButton.addSubview(nowPlayingImageView)
-//        nowPlayingAnimationImageView.center = barButton.center
-//        backAnimationView.addSubview(barButton)
-        
         nowPlayingAnimationImageView.tintColor = .dark10
     }
     
