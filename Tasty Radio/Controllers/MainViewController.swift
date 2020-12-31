@@ -12,9 +12,9 @@ class MainViewController: UIViewController {
     
     @IBOutlet var service: ParseService!
     
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet private(set) weak var bottomConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var searchBar: UISearchBar! {
+    @IBOutlet private(set) weak var searchBar: UISearchBar! {
         didSet {
             searchBar.delegate = self
             searchBar.backgroundImage = UIImage()
@@ -41,7 +41,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var collectionView: UICollectionView! {
+    @IBOutlet private(set) weak var collectionView: UICollectionView! {
         didSet {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
@@ -52,7 +52,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var plateView: UIView! {
+    @IBOutlet private(set) weak var plateView: UIView! {
         didSet {
             plateView.layer.cornerRadius = 30
             plateView.layer.shadowColor = UIColor.dark5.cgColor
@@ -96,11 +96,11 @@ class MainViewController: UIViewController {
     
     // MARK: - Actions
     
-    @IBAction func onMain(_ sender: UIButton) {
+    @IBAction private func onMain(_ sender: UIButton) {
         sender.animateTap { }
     }
     
-    @IBAction func onStations(_ sender: UIButton) {
+    @IBAction private func onStations(_ sender: UIButton) {
         sender.animateTap {
             let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "StationsViewController") as! StationsViewController
             self.navigationController?.pushViewController(stationController, animated: true)
@@ -108,21 +108,21 @@ class MainViewController: UIViewController {
         }
     }
     
-    @IBAction func onFavourite(_ sender: UIButton) {
+    @IBAction private func onFavourite(_ sender: UIButton) {
         sender.animateTap {
             let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "FavouriteViewController") as! FavouriteViewController
             self.navigationController?.pushViewController(stationController, animated: true)
         }
     }
     
-    @IBAction func onSettings(_ sender: UIButton) {
+    @IBAction private func onSettings(_ sender: UIButton) {
         sender.animateTap {
             let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SettingsViewController") as! SettingsViewController
             self.navigationController?.pushViewController(stationController, animated: true)
         }
     }
     
-    @IBAction func onInfo(_ sender: UIButton) {
+    @IBAction private func onInfo(_ sender: UIButton) {
         sender.animateTap {
             let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "InfoViewController") as! InfoViewController
             self.navigationController?.pushViewController(stationController, animated: true)

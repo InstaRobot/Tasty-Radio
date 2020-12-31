@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-    @IBAction func onBack(_ sender: UIButton) {
+    @IBAction private func onBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
 }

@@ -27,7 +27,7 @@ class FavouriteViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var collectionView: UICollectionView! {
+    @IBOutlet private(set) weak var collectionView: UICollectionView! {
         didSet {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
@@ -41,7 +41,7 @@ class FavouriteViewController: UIViewController {
         }
     }
 
-    @IBAction func onBack(_ sender: UIButton) {
+    @IBAction private func onBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
 }

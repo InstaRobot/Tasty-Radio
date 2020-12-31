@@ -23,7 +23,7 @@ class PlayViewController: UIViewController {
     @IBOutlet private(set) weak var nameLabel: UILabel!
     @IBOutlet private(set) weak var stationDescLabel: UILabel!
     
-    @IBOutlet weak var springView: SpringView!
+    @IBOutlet private(set) weak var springView: SpringView!
     @IBOutlet private(set) weak var albumImageView: SpringImageView!
     @IBOutlet private(set) weak var favouriteButton: UIButton!
     
@@ -70,7 +70,7 @@ class PlayViewController: UIViewController {
         newStation ? stationDidChange() : playerStateDidChange(radioPlayer.state, animate: false)
     }
     
-    func setupAirPlayButton() {
+    private func setupAirPlayButton() {
         let airPlayButton = AVRoutePickerView(frame: airPlayView.bounds)
         airPlayButton.activeTintColor = .dark10
         airPlayButton.tintColor = .gray
@@ -78,7 +78,7 @@ class PlayViewController: UIViewController {
         airPlayView.addSubview(airPlayButton)
     }
     
-    func stationDidChange() {
+    private func stationDidChange() {
         radioPlayer.radioURL = currentStation.streamURL
         albumImageView.image = currentTrack.artworkImage
         nameLabel.text = currentStation.name

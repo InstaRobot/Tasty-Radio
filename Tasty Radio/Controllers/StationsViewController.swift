@@ -13,12 +13,12 @@ import AVFoundation
 class StationsViewController: UIViewController {
     @IBOutlet var service: ParseService!
     
-    @IBOutlet weak var bottonConstraint: NSLayoutConstraint!
-    @IBOutlet weak var spacingConstraint: NSLayoutConstraint!
+    @IBOutlet private(set) weak var bottonConstraint: NSLayoutConstraint!
+    @IBOutlet private(set) weak var spacingConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var nowPlayingAnimationImageView: UIImageView!
+    @IBOutlet private(set) weak var nowPlayingAnimationImageView: UIImageView!
     
-    @IBOutlet weak var searchBar: UISearchBar! {
+    @IBOutlet private(set) weak var searchBar: UISearchBar! {
         didSet {
             searchBar.backgroundColor = .clear
             searchBar.delegate = self
@@ -46,19 +46,19 @@ class StationsViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var leftSegmentIndicatorView: UIView! {
+    @IBOutlet private(set) weak var leftSegmentIndicatorView: UIView! {
         didSet {
             leftSegmentIndicatorView.layer.cornerRadius = 2
         }
     }
-    @IBOutlet weak var rightSegmentIndicatorView: UIView! {
+    @IBOutlet private(set) weak var rightSegmentIndicatorView: UIView! {
         didSet {
             rightSegmentIndicatorView.layer.cornerRadius = 2
             rightSegmentIndicatorView.backgroundColor = .clear
         }
     }
     
-    @IBOutlet weak var collectionView: UICollectionView! {
+    @IBOutlet private(set) weak var collectionView: UICollectionView! {
         didSet {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
@@ -72,23 +72,23 @@ class StationsViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var playImageView: UIImageView! {
+    @IBOutlet private(set) weak var playImageView: UIImageView! {
         didSet {
             playImageView.layer.cornerRadius = 18
         }
     }
-    @IBOutlet weak var playTitleLabel: UILabel! {
+    @IBOutlet private(set) weak var playTitleLabel: UILabel! {
         didSet {
             playTitleLabel.text = ""
         }
     }
-    @IBOutlet weak var playSubtitleLabel: UILabel! {
+    @IBOutlet private(set) weak var playSubtitleLabel: UILabel! {
         didSet {
             playSubtitleLabel.text = ""
         }
     }
-    @IBOutlet weak var previousButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet private(set) weak var previousButton: UIButton!
+    @IBOutlet private(set) weak var nextButton: UIButton!
     
     let radioPlayer = RadioPlayer()
     weak var playViewController: PlayViewController?

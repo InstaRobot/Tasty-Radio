@@ -11,8 +11,8 @@ import Lottie
 
 class InfoViewController: UIViewController {
     
-    @IBOutlet weak var musicAnimationView: AnimationView!
-    @IBOutlet weak var containerView: UIView! {
+    @IBOutlet private(set) weak var musicAnimationView: AnimationView!
+    @IBOutlet private(set) weak var containerView: UIView! {
         didSet {
             containerView.layer.borderWidth = 1
             containerView.layer.borderColor = UIColor.dark6.cgColor
@@ -20,9 +20,9 @@ class InfoViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet private(set) weak var logoImageView: UIImageView!
     
-    @IBOutlet weak var infoLabel: UILabel! {
+    @IBOutlet private(set) weak var infoLabel: UILabel! {
         didSet {
             let text = "Приложение разработано при участии: \n\n Никита Минаков \n Айрат Мингазов \n Александр Харитонов"
             infoLabel.text = text
@@ -31,7 +31,7 @@ class InfoViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var appVersionLabel: UILabel! {
+    @IBOutlet private(set) weak var appVersionLabel: UILabel! {
         didSet {
             if let appName = Bundle.main.appName, let version = Bundle.main.versionNumber, let build = Bundle.main.buildNumber {
                 let text = appName.appending(", ").appending(version).appending(".").appending(build)
@@ -54,7 +54,7 @@ class InfoViewController: UIViewController {
         self.stopAnimation()
     }
  
-    @IBAction func onBack(_ sender: UIButton) {
+    @IBAction private func onBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     
