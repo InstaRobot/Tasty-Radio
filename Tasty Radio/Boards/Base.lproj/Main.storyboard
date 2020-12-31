@@ -59,6 +59,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeY-Tt-HPU" userLabel="Animation View" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="snow-animation"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qq9-V5-s5j" userLabel="Container">
                                 <rect key="frame" x="30" y="30" width="260" height="44"/>
                                 <subviews>
@@ -256,20 +263,25 @@
                         <viewLayoutGuide key="safeArea" id="wrc-eB-Y7t"/>
                         <color key="backgroundColor" name="Dark1"/>
                         <constraints>
+                            <constraint firstItem="VeY-Tt-HPU" firstAttribute="top" secondItem="wrc-eB-Y7t" secondAttribute="top" id="DKv-WF-p2d"/>
                             <constraint firstItem="qsK-KW-DjY" firstAttribute="leading" secondItem="wrc-eB-Y7t" secondAttribute="leading" id="JDz-TY-q4B"/>
                             <constraint firstItem="Qq9-V5-s5j" firstAttribute="leading" secondItem="wrc-eB-Y7t" secondAttribute="leading" constant="30" id="NER-9y-1ih"/>
+                            <constraint firstItem="VeY-Tt-HPU" firstAttribute="bottom" secondItem="wrc-eB-Y7t" secondAttribute="bottom" id="YrO-WS-cDg"/>
                             <constraint firstItem="wrc-eB-Y7t" firstAttribute="bottom" secondItem="qsK-KW-DjY" secondAttribute="bottom" id="aRi-tJ-BzQ"/>
                             <constraint firstItem="Qq9-V5-s5j" firstAttribute="top" secondItem="wrc-eB-Y7t" secondAttribute="top" constant="30" id="eZj-GG-77s"/>
                             <constraint firstItem="wrc-eB-Y7t" firstAttribute="trailing" secondItem="Qq9-V5-s5j" secondAttribute="trailing" constant="30" id="g6W-6B-7nr"/>
                             <constraint firstItem="8ws-Ub-AHO" firstAttribute="leading" secondItem="wrc-eB-Y7t" secondAttribute="leading" constant="8" id="gcu-oU-cI6"/>
                             <constraint firstItem="qsK-KW-DjY" firstAttribute="top" secondItem="Qq9-V5-s5j" secondAttribute="bottom" constant="35" id="mnG-wv-fNI"/>
                             <constraint firstItem="wrc-eB-Y7t" firstAttribute="bottom" secondItem="8ws-Ub-AHO" secondAttribute="bottom" constant="8" id="pG7-0i-YzV"/>
+                            <constraint firstItem="VeY-Tt-HPU" firstAttribute="trailing" secondItem="wrc-eB-Y7t" secondAttribute="trailing" id="sIF-qc-r4U"/>
                             <constraint firstItem="wrc-eB-Y7t" firstAttribute="trailing" secondItem="8ws-Ub-AHO" secondAttribute="trailing" constant="8" id="uqa-Th-w5H"/>
                             <constraint firstItem="qsK-KW-DjY" firstAttribute="trailing" secondItem="wrc-eB-Y7t" secondAttribute="trailing" id="xAB-2o-s02"/>
+                            <constraint firstItem="VeY-Tt-HPU" firstAttribute="leading" secondItem="wrc-eB-Y7t" secondAttribute="leading" id="xBK-Fv-Sft"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qSe-53-ik1"/>
                     <connections>
+                        <outlet property="animationView" destination="VeY-Tt-HPU" id="kzt-D6-Bw3"/>
                         <outlet property="bottomConstraint" destination="pG7-0i-YzV" id="UVi-9t-A4q"/>
                         <outlet property="collectionView" destination="qsK-KW-DjY" id="04g-bJ-268"/>
                         <outlet property="plateView" destination="8ws-Ub-AHO" id="Kxl-3C-rW6"/>
@@ -280,7 +292,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A4U-PU-UMN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <customObject id="dSU-dK-Aal" customClass="ParseService" customModule="Tasty_Radio" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="984" y="116"/>
+            <point key="canvasLocation" x="982.5" y="115.14084507042254"/>
         </scene>
         <!--Onboarding Page View Controller-->
         <scene sceneID="Jx4-ja-ULe">
