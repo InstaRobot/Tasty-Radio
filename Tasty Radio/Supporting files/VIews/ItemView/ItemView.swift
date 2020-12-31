@@ -11,14 +11,14 @@ import UIKit
 class ItemView: UIView {
     static let itemName = "ItemView"
 
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var imageView: UIImageView! {
+    @IBOutlet private(set) weak var contentView: UIView!
+    @IBOutlet private(set) weak var imageView: UIImageView! {
         didSet {
             imageView.layer.cornerRadius = 100
         }
     }
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet private(set) weak var titleLabel: UILabel!
+    @IBOutlet private(set) weak var subtitleLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,5 +51,4 @@ class ItemView: UIView {
             contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
-    
 }

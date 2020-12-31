@@ -10,13 +10,12 @@ import UIKit
 import Kingfisher
 
 class FavouriteCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var stationImageView: UIImageView! {
+    @IBOutlet private(set) weak var stationImageView: UIImageView! {
         didSet {
             stationImageView.layer.cornerRadius = 8
             stationImageView.layer.masksToBounds = true
         }
     }
-    
     @IBOutlet weak var stationNameLabel: UILabel!
     
     func congigure(with station: RadioStation) {

@@ -9,15 +9,15 @@
 import UIKit
 
 class LogoShareView: UIView {
-    @IBOutlet weak var albumArtImageView: UIImageView! {
+    @IBOutlet private(set) weak var albumArtImageView: UIImageView! {
         didSet {
             albumArtImageView.layer.cornerRadius = 12
         }
     }
-    @IBOutlet weak var radioShoutoutLabel: UILabel!
-    @IBOutlet weak var trackTitleLabel: UILabel!
-    @IBOutlet weak var trackArtistLabel: UILabel!
-    @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet private(set) weak var radioShoutoutLabel: UILabel!
+    @IBOutlet private(set) weak var trackTitleLabel: UILabel!
+    @IBOutlet private(set) weak var trackArtistLabel: UILabel!
+    @IBOutlet private(set) weak var logoImageView: UIImageView!
     
     class func instanceFromNib() -> LogoShareView {
         return UINib(

@@ -14,9 +14,9 @@ protocol StationCollectionViewCellDelegate: class {
 }
 
 class StationCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var stationImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet private(set) weak var stationImageView: UIImageView!
+    @IBOutlet private(set) weak var nameLabel: UILabel!
+    @IBOutlet private(set) weak var infoLabel: UILabel!
     
     weak var delegate: StationCollectionViewCellDelegate?
     
@@ -39,13 +39,13 @@ class StationCollectionViewCell: UICollectionViewCell {
         self.station = station
     }
     
-    @IBAction func onPlay(_ sender: UIButton) {
-        sender.animateTap {
+    @IBAction private func onPlay(_ sender: UIButton) {
+        sender.animateTap { [weak self] in
             guard
-                let station = self.station else {
+                let station = self?.station else {
                 return
             }
-            self.delegate?.playStation(with: station)
+            self?.delegate?.playStation(with: station)
         }
     }
 }

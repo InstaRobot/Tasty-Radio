@@ -22,22 +22,16 @@ protocol PlayViewControllerDelegate: class {
 class PlayViewController: UIViewController {
     @IBOutlet private(set) weak var nameLabel: UILabel!
     @IBOutlet private(set) weak var stationDescLabel: UILabel!
-    
     @IBOutlet private(set) weak var springView: SpringView!
     @IBOutlet private(set) weak var albumImageView: SpringImageView!
     @IBOutlet private(set) weak var favouriteButton: UIButton!
-    
     @IBOutlet private(set) weak var playingButton: UIButton!
     @IBOutlet private(set) weak var previousButton: UIButton!
     @IBOutlet private(set) weak var nextButton: UIButton!
-    
     @IBOutlet private(set) weak var airPlayView: UIView!
-    
     @IBOutlet private(set) weak var songLabel: SpringLabel!
     @IBOutlet private(set) weak var artistLabel: UILabel!
-    
     @IBOutlet private(set) weak var backAnimationView: UIView!
-    
     @IBOutlet private(set) weak var dislikeButton: UIButton!
     @IBOutlet private(set) weak var likeButton: UIButton!
     
@@ -70,64 +64,41 @@ class PlayViewController: UIViewController {
         newStation ? stationDidChange() : playerStateDidChange(radioPlayer.state, animate: false)
     }
     
-    private func setupAirPlayButton() {
-        let airPlayButton = AVRoutePickerView(frame: airPlayView.bounds)
-        airPlayButton.activeTintColor = .dark10
-        airPlayButton.tintColor = .gray
-        airPlayView.backgroundColor = .clear
-        airPlayView.addSubview(airPlayButton)
-    }
-    
-    private func stationDidChange() {
-        radioPlayer.radioURL = currentStation.streamURL
-        albumImageView.image = currentTrack.artworkImage
-        nameLabel.text = currentStation.name
-        stationDescLabel.text = currentStation.info
-        stationDescLabel.isHidden = currentTrack.artworkLoaded
-    }
-    
     @IBAction private func onBack(_ sender: UIButton) {
         sender.animateTap { [weak self] in
             self?.dismiss(animated: true, completion: nil)
         }
     }
-    
     @IBAction private func onFavourite(_ sender: UIButton) {
 //        sender.animateTap { [weak self] in
 //
 //        }
     }
-    
     @IBAction private func onPrevious(_ sender: UIButton) {
-        sender.animateTap {  [weak self] in
+        sender.animateTap { [weak self] in
             self?.delegate?.didPressPreviousButton()
         }
     }
-    
     @IBAction private func onPlayPause(_ sender: UIButton) {
         sender.animateTap { [weak self] in
             self?.delegate?.didPressPlayingButton()
         }
     }
-    
     @IBAction private func onNext(_ sender: UIButton) {
         sender.animateTap {  [weak self] in
             self?.delegate?.didPressNextButton()
         }
     }
-    
     @IBAction private func onLike(_ sender: UIButton) {
-        sender.animateTap {
-            
-        }
+//        sender.animateTap { [weak self] in
+//
+//        }
     }
-    
     @IBAction private func onDislike(_ sender: UIButton) {
-        sender.animateTap {
-            
-        }
+//        sender.animateTap { [weak self] in
+//
+//        }
     }
-    
     @IBAction private func onShare(_ sender: UIButton) {
         sender.animateTap { [unowned self] in
             guard
@@ -196,6 +167,27 @@ extension PlayViewController {
         view.setNeedsDisplay()
     }
     
+    func updateLabels(with statusMessage: String? = nil, animate: Bool = true) {
+        guard
+            let statusMessage = statusMessage else {
+            songLabel.text = currentTrack.title
+            artistLabel.text = currentTrack.artist
+            shouldAnimateSongLabel(animate)
+            return
+        }
+        guard
+            songLabel.text != statusMessage else {
+            return
+        }
+        songLabel.text = statusMessage
+        artistLabel.text = currentStation.name
+        if animate {
+            songLabel.animation = "flash"
+            songLabel.repeatCount = 3
+            songLabel.animate()
+        }
+    }
+    
     private func isPlayingDidChange(_ isPlaying: Bool) {
         playingButton.isSelected = isPlaying
         startNowPlayingAnimation(isPlaying)
@@ -231,44 +223,43 @@ extension PlayViewController {
         updateLabels(with: message, animate: animate)
     }
     
-    func updateLabels(with statusMessage: String? = nil, animate: Bool = true) {
-        guard
-            let statusMessage = statusMessage else {
-            songLabel.text = currentTrack.title
-            artistLabel.text = currentTrack.artist
-            shouldAnimateSongLabel(animate)
-            return
-        }
-        guard
-            songLabel.text != statusMessage else {
-            return
-        }
-        
-        songLabel.text = statusMessage
-        artistLabel.text = currentStation.name
-        if animate {
-            songLabel.animation = "flash"
-            songLabel.repeatCount = 3
-            songLabel.animate()
-        }
+    func stationDidChange() {
+        radioPlayer.radioURL = currentStation.streamURL
+        albumImageView.image = currentTrack.artworkImage
+        nameLabel.text = currentStation.name
+        stationDescLabel.text = currentStation.info
+        stationDescLabel.isHidden = currentTrack.artworkLoaded
     }
     
     // Animations
     
-    func shouldAnimateSongLabel(_ animate: Bool) {
+    private func shouldAnimateSongLabel(_ animate: Bool) {
         guard
             animate,
             currentTrack.title != currentStation.name else {
             return
         }
-        
         songLabel.animation = "zoomIn"
         songLabel.duration = 1.5
         songLabel.damping = 1
         songLabel.animate()
     }
     
-    func createNowPlayingAnimation() {
+    private func startNowPlayingAnimation(_ animate: Bool) {
+        animate ? nowPlayingImageView.startAnimating() : nowPlayingImageView.stopAnimating()
+    }
+}
+
+extension PlayViewController {
+    private func setupAirPlayButton() {
+        let airPlayButton = AVRoutePickerView(frame: airPlayView.bounds)
+        airPlayButton.activeTintColor = .dark10
+        airPlayButton.tintColor = .gray
+        airPlayView.backgroundColor = .clear
+        airPlayView.addSubview(airPlayButton)
+    }
+    
+    private func createNowPlayingAnimation() {
         nowPlayingImageView = UIImageView(image: UIImage(named: "NowPlayingBars-3"))
         nowPlayingImageView.autoresizingMask = []
         nowPlayingImageView.contentMode = UIView.ContentMode.center
@@ -283,9 +274,5 @@ extension PlayViewController {
         backAnimationView.addSubview(barButton)
         
         nowPlayingImageView.tintColor = .dark10
-    }
-    
-    func startNowPlayingAnimation(_ animate: Bool) {
-        animate ? nowPlayingImageView.startAnimating() : nowPlayingImageView.stopAnimating()
     }
 }

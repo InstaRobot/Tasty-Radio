@@ -28,7 +28,6 @@
 		50641E5B2598BD9E002A2E5B /* ShareImageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50641E562598BD9E002A2E5B /* ShareImageGenerator.swift */; };
 		50641E5E2598BDE4002A2E5B /* RadioStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50641E5D2598BDE4002A2E5B /* RadioStation.swift */; };
 		50641E612598BE30002A2E5B /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50641E602598BE30002A2E5B /* Track.swift */; };
-		50641E652598C016002A2E5B /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50641E642598C016002A2E5B /* UIImageView+Extensions.swift */; };
 		507D470025738CA900C051D9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D46FF25738CA900C051D9 /* GradientView.swift */; };
 		5093E7E0259A65C2008D376F /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093E7C2259A65C2008D376F /* DesignableImageView.swift */; };
 		5093E7E1259A65C2008D376F /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093E7C3259A65C2008D376F /* KeyboardLayoutConstraint.swift */; };
@@ -106,7 +105,6 @@
 		50641E562598BD9E002A2E5B /* ShareImageGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareImageGenerator.swift; sourceTree = "<group>"; };
 		50641E5D2598BDE4002A2E5B /* RadioStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioStation.swift; sourceTree = "<group>"; };
 		50641E602598BE30002A2E5B /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
-		50641E642598C016002A2E5B /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		507D46FF25738CA900C051D9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		5093E7C2259A65C2008D376F /* DesignableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableImageView.swift; sourceTree = "<group>"; };
 		5093E7C3259A65C2008D376F /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
@@ -263,7 +261,6 @@
 				50DCA5D82573A65800CB2E99 /* UIImage+Extensions.swift */,
 				50DCA5DB2573A9DB00CB2E99 /* UIView+Extensions.swift */,
 				50BDF4EE258F9594004AA51B /* Bundle+Extensions.swift */,
-				50641E642598C016002A2E5B /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -443,8 +440,8 @@
 		A239E330259B5D64005895F6 /* ItemView */ = {
 			isa = PBXGroup;
 			children = (
-				500DE83E256A8EF2006D1310 /* ItemView.swift */,
 				500DE841256A8F08006D1310 /* ItemView.xib */,
+				500DE83E256A8EF2006D1310 /* ItemView.swift */,
 			);
 			path = ItemView;
 			sourceTree = "<group>";
@@ -599,7 +596,6 @@
 				50641E612598BE30002A2E5B /* Track.swift in Sources */,
 				5093E7F5259A65C2008D376F /* SpringLabel.swift in Sources */,
 				507D470025738CA900C051D9 /* GradientView.swift in Sources */,
-				50641E652598C016002A2E5B /* UIImageView+Extensions.swift in Sources */,
 				50641E502598BD51002A2E5B /* RadioPlayer.swift in Sources */,
 				50DCA5E52573C08600CB2E99 /* SettingsViewController.swift in Sources */,
 				50DCA5EB2573C2A800CB2E99 /* PlayViewController.swift in Sources */,

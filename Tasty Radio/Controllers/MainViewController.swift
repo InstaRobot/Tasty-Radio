@@ -9,11 +9,8 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    
-    @IBOutlet var service: ParseService!
-    
+    @IBOutlet private(set) var service: ParseService!
     @IBOutlet private(set) weak var bottomConstraint: NSLayoutConstraint!
-    
     @IBOutlet private(set) weak var searchBar: UISearchBar! {
         didSet {
             searchBar.delegate = self
@@ -40,7 +37,6 @@ class MainViewController: UIViewController {
             }
         }
     }
-    
     @IBOutlet private(set) weak var collectionView: UICollectionView! {
         didSet {
             let layout = UICollectionViewFlowLayout()
@@ -51,7 +47,6 @@ class MainViewController: UIViewController {
             collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
         }
     }
-    
     @IBOutlet private(set) weak var plateView: UIView! {
         didSet {
             plateView.layer.cornerRadius = 30
@@ -68,7 +63,6 @@ class MainViewController: UIViewController {
         gesture.cancelsTouchesInView = false
         return gesture
     }
-    
     private var refreshControl: UIRefreshControl = {
         return UIRefreshControl()
     }()
@@ -99,7 +93,6 @@ class MainViewController: UIViewController {
     @IBAction private func onMain(_ sender: UIButton) {
         sender.animateTap { }
     }
-    
     @IBAction private func onStations(_ sender: UIButton) {
         sender.animateTap {
             let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "StationsViewController") as! StationsViewController
@@ -107,21 +100,18 @@ class MainViewController: UIViewController {
             stationController.genre = nil
         }
     }
-    
     @IBAction private func onFavourite(_ sender: UIButton) {
         sender.animateTap {
             let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "FavouriteViewController") as! FavouriteViewController
             self.navigationController?.pushViewController(stationController, animated: true)
         }
     }
-    
     @IBAction private func onSettings(_ sender: UIButton) {
         sender.animateTap {
             let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SettingsViewController") as! SettingsViewController
             self.navigationController?.pushViewController(stationController, animated: true)
         }
     }
-    
     @IBAction private func onInfo(_ sender: UIButton) {
         sender.animateTap {
             let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "InfoViewController") as! InfoViewController
@@ -155,15 +145,15 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         return cell
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        hideCursor()
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let genre = genres[indexPath.item]
         let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "StationsViewController") as! StationsViewController
         self.navigationController?.pushViewController(stationController, animated: true)
         stationController.genre = genre
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        hideCursor()
     }
 }
 
@@ -183,8 +173,8 @@ extension MainViewController {
         collectionView.addSubview(refreshControl)
     }
     
-    fileprivate func fetchGenres() {
-        service.fetchGenres { parseGenres in
+    private func fetchGenres() {
+        service.fetchGenres { [unowned self] parseGenres in
             self.genres = parseGenres.map {
                 Genre(genreId: $0.objectId ?? "",
                       sortOrder: 0,
@@ -206,10 +196,10 @@ extension MainViewController {
     }
     
     private func showTabBar() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.bottomConstraint.constant = 8
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.bottomConstraint.constant = 8
             UIView.animate(withDuration: TimeInterval(0.2)) {
-                self.view.layoutIfNeeded()
+                self?.view.layoutIfNeeded()
             }
         }
     }
@@ -220,9 +210,9 @@ extension MainViewController {
     
     @objc func refresh(sender: AnyObject) {
         fetchGenres()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.refreshControl.endRefreshing()
-            self.view.setNeedsDisplay()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.refreshControl.endRefreshing()
+            self?.view.setNeedsDisplay()
         }
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 class FavouriteViewController: UIViewController {
+    var stations = [RadioStation]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -16,14 +17,6 @@ class FavouriteViewController: UIViewController {
         CloudKitService.shared.fetchStationsFromCloud { [weak self] stations in
             self?.stations = stations
             self?.reloadStations()
-        }
-    }
-    
-    var stations = [RadioStation]()
-    
-    private func reloadStations() {
-        DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
         }
     }
     
@@ -68,5 +61,13 @@ extension FavouriteViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(width: (view.frame.width - 60) / 2 - 12, height: 160)
         return size
+    }
+}
+
+extension FavouriteViewController {
+    private func reloadStations() {
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
     }
 }

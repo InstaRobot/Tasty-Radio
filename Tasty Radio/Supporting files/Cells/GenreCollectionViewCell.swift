@@ -10,13 +10,13 @@ import UIKit
 import Kingfisher
 
 class GenreCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var containerView: UIView! {
+    @IBOutlet private(set) weak var containerView: UIView! {
         didSet {
             containerView.layer.cornerRadius = 5
         }
     }
-    @IBOutlet weak var genreImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet private(set) weak var genreImageView: UIImageView!
+    @IBOutlet private(set) weak var nameLabel: UILabel!
     
     func configure(with genre: Genre) {
         if let url = genre.imageURL {

@@ -62,7 +62,7 @@ class OnboardingPageViewController: UIPageViewController {
 
     }
     
-    func scale(for image: UIImage?, to newSize: CGSize) -> UIImage? {
+    private func scale(for image: UIImage?, to newSize: CGSize) -> UIImage? {
         guard
             let image = image else {
             return nil

@@ -10,7 +10,6 @@ import UIKit
 import Lottie
 
 class InfoViewController: UIViewController {
-    
     @IBOutlet private(set) weak var musicAnimationView: AnimationView!
     @IBOutlet private(set) weak var containerView: UIView! {
         didSet {
@@ -19,9 +18,7 @@ class InfoViewController: UIViewController {
             containerView.layer.cornerRadius = 10
         }
     }
-    
     @IBOutlet private(set) weak var logoImageView: UIImageView!
-    
     @IBOutlet private(set) weak var infoLabel: UILabel! {
         didSet {
             let text = "Приложение разработано при участии: \n\n Никита Минаков \n Айрат Мингазов \n Александр Харитонов"
@@ -30,7 +27,6 @@ class InfoViewController: UIViewController {
             infoLabel.numberOfLines = 0
         }
     }
-    
     @IBOutlet private(set) weak var appVersionLabel: UILabel! {
         didSet {
             if let appName = Bundle.main.appName, let version = Bundle.main.versionNumber, let build = Bundle.main.buildNumber {
@@ -57,7 +53,9 @@ class InfoViewController: UIViewController {
     @IBAction private func onBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
-    
+}
+
+extension InfoViewController {
     private func startAnimation() {
         musicAnimationView.loopMode = .loop
         musicAnimationView.animationSpeed = 0.5

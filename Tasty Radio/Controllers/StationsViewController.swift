@@ -11,13 +11,10 @@ import MediaPlayer
 import AVFoundation
 
 class StationsViewController: UIViewController {
-    @IBOutlet var service: ParseService!
-    
+    @IBOutlet private(set) var service: ParseService!
     @IBOutlet private(set) weak var bottonConstraint: NSLayoutConstraint!
     @IBOutlet private(set) weak var spacingConstraint: NSLayoutConstraint!
-    
     @IBOutlet private(set) weak var nowPlayingAnimationImageView: UIImageView!
-    
     @IBOutlet private(set) weak var searchBar: UISearchBar! {
         didSet {
             searchBar.backgroundColor = .clear
@@ -45,7 +42,6 @@ class StationsViewController: UIViewController {
             }
         }
     }
-    
     @IBOutlet private(set) weak var leftSegmentIndicatorView: UIView! {
         didSet {
             leftSegmentIndicatorView.layer.cornerRadius = 2
@@ -57,7 +53,6 @@ class StationsViewController: UIViewController {
             rightSegmentIndicatorView.backgroundColor = .clear
         }
     }
-    
     @IBOutlet private(set) weak var collectionView: UICollectionView! {
         didSet {
             let layout = UICollectionViewFlowLayout()
@@ -71,7 +66,6 @@ class StationsViewController: UIViewController {
             collectionView.delegate = self
         }
     }
-    
     @IBOutlet private(set) weak var playImageView: UIImageView! {
         didSet {
             playImageView.layer.cornerRadius = 18
@@ -158,7 +152,6 @@ class StationsViewController: UIViewController {
     @IBAction private func onAnimation() {
         print(#function)
     }
-    
     @IBAction private func onOrderedSegment(_ sender: UIButton) {
         sender.animateTap {
             self.selectedSegmentIndex = 0
@@ -171,7 +164,6 @@ class StationsViewController: UIViewController {
             self.configureSegments()
         }
     }
-    
     @IBAction private func onPrevious(_ sender: UIButton) {
         sender.animateTap {
             if self.selectedStationIndex > 0 {
@@ -225,12 +217,12 @@ extension StationsViewController: UICollectionViewDataSource, UICollectionViewDe
         return cell
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        hideCursor()
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.showPlayController(from: indexPath)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        hideCursor()
     }
 }
 
@@ -272,10 +264,6 @@ extension StationsViewController: StationCollectionViewCellDelegate {
         }
         playTitleLabel.text = station.name
         playSubtitleLabel.text = station.info
-    }
-    
-    @objc private func hideCursor() {
-        view.endEditing(true)
     }
     
     /// Отображение индикатора на сегмент контроле
@@ -344,8 +332,8 @@ extension StationsViewController: StationCollectionViewCellDelegate {
                 }
                 self.reservedStations = self.stations
 
-                DispatchQueue.main.async { [weak self] in
-                    self?.collectionView.reloadData()
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
                 }
             }
         }
@@ -365,11 +353,15 @@ extension StationsViewController: StationCollectionViewCellDelegate {
                 }
                 self.reservedStations = self.stations
 
-                DispatchQueue.main.async { [weak self] in
-                    self?.collectionView.reloadData()
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
                 }
             }
         }
+    }
+    
+    @objc private func hideCursor() {
+        view.endEditing(true)
     }
 }
 
@@ -411,7 +403,7 @@ extension StationsViewController {
         }
     }
     
-    func setupRemoteCommandCenter() {
+    private func setupRemoteCommandCenter() {
         let commandCenter = MPRemoteCommandCenter.shared()
         commandCenter.playCommand.addTarget { event in
             return .success
@@ -445,7 +437,7 @@ extension StationsViewController {
 }
 
 extension StationsViewController {
-    func setupHandoffUserActivity() {
+    private func setupHandoffUserActivity() {
         userActivity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
         userActivity?.becomeCurrent()
     }
@@ -506,14 +498,14 @@ extension StationsViewController: PlayViewControllerDelegate {
 
 extension StationsViewController {
     private func stationsDidUpdate() {
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
             guard
-                let currentStation = self.radioPlayer.station else {
+                let currentStation = self?.radioPlayer.station else {
                 return
             }
-            if self.stations.firstIndex(of: currentStation) == nil {
-                self.resetCurrentStation()
+            if self?.stations.firstIndex(of: currentStation) == nil {
+                self?.resetCurrentStation()
             }
         }
     }
@@ -523,13 +515,13 @@ extension StationsViewController {
         nowPlayingAnimationImageView.stopAnimating()
     }
     
-    func createNowPlayingAnimation() {
+    private func createNowPlayingAnimation() {
         nowPlayingAnimationImageView.animationImages = AnimationFrames.createFrames()
         nowPlayingAnimationImageView.animationDuration = 0.7
         nowPlayingAnimationImageView.tintColor = .dark10
     }
     
-    func startNowPlayingAnimation(_ animate: Bool) {
+    private func startNowPlayingAnimation(_ animate: Bool) {
         animate ? nowPlayingAnimationImageView.startAnimating() : nowPlayingAnimationImageView.stopAnimating()
     }
     
@@ -553,9 +545,9 @@ extension StationsViewController {
     @objc func refresh(sender: AnyObject) {
         reloadStations(name: genre?.name)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.refreshControl.endRefreshing()
-            self.view.setNeedsDisplay()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.refreshControl.endRefreshing()
+            self?.view.setNeedsDisplay()
         }
     }
 }
