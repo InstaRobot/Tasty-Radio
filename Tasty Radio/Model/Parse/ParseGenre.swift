@@ -16,7 +16,7 @@ class ParseGenre: PFObject {
 
 extension ParseGenre: PFSubclassing {
     static func parseClassName() -> String {
-        return "Genres"
+        return "RadioGenres"
     }
 
     static func fetchGenres(callback: @escaping ([ParseGenre]) -> Void) {

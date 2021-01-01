@@ -327,7 +327,9 @@ extension StationsViewController: StationCollectionViewCellDelegate {
                         country: $0.country ?? "",
                         streamURL: URL(string: $0.stream ?? ""),
                         imageURL: URL(string: $0.cover?.url ?? ""),
-                        rating: 0
+                        rating: $0.votes?.intValue ?? 0,
+                        iso: $0.iso ?? "",
+                        badStream: $0.badStream
                     )
                 }
                 self.reservedStations = self.stations
@@ -352,7 +354,9 @@ extension StationsViewController: StationCollectionViewCellDelegate {
                         country: $0.country ?? "",
                         streamURL: URL(string: $0.stream ?? ""),
                         imageURL: URL(string: $0.cover?.url ?? ""),
-                        rating: 0
+                        rating: $0.votes?.intValue ?? 0,
+                        iso: $0.iso ?? "",
+                        badStream: $0.badStream
                     )
                 }
                 self.reservedStations = self.stations

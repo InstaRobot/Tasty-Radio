@@ -16,11 +16,15 @@ class ParseStation: PFObject {
     @NSManaged var genre: String?
     @NSManaged var country: String?
     @NSManaged var city: String?
+    
+    @NSManaged var iso: String?
+    @NSManaged var votes: NSNumber?
+    @NSManaged var badStream: Bool
 }
 
 extension ParseStation: PFSubclassing {
     static func parseClassName() -> String {
-        return "Stations"
+        return "RadioStations"
     }
     
     static func fetchStations(callback: @escaping ([ParseStation]) -> Void) {

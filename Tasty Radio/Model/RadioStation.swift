@@ -17,8 +17,13 @@ struct RadioStation: Codable {
     var country: String
     var streamURL: URL?
     var imageURL: URL?
-    var rating: Int
-    var info: String
+    var votes: Int
+    var iso: String
+    var badStream: Bool
+    
+    var info: String {
+        return ""
+    }
     
     init(
         stationId: String,
@@ -29,7 +34,8 @@ struct RadioStation: Codable {
         streamURL: URL?,
         imageURL: URL?,
         rating: Int = 0,
-        info: String = ""
+        iso: String,
+        badStream: Bool = false
     ) {
         self.stationId  = stationId
         self.sortOrder  = sortOrder
@@ -38,8 +44,9 @@ struct RadioStation: Codable {
         self.country    = country
         self.streamURL  = streamURL
         self.imageURL   = imageURL
-        self.rating     = rating
-        self.info       = info
+        self.votes      = rating
+        self.iso        = iso
+        self.badStream  = badStream
     }
     
     init(
@@ -52,8 +59,9 @@ struct RadioStation: Codable {
         self.imageURL   = URL(string: record.value(forKey: "imageURL") as? String ?? "")
         self.streamURL  = URL(string: record.value(forKey: "streamURL") as? String ?? "")
         self.sortOrder  = record.value(forKey: "sortOrder") as? Int ?? 0
-        self.rating     = 0
-        self.info       = ""
+        self.votes      = 0
+        self.iso        = ""
+        self.badStream  = false
     }
 }
 
