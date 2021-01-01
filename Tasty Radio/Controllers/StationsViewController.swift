@@ -331,7 +331,11 @@ extension StationsViewController: StationCollectionViewCellDelegate {
                     )
                 }
                 self.reservedStations = self.stations
-
+                
+                guard
+                    self.collectionView != nil else {
+                    return
+                }
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
@@ -352,7 +356,11 @@ extension StationsViewController: StationCollectionViewCellDelegate {
                     )
                 }
                 self.reservedStations = self.stations
-
+                
+                guard
+                    self.collectionView != nil else {
+                    return
+                }
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
@@ -499,7 +507,6 @@ extension StationsViewController: PlayViewControllerDelegate {
 extension StationsViewController {
     private func stationsDidUpdate() {
         DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
             guard
                 let currentStation = self?.radioPlayer.station else {
                 return
@@ -507,6 +514,12 @@ extension StationsViewController {
             if self?.stations.firstIndex(of: currentStation) == nil {
                 self?.resetCurrentStation()
             }
+
+            guard
+                self?.collectionView != nil else {
+                return
+            }
+            self?.collectionView.reloadData()
         }
     }
     
