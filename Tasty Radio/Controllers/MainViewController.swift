@@ -7,11 +7,8 @@
 //
 
 import UIKit
-import Lottie
 
 class MainViewController: UIViewController {
-    @IBOutlet private(set) weak var animationView: AnimationView!
-    
     @IBOutlet private(set) var service: ParseService!
     @IBOutlet private(set) weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet private(set) weak var searchBar: UISearchBar! {
@@ -81,11 +78,6 @@ class MainViewController: UIViewController {
         fetchGenres()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        startAnimation()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showTabBar()
@@ -94,7 +86,6 @@ class MainViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         hideTabBar()
-        stopAnimation()
     }
     
     // MARK: - Actions
@@ -223,17 +214,5 @@ extension MainViewController {
             self?.refreshControl.endRefreshing()
             self?.view.setNeedsDisplay()
         }
-    }
-    
-    private func startAnimation() {
-        animationView.loopMode = .loop
-        animationView.animationSpeed = 0.2
-        animationView.frame = .zero
-        animationView.contentMode = .scaleAspectFit
-        animationView.play()
-    }
-
-    private func stopAnimation() {
-        animationView.stop()
     }
 }
