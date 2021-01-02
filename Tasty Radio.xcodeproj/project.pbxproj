@@ -60,6 +60,7 @@
 		5093E816259A6869008D376F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093E813259A6869008D376F /* Reachability.swift */; };
 		5093E817259A6869008D376F /* FRadioAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093E814259A6869008D376F /* FRadioAPI.swift */; };
 		5093E818259A6869008D376F /* FRadioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093E815259A6869008D376F /* FRadioPlayer.swift */; };
+		509912B725A07C870004145D /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509912B625A07C870004145D /* Presets.swift */; };
 		509CA3BC2572626400CFF990 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CA3BB2572626400CFF990 /* Genre.swift */; };
 		509CA3DA25726CCD00CFF990 /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CA3D925726CCD00CFF990 /* GenreCollectionViewCell.swift */; };
 		50B53BC8259690B100BB6108 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B53BC7259690B100BB6108 /* CloudKit.framework */; };
@@ -139,6 +140,7 @@
 		5093E813259A6869008D376F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		5093E814259A6869008D376F /* FRadioAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRadioAPI.swift; sourceTree = "<group>"; };
 		5093E815259A6869008D376F /* FRadioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRadioPlayer.swift; sourceTree = "<group>"; };
+		509912B625A07C870004145D /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		509CA3BB2572626400CFF990 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		509CA3D925726CCD00CFF990 /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCell.swift; sourceTree = "<group>"; };
 		50B53BC52596907C00BB6108 /* Tasty Radio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tasty Radio.entitlements"; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				509CA3BB2572626400CFF990 /* Genre.swift */,
 				50641E5D2598BDE4002A2E5B /* RadioStation.swift */,
 				50641E602598BE30002A2E5B /* Track.swift */,
+				509912B625A07C870004145D /* Presets.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				50641E502598BD51002A2E5B /* RadioPlayer.swift in Sources */,
 				50DCA5E52573C08600CB2E99 /* SettingsViewController.swift in Sources */,
 				50DCA5EB2573C2A800CB2E99 /* PlayViewController.swift in Sources */,
+				509912B725A07C870004145D /* Presets.swift in Sources */,
 				5093E818259A6869008D376F /* FRadioPlayer.swift in Sources */,
 				505E4D95256935DA0090D11A /* AppDelegate.swift in Sources */,
 				5093E7E9259A65C2008D376F /* BlurView.swift in Sources */,
