@@ -4,6 +4,7 @@ PODS:
     - Kingfisher/Core (= 5.15.8)
   - Kingfisher/Core (5.15.8)
   - lottie-ios (3.1.9)
+  - MarqueeLabel (4.0.5)
   - Parse (1.19.1):
     - Parse/Core (= 1.19.1)
   - Parse/Core (1.19.1):
@@ -12,6 +13,7 @@ PODS:
 DEPENDENCIES:
   - Kingfisher
   - lottie-ios
+  - MarqueeLabel
   - Parse
 
 SPEC REPOS:
@@ -19,14 +21,16 @@ SPEC REPOS:
     - Bolts
     - Kingfisher
     - lottie-ios
+    - MarqueeLabel
     - Parse
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
+  MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   Parse: e40fdb9c7d665823b7fe9865949cac9a53eb2ce7
 
-PODFILE CHECKSUM: e1746191b447e806dcff002a5b8b88f0b1b69d47
+PODFILE CHECKSUM: a2ad5b12f7dda2a23d8fded5d80e85b9f4f0e49e
 
 COCOAPODS: 1.10.0
