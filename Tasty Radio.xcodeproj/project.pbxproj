@@ -13,6 +13,7 @@
 		500DE83B256A7A96006D1310 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DE83A256A7A96006D1310 /* OnboardingPageViewController.swift */; };
 		500DE83F256A8EF3006D1310 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DE83E256A8EF2006D1310 /* ItemView.swift */; };
 		500DE842256A8F08006D1310 /* ItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 500DE841256A8F08006D1310 /* ItemView.xib */; };
+		500E6ED025A4CFA4008B80B1 /* RatedStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E6ECF25A4CFA4008B80B1 /* RatedStation.swift */; };
 		50296D37259748CA00F794AA /* FavouriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50296D36259748CA00F794AA /* FavouriteCollectionViewCell.swift */; };
 		50461EA8256A63FF0076CDB1 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 50461EA7256A63FF0076CDB1 /* Podfile */; };
 		504B593E2572555500B936D0 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504B593D2572555500B936D0 /* UISearchBar+Extensions.swift */; };
@@ -90,6 +91,7 @@
 		500DE83A256A7A96006D1310 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 		500DE83E256A8EF2006D1310 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		500DE841256A8F08006D1310 /* ItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemView.xib; sourceTree = "<group>"; };
+		500E6ECF25A4CFA4008B80B1 /* RatedStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedStation.swift; sourceTree = "<group>"; };
 		50296D36259748CA00F794AA /* FavouriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		50461EA7256A63FF0076CDB1 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		504B593D2572555500B936D0 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
@@ -389,10 +391,11 @@
 			isa = PBXGroup;
 			children = (
 				50BDF4E4258F5F05004AA51B /* Parse */,
+				509912B625A07C870004145D /* Presets.swift */,
 				509CA3BB2572626400CFF990 /* Genre.swift */,
 				50641E5D2598BDE4002A2E5B /* RadioStation.swift */,
 				50641E602598BE30002A2E5B /* Track.swift */,
-				509912B625A07C870004145D /* Presets.swift */,
+				500E6ECF25A4CFA4008B80B1 /* RatedStation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 			files = (
 				509CA3BC2572626400CFF990 /* Genre.swift in Sources */,
 				5093E7F8259A65C2008D376F /* SpringAnimation.swift in Sources */,
+				500E6ED025A4CFA4008B80B1 /* RatedStation.swift in Sources */,
 				50641E5E2598BDE4002A2E5B /* RadioStation.swift in Sources */,
 				50BDF4E2258F5C6A004AA51B /* ParseService.swift in Sources */,
 				5093E7F1259A65C2008D376F /* DesignableView.swift in Sources */,
