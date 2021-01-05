@@ -95,8 +95,10 @@ class PlayViewController: UIViewController {
                 let stationId = self?.currentStation.stationId else {
                 return
             }
-            CloudKitService.shared.saveRatedToCloud(with: stationId) {
-                print("callback")
+            ParseService().rateStation(with: stationId, rate: 1) {
+                CloudKitService.shared.saveRatedToCloud(with: stationId) {
+                    print("callback")
+                }
             }
         }
     }
@@ -106,8 +108,10 @@ class PlayViewController: UIViewController {
                 let stationId = self?.currentStation.stationId else {
                 return
             }
-            CloudKitService.shared.saveRatedToCloud(with: stationId) {
-                print("callback")
+            ParseService().rateStation(with: stationId, rate: -1) {
+                CloudKitService.shared.saveRatedToCloud(with: stationId) {
+                    print("callback")
+                }
             }
         }
     }

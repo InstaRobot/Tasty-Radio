@@ -27,6 +27,8 @@ extension ParseStation: PFSubclassing {
         return "RadioStations"
     }
     
+    /// Выбор всех станций
+    /// - Parameter callback: массив с моделями станций
     static func fetchStations(callback: @escaping ([ParseStation]) -> Void) {
         guard
             let query = ParseStation.query() else {
@@ -35,6 +37,33 @@ extension ParseStation: PFSubclassing {
         query.limit = 1000
         if let objects = try? query.findObjects() as? [ParseStation] {
             callback(objects)
+        }
+    }
+    
+    /// Поставить оценку станции на сервере
+    /// - Parameters:
+    ///   - stationId: ид станции для оценки
+    ///   - rate: оценка: 1 или -1
+    ///   - callback: выход по готовности
+    static func rateStation(with stationId: String, rate: Int, callback: @escaping () -> Void) {
+        guard
+            let query = ParseStation.query() else {
+            return
+        }
+        if let object = try? query.getObjectWithId(stationId) as? ParseStation {
+            if var vote = object.votes?.intValue {
+                vote = vote + rate
+                if vote < 0 { // не даем уводить рейтинг станции ниже 0
+                    vote = 0
+                }
+                
+                object.votes = NSNumber(value: vote)
+                object.saveInBackground { result, error in
+                    if result, error == nil {
+                        callback()
+                    }
+                }
+            }
         }
     }
 }

@@ -18,7 +18,9 @@ extension ParseGenre: PFSubclassing {
     static func parseClassName() -> String {
         return "RadioGenres"
     }
-
+    
+    /// Выбор всех жанров с сервера
+    /// - Parameter callback: массив с моделями жанров
     static func fetchGenres(callback: @escaping ([ParseGenre]) -> Void) {
         guard
             let query = ParseGenre.query() else {
@@ -29,6 +31,10 @@ extension ParseGenre: PFSubclassing {
         }
     }
     
+    /// Выбор всех станций для определенного жанра
+    /// - Parameters:
+    ///   - genre: имя жанра
+    ///   - callback: массив с моделями станций
     static func fetchStations(for genre: String, callback: @escaping ([ParseStation]) -> Void) {
         guard
             let query = ParseGenre.query() else {

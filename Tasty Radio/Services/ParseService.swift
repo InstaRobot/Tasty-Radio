@@ -27,6 +27,10 @@ class ParseService: NSObject {
         ParseGenre.fetchStations(for: genre, callback: callback)
     }
     
+    func rateStation(with stationId: String, rate: Int, callback: @escaping () -> Void) {
+        ParseStation.rateStation(with: stationId, rate: rate, callback: callback)
+    }
+    
     /// PRIVATE
     
     private func connect() {
