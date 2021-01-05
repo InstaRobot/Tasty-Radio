@@ -90,14 +90,26 @@ class PlayViewController: UIViewController {
         }
     }
     @IBAction private func onLike(_ sender: UIButton) {
-//        sender.animateTap { [weak self] in
-//
-//        }
+        sender.animateTap { [weak self] in
+            guard
+                let stationId = self?.currentStation.stationId else {
+                return
+            }
+            CloudKitService.shared.saveRatedToCloud(with: stationId) {
+                print("callback")
+            }
+        }
     }
     @IBAction private func onDislike(_ sender: UIButton) {
-//        sender.animateTap { [weak self] in
-//
-//        }
+        sender.animateTap { [weak self] in
+            guard
+                let stationId = self?.currentStation.stationId else {
+                return
+            }
+            CloudKitService.shared.saveRatedToCloud(with: stationId) {
+                print("callback")
+            }
+        }
     }
     @IBAction private func onShare(_ sender: UIButton) {
         sender.animateTap { [unowned self] in
