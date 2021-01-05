@@ -165,6 +165,7 @@ extension PlayViewController {
     }
     
     private func updateRate() {
+        print(#function)
         guard
             currentStation != nil else {
             return
@@ -184,8 +185,10 @@ extension PlayViewController {
     }
     
     private func loadRatedStations() {
+        print(#function)
         CloudKitService().fetchRatedFromCloud { [weak self] rated in
             self?.ratedStations = rated
+            self?.updateRate()
         }
     }
     
