@@ -18,7 +18,6 @@ protocol PlayViewControllerDelegate: class {
     func didPressPreviousButton()
 }
 
-
 class PlayViewController: UIViewController {
     @IBOutlet private(set) weak var nameLabel: UILabel!
     @IBOutlet private(set) weak var stationDescLabel: UILabel!
@@ -46,6 +45,16 @@ class PlayViewController: UIViewController {
     var nowPlayingImageView: UIImageView!
     let radioPlayer = FRadioPlayer.shared
     
+    private var ratedStations: [RatedStation] = [] {
+        didSet {
+            guard
+                ratedStations != oldValue else {
+                return
+            }
+            self.updateRate()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createNowPlayingAnimation()
@@ -62,6 +71,8 @@ class PlayViewController: UIViewController {
         }
         
         newStation ? stationDidChange() : playerStateDidChange(radioPlayer.state, animate: false)
+        
+        self.loadRatedStations()
     }
     
     @IBAction private func onBack(_ sender: UIButton) {
@@ -97,7 +108,7 @@ class PlayViewController: UIViewController {
             }
             ParseService().rateStation(with: stationId, rate: 1) {
                 CloudKitService.shared.saveRatedToCloud(with: stationId) {
-                    print("callback")
+                    self?.loadRatedStations()
                 }
             }
         }
@@ -110,7 +121,7 @@ class PlayViewController: UIViewController {
             }
             ParseService().rateStation(with: stationId, rate: -1) {
                 CloudKitService.shared.saveRatedToCloud(with: stationId) {
-                    print("callback")
+                    self?.loadRatedStations()
                 }
             }
         }
@@ -150,6 +161,32 @@ extension PlayViewController {
         currentStation = station
         currentTrack = track
         newStation = isNewStation
+        self.updateRate()
+    }
+    
+    private func updateRate() {
+        guard
+            currentStation != nil else {
+            return
+        }
+        
+        DispatchQueue.main.async { [unowned self] in
+            let rated = RatedStation(stationId: currentStation.stationId)
+            if self.ratedStations.contains(rated) {
+                self.likeButton.isHidden = true
+                self.dislikeButton.isHidden = true
+            }
+            else {
+                self.likeButton.isHidden = false
+                self.dislikeButton.isHidden = false
+            }
+        }
+    }
+    
+    private func loadRatedStations() {
+        CloudKitService().fetchRatedFromCloud { [weak self] rated in
+            self?.ratedStations = rated
+        }
     }
     
     func updateTrackMetadata(with track: Track?) {

@@ -66,7 +66,7 @@ class CloudKitService {
         
         let queryOperation = CKQueryOperation(query: query)
         queryOperation.desiredKeys = ["city", "country", "name", "imageUrl", "stationId", "stationUrl"]
-        queryOperation.queuePriority = .veryHigh
+        queryOperation.queuePriority = .high
         
         queryOperation.recordFetchedBlock = { record in
             let station = RadioStation(record: record)
