@@ -220,6 +220,7 @@ extension StationsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
         self.showPlayController(from: indexPath)
     }
     
@@ -332,14 +333,25 @@ extension StationsViewController: StationCollectionViewCellDelegate {
                     badStream: $0.badStream
                 )
             }
+            if self.selectedSegmentIndex == 0 {
+                self.stations.sort {
+                    $0.name < $1.name
+                }
+            }
+            else {
+                self.stations.sort {
+                    $0.votes > $1.votes
+                }
+            }
+            
             self.reservedStations = self.stations
             
             guard
                 self.collectionView != nil else {
                 return
             }
-            DispatchQueue.main.async {
-                self.sortStations()
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
             }
         }
     }
@@ -353,12 +365,12 @@ extension StationsViewController: StationCollectionViewCellDelegate {
             !stations.isEmpty else {
             return
         }
-        if selectedSegmentIndex == 0 { // sort by name
+        if selectedSegmentIndex == 0 {
             stations.sort {
                 $0.name < $1.name
             }
         }
-        else { // sort by rating
+        else if selectedSegmentIndex == 1 {
             stations.sort {
                 $0.votes > $1.votes
             }
