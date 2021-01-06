@@ -569,7 +569,7 @@
                                                     <color key="textColor" name="TextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jko-Ip-Xhk" userLabel="Info Label">
+                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jko-Ip-Xhk" userLabel="Info Label" customClass="MarqueeLabel" customModule="MarqueeLabel">
                                                     <rect key="frame" x="104" y="39" width="230" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" name="TextColor"/>
@@ -1145,6 +1145,9 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="Jko-Ip-Xhk">
+            <size key="intrinsicContentSize" width="35" height="17"/>
+        </designable>
         <designable name="mnl-Jo-lLR">
             <size key="intrinsicContentSize" width="35" height="17"/>
         </designable>
