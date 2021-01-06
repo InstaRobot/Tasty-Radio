@@ -22,7 +22,7 @@ struct RadioStation: Codable {
     var badStream: Bool
     
     var info: String {
-        return ""
+        return country + ", " + city
     }
     
     init(
