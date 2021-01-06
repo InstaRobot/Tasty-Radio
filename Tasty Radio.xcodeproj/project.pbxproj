@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -494,7 +494,7 @@
 				};
 			};
 			buildConfigurationList = 505E4D8C256935DA0090D11A /* Build configuration list for PBXProject "Tasty Radio" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
