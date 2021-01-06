@@ -27,16 +27,29 @@ extension ParseStation: PFSubclassing {
         return "RadioStations"
     }
     
-    /// Выбор всех станций
-    /// - Parameter callback: массив с моделями станций
-    static func fetchStations(callback: @escaping ([ParseStation]) -> Void) {
+    /// Выборка станций
+    /// - Parameters:
+    ///   - genre: используется если выборка по имени жанра
+    ///   - callback: массив моделей станций
+    static func fetchStations(for genre: String?, callback: @escaping ([ParseStation]) -> Void) {
         guard
             let query = ParseStation.query() else {
             return
         }
-        query.limit = 1000
-        if let objects = try? query.findObjects() as? [ParseStation] {
-            callback(objects)
+        if let genre = genre {
+            query.whereKey("name", equalTo: genre)
+            if let object = try? query.getFirstObject() {
+                let relation = object.relation(forKey: "stations")
+                if let stations = try? relation.query().findObjects() as? [ParseStation] {
+                    callback(stations)
+                }
+            }
+        }
+        else {
+            query.limit = 1000
+            if let stations = try? query.findObjects() as? [ParseStation] {
+                callback(stations)
+            }
         }
     }
     

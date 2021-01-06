@@ -401,9 +401,9 @@
                                 <rect key="frame" x="0.0" y="109" width="159.5" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YpV-ig-Mxn">
-                                        <rect key="frame" x="41" y="5.5" width="78" height="29"/>
+                                        <rect key="frame" x="35.5" y="5.5" width="89" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="По порядку">
+                                        <state key="normal" title="По названию">
                                             <color key="titleColor" name="TextColor"/>
                                         </state>
                                         <connections>
@@ -411,7 +411,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxX-cF-fOk" userLabel="Left Indicator">
-                                        <rect key="frame" x="19.5" y="36" width="121" height="4"/>
+                                        <rect key="frame" x="10.5" y="36" width="138.5" height="4"/>
                                         <color key="backgroundColor" name="Dark10"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="4" id="tb9-JP-kNx"/>

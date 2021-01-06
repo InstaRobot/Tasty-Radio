@@ -18,13 +18,9 @@ class ParseService: NSObject {
     func fetchGenres(callback: @escaping ([ParseGenre]) -> Void) {
         ParseGenre.fetchGenres(callback: callback)
     }
-    
-    func fetchStations(callback: @escaping ([ParseStation]) -> Void) {
-        ParseStation.fetchStations(callback: callback)
-    }
-    
-    func fetchStations(for genre: String, callback: @escaping ([ParseStation]) -> Void) {
-        ParseGenre.fetchStations(for: genre, callback: callback)
+
+    func fetchStations(for genre: String? = nil, callback: @escaping ([ParseStation]) -> Void) {
+        ParseStation.fetchStations(for: genre, callback: callback)
     }
     
     func rateStation(with stationId: String, rate: Int, callback: @escaping () -> Void) {

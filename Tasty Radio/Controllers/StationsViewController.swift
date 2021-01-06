@@ -89,7 +89,7 @@ class StationsViewController: UIViewController {
     
     var genre: Genre? {
         didSet {
-            self.reloadStations(name: genre?.name)
+            self.reloadStations(genreName: genre?.name)
         }
     }
     var isPlaying = false
@@ -153,15 +153,17 @@ class StationsViewController: UIViewController {
         print(#function)
     }
     @IBAction private func onOrderedSegment(_ sender: UIButton) {
-        sender.animateTap {
-            self.selectedSegmentIndex = 0
-            self.configureSegments()
+        sender.animateTap { [weak self] in
+            self?.selectedSegmentIndex = 0
+            self?.configureSegments()
+            self?.sortStations()
         }
     }
     @IBAction private func onPopularSegment(_ sender: UIButton) {
-        sender.animateTap {
-            self.selectedSegmentIndex = 1
-            self.configureSegments()
+        sender.animateTap { [weak self] in
+            self?.selectedSegmentIndex = 1
+            self?.configureSegments()
+            self?.sortStations()
         }
     }
     @IBAction private func onPrevious(_ sender: UIButton) {
@@ -199,7 +201,7 @@ extension StationsViewController: UISearchBarDelegate {
         }
 
         DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
+            self?.sortStations()
         }
     }
 }
@@ -276,7 +278,6 @@ extension StationsViewController: StationCollectionViewCellDelegate {
             leftSegmentIndicatorView.backgroundColor = .clear
             rightSegmentIndicatorView.backgroundColor = .dark10
         }
-        self.collectionView.reloadData()
     }
     
     /// Показать или скрыть нижний маленький проигрыватель
@@ -315,65 +316,57 @@ extension StationsViewController: StationCollectionViewCellDelegate {
         }
     }
     
-    func reloadStations(name: String?) {
-        if let name = name {
-            self.service.fetchStations(for: name) { [unowned self] parseStations in
-                self.stations = parseStations.map {
-                    RadioStation(
-                        stationId: $0.objectId ?? "",
-                        sortOrder: 0,
-                        name: $0.name ?? "",
-                        city: $0.city ?? "",
-                        country: $0.country ?? "",
-                        streamURL: URL(string: $0.stream ?? ""),
-                        imageURL: URL(string: $0.cover?.url ?? ""),
-                        rating: $0.votes?.intValue ?? 0,
-                        iso: $0.iso ?? "",
-                        badStream: $0.badStream
-                    )
-                }
-                self.reservedStations = self.stations
-                
-                guard
-                    self.collectionView != nil else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
+    func reloadStations(genreName: String?) {
+        self.service.fetchStations(for: genreName) { [unowned self] parseStations in
+            self.stations = parseStations.map {
+                RadioStation(
+                    stationId: $0.objectId ?? "",
+                    sortOrder: 0,
+                    name: $0.name ?? "",
+                    city: $0.city ?? "",
+                    country: $0.country ?? "",
+                    streamURL: URL(string: $0.stream ?? ""),
+                    imageURL: URL(string: $0.cover?.url ?? ""),
+                    rating: $0.votes?.intValue ?? 0,
+                    iso: $0.iso ?? "",
+                    badStream: $0.badStream
+                )
             }
-        }
-        else {
-            service.fetchStations {  [unowned self] parseStations in
-                self.stations = parseStations.map {
-                    RadioStation(
-                        stationId: $0.objectId ?? "",
-                        sortOrder: 0,
-                        name: $0.name ?? "",
-                        city: $0.city ?? "",
-                        country: $0.country ?? "",
-                        streamURL: URL(string: $0.stream ?? ""),
-                        imageURL: URL(string: $0.cover?.url ?? ""),
-                        rating: $0.votes?.intValue ?? 0,
-                        iso: $0.iso ?? "",
-                        badStream: $0.badStream
-                    )
-                }
-                self.reservedStations = self.stations
-                
-                guard
-                    self.collectionView != nil else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
+            self.reservedStations = self.stations
+            
+            guard
+                self.collectionView != nil else {
+                return
+            }
+            DispatchQueue.main.async {
+                self.sortStations()
             }
         }
     }
     
     @objc private func hideCursor() {
         view.endEditing(true)
+    }
+    
+    private func sortStations() {
+        guard
+            !stations.isEmpty else {
+            return
+        }
+        if selectedSegmentIndex == 0 { // sort by name
+            stations.sort {
+                $0.name < $1.name
+            }
+        }
+        else { // sort by rating
+            stations.sort {
+                $0.votes > $1.votes
+            }
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
     }
 }
 
@@ -523,7 +516,7 @@ extension StationsViewController {
                 self?.collectionView != nil else {
                 return
             }
-            self?.collectionView.reloadData()
+            self?.sortStations()
         }
     }
     
@@ -560,7 +553,7 @@ extension StationsViewController {
     }
     
     @objc func refresh(sender: AnyObject) {
-        reloadStations(name: genre?.name)
+        reloadStations(genreName: genre?.name)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
             self?.refreshControl.endRefreshing()

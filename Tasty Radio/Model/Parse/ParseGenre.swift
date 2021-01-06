@@ -30,22 +30,4 @@ extension ParseGenre: PFSubclassing {
             callback(objects)
         }
     }
-    
-    /// Выбор всех станций для определенного жанра
-    /// - Parameters:
-    ///   - genre: имя жанра
-    ///   - callback: массив с моделями станций
-    static func fetchStations(for genre: String, callback: @escaping ([ParseStation]) -> Void) {
-        guard
-            let query = ParseGenre.query() else {
-            return
-        }
-        query.whereKey("name", equalTo: genre)
-        if let object = try? query.getFirstObject() {
-            let relation = object.relation(forKey: "stations")
-            if let stations = try? relation.query().findObjects() as? [ParseStation] {
-                callback(stations)
-            }
-        }
-    }
 }
