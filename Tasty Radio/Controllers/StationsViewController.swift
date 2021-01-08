@@ -18,20 +18,20 @@ class StationsViewController: UIViewController {
     @IBOutlet private(set) weak var searchBar: UISearchBar! {
         didSet {
             searchBar.backgroundColor = .clear
-            searchBar.delegate = self
+            searchBar.delegate        = self
             searchBar.backgroundImage = UIImage()
-            searchBar.searchBarStyle = .prominent
+            searchBar.searchBarStyle  = .prominent
             searchBar.setTextFieldColor(color: .clear)
-            searchBar.tintColor = .dark2
-            searchBar.barTintColor = .dark2
-            searchBar.placeholder = "поиск по станциям"
+            searchBar.tintColor       = .dark2
+            searchBar.barTintColor    = .dark2
+            searchBar.placeholder     = "поиск по станциям"
             guard
                 let textField = searchBar.textField else {
                 return
             }
-            textField.backgroundColor = .clear
             textField.font = .systemFont(ofSize: 14)
-            textField.textColor = .dark9
+            textField.backgroundColor    = .clear
+            textField.textColor          = .dark9
             textField.keyboardAppearance = .dark
             
             if let searchImage = UIImage(named: "search-icon")?.scale(to: CGSize(width: 20, height: 20)) {
