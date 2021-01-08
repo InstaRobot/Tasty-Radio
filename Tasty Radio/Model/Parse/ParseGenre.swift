@@ -30,4 +30,18 @@ extension ParseGenre: PFSubclassing {
             callback(objects)
         }
     }
+    
+    /// Подсчет количества жанров на сервере
+    /// - Parameter callback: возвращает значение по готовности
+    static func countGenres(callback: @escaping (Int) -> Void) {
+        guard
+            let query = ParseGenre.query() else {
+            return
+        }
+        query.countObjectsInBackground { count, error in
+            if count > 0, error == nil {
+                callback(Int(count))
+            }
+        }
+    }
 }

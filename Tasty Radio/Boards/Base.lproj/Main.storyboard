@@ -143,6 +143,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="qAA-7V-yu0" id="Y78-x2-90l"/>
                                     <outlet property="delegate" destination="qAA-7V-yu0" id="f5M-pt-5ul"/>
+                                    <outlet property="prefetchDataSource" destination="qAA-7V-yu0" id="oe4-61-p52"/>
                                 </connections>
                             </collectionView>
                             <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ws-Ub-AHO" userLabel="Plate">
@@ -1145,6 +1146,7 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="4CF-oo-X8x"/>
         <designable name="Jko-Ip-Xhk">
             <size key="intrinsicContentSize" width="35" height="17"/>
         </designable>

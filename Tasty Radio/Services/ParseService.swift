@@ -15,6 +15,14 @@ class ParseService: NSObject {
         self.connect()
     }
     
+    func countGenres(callback: @escaping (Int) -> Void) {
+        ParseGenre.countGenres(callback: callback)
+    }
+    
+    func countStations(callback: @escaping (Int) -> Void) {
+        ParseStation.countStations(callback: callback)
+    }
+    
     func fetchGenres(callback: @escaping ([ParseGenre]) -> Void) {
         ParseGenre.fetchGenres(callback: callback)
     }

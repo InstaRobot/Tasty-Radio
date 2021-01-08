@@ -53,6 +53,20 @@ extension ParseStation: PFSubclassing {
         }
     }
     
+    /// Подсчет количества станций на сервере
+    /// - Parameter callback: возвращает значение по готовности
+    static func countStations(callback: @escaping (Int) -> Void) {
+        guard
+            let query = ParseStation.query() else {
+            return
+        }
+        query.countObjectsInBackground { count, error in
+            if count > 0, error == nil {
+                callback(Int(count))
+            }
+        }
+    }
+    
     /// Поставить оценку станции на сервере
     /// - Parameters:
     ///   - stationId: ид станции для оценки

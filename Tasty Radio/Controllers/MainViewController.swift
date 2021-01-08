@@ -76,6 +76,14 @@ class MainViewController: UIViewController {
         setupPullToRefresh()
         hideTabBar()
         fetchGenres()
+        
+        service.countGenres { count in
+            print("genres: \(count)")
+        }
+        
+        service.countStations{ count in
+            print("stations: \(count)")
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -154,6 +162,16 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         hideCursor()
+    }
+}
+
+extension MainViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        
     }
 }
 
