@@ -19,6 +19,10 @@ struct RatedStation {
     init(record: CKRecord) {
         self.stationId  = record.value(forKey: "stationId") as? String ?? ""
     }
+    
+    init(object: RatedStationRealm) {
+        self.stationId = object.stationId
+    }
 }
 
 extension RatedStation: Equatable {

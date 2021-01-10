@@ -13,7 +13,15 @@ class StoreService: NSObject {
         RatedStationRealm.save(with: stationId, callback: callback)
     }
     
-    func fetchRated(callback: @escaping ([RatedStation]) -> Void) {
+    func fetchRated(callback: @escaping ([String]) -> Void) {
         RatedStationRealm.fetchStations(callback: callback)
+    }
+    
+    func saveFavourite(with station: RadioStation, callback: @escaping () -> Void) {
+        FavouriteStationRealm.save(with: station, callback: callback)
+    }
+    
+    func fetchFavouriteStations(callback: @escaping ([RadioStation]) -> Void) {
+        FavouriteStationRealm.fetchStations(callback: callback)
     }
 }

@@ -11,11 +11,6 @@ import RealmSwift
 import Realm
 
 final class RealmObjects {
-
-    /// Возвращаем объекты по принажлежности к определенной модели
-    ///
-    /// - Parameter type: передаем модель
-    /// - Returns: массив с выбранными моделями
     static func objects<T: Object>(type: T.Type) -> Results<T>? {
         let realm = try? Realm()
         return realm?.objects(type)
@@ -23,7 +18,6 @@ final class RealmObjects {
 }
 
 extension Object {
-    /// Добавляем модель в БД без первичного ключа
     func add() {
         let realm = try? Realm()
         try? realm?.write {
@@ -31,7 +25,6 @@ extension Object {
         }
     }
 
-    /// Добавление модели в БД с первичным ключом
     func addWithPrimaryKey() {
         let realm = try? Realm()
         try? realm?.write {
@@ -39,15 +32,11 @@ extension Object {
         }
     }
 
-    /// Обновление модели в БД
-    ///
-    /// - Parameter updateBlock: внутри обновляемый объект
     func update(updateBlock: () -> Void) {
         let realm = try? Realm()
         try? realm?.write(updateBlock)
     }
 
-    /// Удаление объекта из БД
     func delete() {
         let realm = try? Realm()
         try? realm?.write {
@@ -56,7 +45,6 @@ extension Object {
     }
 }
 
-/// способ каскадного удаления
 protocol CascadeDeleting {
     func delete<S: Sequence>(_ objects: S, cascading: Bool) where S.Iterator.Element: Object
     func delete<Entity: Object>(_ entity: Entity, cascading: Bool)
@@ -80,7 +68,6 @@ extension Realm: CascadeDeleting {
 }
 
 private extension Realm {
-
     private func cascadeDelete(_ entity: RLMObjectBase) {
         guard
             let entity = entity as? Object else {

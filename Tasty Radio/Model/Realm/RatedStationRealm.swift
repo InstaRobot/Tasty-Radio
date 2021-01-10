@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class RatedStationRealm: Object {
-    @objc var stationId: String = ""
+    @objc dynamic var stationId: String = ""
 
   	override static func primaryKey() -> String? {
     	 return "stationId"
@@ -22,16 +22,16 @@ extension RatedStationRealm {
         let model = RatedStationRealm()
         model.stationId = stationId
         model.addWithPrimaryKey()
+        callback()
     }
     
-    static func fetchStations(callback: @escaping ([RatedStation]) -> Void) {
+    static func fetchStations(callback: @escaping ([String]) -> Void) {
         guard
             let objects = RealmObjects.objects(type: self) else {
             return
         }
-        let ids: [RatedStation] = objects.map {
-            RatedStation(stationId: $0.stationId)
-        }
+        let ids: [String] = objects.map { $0.stationId }
+        
         callback(ids)
     }
 }

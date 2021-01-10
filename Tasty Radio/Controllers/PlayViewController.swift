@@ -47,10 +47,10 @@ class PlayViewController: UIViewController {
     var nowPlayingImageView: UIImageView!
     let radioPlayer = FRadioPlayer.shared
     
-    private var ratedStations: [RatedStation] = [] {
+    private var ratedStationsIDs: [String] = [] {
         didSet {
             guard
-                ratedStations != oldValue else {
+                ratedStationsIDs != oldValue else {
                 return
             }
             self.updateRate()
@@ -167,15 +167,13 @@ extension PlayViewController {
     }
     
     private func updateRate() {
-        Log.debug(#function)
         guard
             currentStation != nil else {
             return
         }
         
         DispatchQueue.main.async { [unowned self] in
-            let rated = RatedStation(stationId: currentStation.stationId)
-            if self.ratedStations.contains(rated) {
+            if self.ratedStationsIDs.contains(currentStation.stationId) {
                 self.likeButton.isHidden = true
                 self.dislikeButton.isHidden = true
             }
@@ -187,9 +185,8 @@ extension PlayViewController {
     }
     
     private func loadRatedStations() {
-        Log.debug(#function)
         db.fetchRated { [weak self] rated in
-            self?.ratedStations = rated
+            self?.ratedStationsIDs = rated
         }
     }
     
