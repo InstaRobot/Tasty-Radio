@@ -22,20 +22,24 @@ class CloudKitService {
     ///   - station: модель станции
     ///   - callback: выход по завершении
     func saveStationToCloud(station: RadioStation, callback: @escaping () -> Void) {
-        let record = CKRecord(recordType: recordFavourite)
-        record.setValue(station.name, forKey: "name")
-        record.setValue(station.city, forKey: "city")
-        record.setValue(station.country, forKey: "country")
-        record.setValue(station.imageURL?.absoluteString, forKey: "imageUrl")
-        record.setValue(station.stationId, forKey: "stationId")
-        record.setValue(station.streamURL?.absoluteString, forKey: "stationUrl")
-        
-        privateCloudDatabase.save(record) { (ckRecord, error) in
-            if let error = error {
-                Log.error(error.localizedDescription)
-                return
+        DispatchQueue.global().async {
+            let record = CKRecord(recordType: self.recordFavourite)
+            record.setValue(station.name, forKey: "name")
+            record.setValue(station.city, forKey: "city")
+            record.setValue(station.country, forKey: "country")
+            record.setValue(station.imageURL?.absoluteString, forKey: "imageUrl")
+            record.setValue(station.stationId, forKey: "stationId")
+            record.setValue(station.streamURL?.absoluteString, forKey: "stationUrl")
+            
+            self.privateCloudDatabase.save(record) { (ckRecord, error) in
+                if let error = error {
+                    Log.error(error.localizedDescription)
+                    return
+                }
+                DispatchQueue.main.async {
+                    callback()
+                }
             }
-            callback()
         }
     }
     
@@ -44,66 +48,78 @@ class CloudKitService {
     ///   - stationId: ид станции
     ///   - callback: выход по готовности
     func saveRatedToCloud(with stationId: String, callback: @escaping () -> Void) {
-        let record = CKRecord(recordType: recordRate)
-        record.setValue(stationId, forKey: "stationId")
-        
-        privateCloudDatabase.save(record) { (ckRecord, error) in
-            if let error = error {
-                Log.error(error.localizedDescription)
-                return
+        DispatchQueue.global().async {
+            let record = CKRecord(recordType: self.recordRate)
+            record.setValue(stationId, forKey: "stationId")
+            
+            self.privateCloudDatabase.save(record) { (ckRecord, error) in
+                if let error = error {
+                    Log.error(error.localizedDescription)
+                    return
+                }
+                DispatchQueue.main.async {
+                    callback()
+                }
             }
-            callback()
         }
     }
     
     /// Загрузка списка избранных станций для пользователя
     /// - Parameter callback: массив моделей избранных станций
     func fetchStationsFromCloud(callback: @escaping ([RadioStation]) -> Void) {
-        var stations = [RadioStation]()
-        
-        let query = CKQuery(recordType: recordFavourite, predicate: NSPredicate(value: true))
-        query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        
-        let queryOperation = CKQueryOperation(query: query)
-        queryOperation.desiredKeys = ["city", "country", "name", "imageUrl", "stationId", "stationUrl"]
-        queryOperation.queuePriority = .high
-        
-        queryOperation.recordFetchedBlock = { record in
-            let station = RadioStation(record: record)
-            stations.append(station)
-        }
-        
-        queryOperation.queryCompletionBlock = { _, error in
-            if let error = error {
-                Log.error(error.localizedDescription)
-                return
+        DispatchQueue.global().async {
+            var stations = [RadioStation]()
+            
+            let query = CKQuery(recordType: self.recordFavourite, predicate: NSPredicate(value: true))
+            query.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+            
+            let queryOperation = CKQueryOperation(query: query)
+            queryOperation.desiredKeys = ["city", "country", "name", "imageUrl", "stationId", "stationUrl"]
+            queryOperation.queuePriority = .high
+            
+            queryOperation.recordFetchedBlock = { record in
+                let station = RadioStation(record: record)
+                stations.append(station)
             }
-            callback(stations)
+            
+            queryOperation.queryCompletionBlock = { _, error in
+                if let error = error {
+                    Log.error(error.localizedDescription)
+                    return
+                }
+                DispatchQueue.main.async {
+                    callback(stations)
+                }
+            }
+            
+            self.privateCloudDatabase.add(queryOperation)
         }
-        
-        privateCloudDatabase.add(queryOperation)
     }
     
     /// Загрузка ранее оцениваемых станций для пользователя
     /// - Parameter callback: массив моделей оцениваемых станций
     func fetchRatedFromCloud(callback: @escaping ([RatedStation]) -> Void) {
-        var rated: [RatedStation] = []
-        let query = CKQuery(recordType: recordRate, predicate: NSPredicate(value: true))
-        let queryOperation = CKQueryOperation(query: query)
-        
-        queryOperation.recordFetchedBlock = { record in
-            let station = RatedStation(record: record)
-            rated.append(station)
-        }
-        
-        queryOperation.queryCompletionBlock = { _, error in
-            if let error = error {
-                Log.error(error.localizedDescription)
-                return
+        DispatchQueue.global().async {
+            var rated: [RatedStation] = []
+            let query = CKQuery(recordType: self.recordRate, predicate: NSPredicate(value: true))
+            let queryOperation = CKQueryOperation(query: query)
+            
+            queryOperation.recordFetchedBlock = { record in
+                let station = RatedStation(record: record)
+                rated.append(station)
             }
-            callback(rated)
+            
+            queryOperation.queryCompletionBlock = { _, error in
+                if let error = error {
+                    Log.error(error.localizedDescription)
+                    return
+                }
+                DispatchQueue.main.async {
+                    callback(rated)
+                }
+            }
+            self.privateCloudDatabase.add(queryOperation)
         }
-        privateCloudDatabase.add(queryOperation)
     }
     
     /// Удаление станции из списка избранного для пользователя
@@ -111,36 +127,40 @@ class CloudKitService {
     ///   - stationId: ид станции
     ///   - callback: выход по готовности
     func deleteStation(with stationId: String, callback: @escaping () -> Void) {
-        let query = CKQuery(
-            recordType: recordFavourite,
-            predicate: NSPredicate(
-                format: "stationId == %@",
-                argumentArray: [stationId]
+        DispatchQueue.global().async {
+            let query = CKQuery(
+                recordType: self.recordFavourite,
+                predicate: NSPredicate(
+                    format: "stationId == %@",
+                    argumentArray: [stationId]
+                )
             )
-        )
-        let queryOperation = CKQueryOperation(query: query)
-        queryOperation.desiredKeys = ["stationId"]
-        queryOperation.queuePriority = .high
-        
-        queryOperation.recordFetchedBlock = { record in
-            if let currentStationId = record.value(forKey: "stationId") as? String, currentStationId == stationId {
-                self.privateCloudDatabase.delete(withRecordID: record.recordID) { _, error in
-                    if let error = error {
-                        Log.error(error.localizedDescription)
-                        return
+            let queryOperation = CKQueryOperation(query: query)
+            queryOperation.desiredKeys = ["stationId"]
+            queryOperation.queuePriority = .high
+            
+            queryOperation.recordFetchedBlock = { record in
+                if let currentStationId = record.value(forKey: "stationId") as? String, currentStationId == stationId {
+                    self.privateCloudDatabase.delete(withRecordID: record.recordID) { _, error in
+                        if let error = error {
+                            Log.error(error.localizedDescription)
+                            return
+                        }
                     }
                 }
             }
-        }
-        
-        queryOperation.queryCompletionBlock = { _, error in
-            if let error = error {
-                Log.error(error.localizedDescription)
-                return
+            
+            queryOperation.queryCompletionBlock = { _, error in
+                if let error = error {
+                    Log.error(error.localizedDescription)
+                    return
+                }
+                DispatchQueue.main.async {
+                    callback()
+                }
             }
-            callback()
+            
+            self.privateCloudDatabase.add(queryOperation)
         }
-        
-        privateCloudDatabase.add(queryOperation)
     }
 }
