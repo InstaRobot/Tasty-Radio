@@ -38,9 +38,15 @@ class ParseService: NSObject {
     /// PRIVATE
     
     private func connect() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.check()
+        }
+    }
+    
+    private func check() {
         PFConfig.getInBackground { config, error in
             if let version = config?["APP_VERSION"] as? NSNumber {
-                print("[ВЕРСИЯ ПРИЛОЖЕНИЯ] = \(version)")
+                Log.verbose("[ВЕРСИЯ ПРИЛОЖЕНИЯ] = \(version)")
             }
         }
     }

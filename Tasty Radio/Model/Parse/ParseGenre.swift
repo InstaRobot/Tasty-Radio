@@ -28,10 +28,14 @@ extension ParseGenre: PFSubclassing {
             let query = ParseGenre.query() else {
             return
         }
-        query.limit = 20
-        query.skip = skip
-        if let objects = try? query.findObjects() as? [ParseGenre] {
-            callback(objects)
+        DispatchQueue.global().async {
+            query.limit = 20
+            query.skip = skip
+            if let objects = try? query.findObjects() as? [ParseGenre] {
+                DispatchQueue.main.async {
+                    callback(objects)
+                }
+            }
         }
     }
     
@@ -42,9 +46,13 @@ extension ParseGenre: PFSubclassing {
             let query = ParseGenre.query() else {
             return
         }
-        query.countObjectsInBackground { count, error in
-            if count > 0, error == nil {
-                callback(Int(count))
+        DispatchQueue.global().async {
+            query.countObjectsInBackground { count, error in
+                if count > 0, error == nil {
+                    DispatchQueue.main.async {
+                        callback(Int(count))
+                    }
+                }
             }
         }
     }

@@ -32,7 +32,7 @@ class CloudKitService {
         
         privateCloudDatabase.save(record) { (ckRecord, error) in
             if let error = error {
-                print(error.localizedDescription)
+                Log.error(error.localizedDescription)
                 return
             }
             callback()
@@ -49,7 +49,7 @@ class CloudKitService {
         
         privateCloudDatabase.save(record) { (ckRecord, error) in
             if let error = error {
-                print(error.localizedDescription)
+                Log.error(error.localizedDescription)
                 return
             }
             callback()
@@ -75,7 +75,7 @@ class CloudKitService {
         
         queryOperation.queryCompletionBlock = { _, error in
             if let error = error {
-                print(error.localizedDescription)
+                Log.error(error.localizedDescription)
                 return
             }
             callback(stations)
@@ -98,7 +98,7 @@ class CloudKitService {
         
         queryOperation.queryCompletionBlock = { _, error in
             if let error = error {
-                print(error.localizedDescription)
+                Log.error(error.localizedDescription)
                 return
             }
             callback(rated)
@@ -126,7 +126,7 @@ class CloudKitService {
             if let currentStationId = record.value(forKey: "stationId") as? String, currentStationId == stationId {
                 self.privateCloudDatabase.delete(withRecordID: record.recordID) { _, error in
                     if let error = error {
-                        print(error.localizedDescription)
+                        Log.error(error.localizedDescription)
                         return
                     }
                 }
@@ -135,7 +135,7 @@ class CloudKitService {
         
         queryOperation.queryCompletionBlock = { _, error in
             if let error = error {
-                print(error.localizedDescription)
+                Log.error(error.localizedDescription)
                 return
             }
             callback()

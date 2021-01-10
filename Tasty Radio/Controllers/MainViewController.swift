@@ -78,11 +78,11 @@ class MainViewController: UIViewController {
         fetchGenres()
         
         service.countGenres { count in
-            print("genres: \(count)")
+            Log.info("genres: \(count)")
         }
         
         service.countStations{ count in
-            print("stations: \(count)")
+            Log.info("stations: \(count)")
         }
     }
     

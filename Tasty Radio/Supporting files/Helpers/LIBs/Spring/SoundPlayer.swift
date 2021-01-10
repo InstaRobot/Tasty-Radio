@@ -50,7 +50,7 @@ struct SoundPlayer {
             AudioServicesPlaySystemSound(soundID)
             
         } else {
-            print("Could not find sound file name `\(soundFile)`")
+            Log.error("Could not find sound file name `\(soundFile)`")
         }
     }
     

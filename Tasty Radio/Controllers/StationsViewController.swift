@@ -126,7 +126,7 @@ class StationsViewController: UIViewController {
             try AVAudioSession.sharedInstance().setActive(true)
         }
         catch {
-            print("audioSession could not be activated")
+            Log.error("audioSession could not be activated")
         }
         
         self.bottonConstraint.constant = -84
@@ -150,7 +150,7 @@ class StationsViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction private func onAnimation() {
-        print(#function)
+        Log.debug(#function)
     }
     @IBAction private func onOrderedSegment(_ sender: UIButton) {
         sender.animateTap { [weak self] in
