@@ -72,6 +72,8 @@ extension FavouriteStationRealm {
         }
     }
     
+    // MARK: - PRIVATE HELPERS
+    
     static private func save(with station: RadioStation, callback: @escaping () -> Void) {
         let model = FavouriteStationRealm()
         model.stationId = station.stationId
@@ -98,6 +100,8 @@ extension FavouriteStationRealm {
         callback()
     }
 }
+
+// MARK: - IceCream
 
 extension FavouriteStationRealm: CKRecordConvertible {}
 extension FavouriteStationRealm: CKRecordRecoverable {}
