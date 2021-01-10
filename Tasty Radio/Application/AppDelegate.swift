@@ -7,16 +7,16 @@
 
 import UIKit
 import Parse
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         LaunchManager().createWindow(window: window)
-        
+        migration()
         configureParseSubclasses()
         Parse.initialize(with: ConfigParse().config())
         
@@ -68,5 +68,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FRadioPlayer.shared.isAutoPlay = true
         FRadioPlayer.shared.enableArtwork = true
         FRadioPlayer.shared.artworkSize = 600
+    }
+    
+    private func migration() {
+        let schemaVersion: UInt64 = 1
+
+        let config = Realm.Configuration(
+            schemaVersion: schemaVersion,
+            migrationBlock: { _, oldSchemaVersion in
+                if (oldSchemaVersion < schemaVersion) {
+                    // Nothing to do!
+                    // Realm will automatically detect new properties and removed properties
+                    // And will update the schema on disk automatically
+                }
+        })
+        Realm.Configuration.defaultConfiguration = config
     }
 }
