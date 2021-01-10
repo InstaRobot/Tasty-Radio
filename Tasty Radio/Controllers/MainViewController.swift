@@ -70,6 +70,8 @@ class MainViewController: UIViewController {
     private var genres: [Genre] = []
     private var genresReserved: [Genre] = []
     
+    private var totalGenres = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(gestureRecognizer)
@@ -77,7 +79,8 @@ class MainViewController: UIViewController {
         hideTabBar()
         fetchGenres()
         
-        service.countGenres { count in
+        service.countGenres { [weak self] count in
+            self?.totalGenres = count
             Log.info("genres: \(count)")
         }
         
