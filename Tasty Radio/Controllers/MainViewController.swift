@@ -149,7 +149,12 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GenreCollectionViewCell", for: indexPath) as! GenreCollectionViewCell
-        cell.configure(with: genres[indexPath.item])
+        if isLoadingCell(for: indexPath) {
+            cell.configure(with: .none)
+        }
+        else {
+            cell.configure(with: genres[indexPath.item])
+        }
         return cell
     }
     
@@ -167,11 +172,9 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
 extension MainViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
-        
+        if indexPaths.contains(where: isLoadingCell) {
+            self.fetchGenres()
+        }
     }
 }
 
@@ -192,7 +195,7 @@ extension MainViewController {
     }
     
     private func fetchGenres() {
-        service.fetchGenres { [unowned self] parseGenres in
+        service.fetchGenres(skip: genresReserved.count) { [unowned self] parseGenres in
             self.genres = parseGenres.map {
                 Genre(genreId: $0.objectId ?? "",
                       sortOrder: 0,
@@ -232,5 +235,15 @@ extension MainViewController {
             self?.refreshControl.endRefreshing()
             self?.view.setNeedsDisplay()
         }
+    }
+    
+    private func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.item >= genres.count
+    }
+    
+    private func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
+        let indexPathsForVisibleItems = collectionView.indexPathsForVisibleItems
+        let indexPathsIntersection = Set(indexPathsForVisibleItems).intersection(indexPaths)
+        return Array(indexPathsIntersection)
     }
 }

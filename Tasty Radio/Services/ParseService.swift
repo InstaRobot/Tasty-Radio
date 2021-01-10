@@ -23,8 +23,8 @@ class ParseService: NSObject {
         ParseStation.countStations(callback: callback)
     }
     
-    func fetchGenres(callback: @escaping ([ParseGenre]) -> Void) {
-        ParseGenre.fetchGenres(callback: callback)
+    func fetchGenres(skip: Int, callback: @escaping ([ParseGenre]) -> Void) {
+        ParseGenre.fetchGenres(skip: skip, callback: callback)
     }
 
     func fetchStations(for genre: String? = nil, callback: @escaping ([ParseStation]) -> Void) {

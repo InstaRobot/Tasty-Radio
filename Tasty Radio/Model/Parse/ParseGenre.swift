@@ -20,12 +20,16 @@ extension ParseGenre: PFSubclassing {
     }
     
     /// Выбор всех жанров с сервера
-    /// - Parameter callback: массив с моделями жанров
-    static func fetchGenres(callback: @escaping ([ParseGenre]) -> Void) {
+    /// - Parameters:
+    ///   - skip: пропустить количество записей для пагинации
+    ///   - callback: массив моделей станций по готовности
+    static func fetchGenres(skip: Int, callback: @escaping ([ParseGenre]) -> Void) {
         guard
             let query = ParseGenre.query() else {
             return
         }
+        query.limit = 20
+        query.skip = skip
         if let objects = try? query.findObjects() as? [ParseGenre] {
             callback(objects)
         }
