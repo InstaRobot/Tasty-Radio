@@ -38,10 +38,6 @@ class ParseService: NSObject {
     /// PRIVATE
     
     private func connect() {
-        checkAppVersion()
-    }
-    
-    private func checkAppVersion() {
         PFConfig.getInBackground { config, error in
             if let version = config?["APP_VERSION"] as? NSNumber {
                 print("[ВЕРСИЯ ПРИЛОЖЕНИЯ] = \(version)")
