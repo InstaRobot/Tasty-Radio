@@ -725,16 +725,39 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q68-Kr-nBP">
+                                <rect key="frame" x="275" y="42" width="20" height="20"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="Tcc-KB-H8I"/>
+                                    <constraint firstAttribute="height" constant="20" id="a6a-hJ-BPb"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkL-Tk-ezl">
+                                <rect key="frame" x="265" y="32" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="EIN-Eb-fVE"/>
+                                    <constraint firstAttribute="width" constant="40" id="W5R-eY-IP9"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="onAnimation" destination="3dw-wA-8Xk" eventType="touchUpInside" id="qW8-Sr-mjX"/>
+                                    <action selector="onAnimation" destination="Unv-s2-eg3" eventType="touchUpInside" id="yIO-iC-wXU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="L5s-vu-JIj"/>
                         <color key="backgroundColor" name="Dark1"/>
                         <constraints>
+                            <constraint firstItem="FkL-Tk-ezl" firstAttribute="centerX" secondItem="q68-Kr-nBP" secondAttribute="centerX" id="1rD-Nj-nok"/>
                             <constraint firstItem="gn6-Qf-hIA" firstAttribute="centerY" secondItem="p8t-7d-SVT" secondAttribute="centerY" id="3vr-SR-B1k"/>
                             <constraint firstItem="gn6-Qf-hIA" firstAttribute="centerX" secondItem="xl9-gn-KGS" secondAttribute="centerX" id="41O-QV-Pjn"/>
+                            <constraint firstItem="L5s-vu-JIj" firstAttribute="trailing" secondItem="q68-Kr-nBP" secondAttribute="trailing" constant="25" id="71h-4Q-niN"/>
                             <constraint firstItem="qKK-I1-lzN" firstAttribute="trailing" secondItem="L5s-vu-JIj" secondAttribute="trailing" id="8ah-NI-tPm"/>
                             <constraint firstItem="qKK-I1-lzN" firstAttribute="leading" secondItem="L5s-vu-JIj" secondAttribute="leading" id="GEg-ZT-ytF"/>
+                            <constraint firstItem="FkL-Tk-ezl" firstAttribute="centerY" secondItem="q68-Kr-nBP" secondAttribute="centerY" id="RNf-7C-yiz"/>
                             <constraint firstItem="p8t-7d-SVT" firstAttribute="leading" secondItem="L5s-vu-JIj" secondAttribute="leading" constant="15" id="WpM-B3-xzY"/>
                             <constraint firstItem="qKK-I1-lzN" firstAttribute="top" secondItem="p8t-7d-SVT" secondAttribute="bottom" constant="40" id="n0k-QK-F67"/>
+                            <constraint firstItem="q68-Kr-nBP" firstAttribute="centerY" secondItem="p8t-7d-SVT" secondAttribute="centerY" id="vce-yp-cf7"/>
                             <constraint firstItem="p8t-7d-SVT" firstAttribute="top" secondItem="L5s-vu-JIj" secondAttribute="top" constant="30" id="yPe-dy-eFe"/>
                             <constraint firstItem="L5s-vu-JIj" firstAttribute="bottom" secondItem="qKK-I1-lzN" secondAttribute="bottom" id="zf9-Th-zeP"/>
                         </constraints>
@@ -742,6 +765,7 @@
                     <connections>
                         <outlet property="collectionView" destination="qKK-I1-lzN" id="mtm-Zm-CTI"/>
                         <outlet property="db" destination="Ouo-cF-aiM" id="spj-dq-xqB"/>
+                        <outlet property="nowPlayingAnimationImageView" destination="q68-Kr-nBP" id="Q1A-VN-rug"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SST-nh-mAN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

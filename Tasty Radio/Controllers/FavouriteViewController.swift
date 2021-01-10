@@ -27,11 +27,6 @@ class FavouriteViewController: UIViewController {
         }
     }
     @IBOutlet private(set) weak var nowPlayingAnimationImageView: UIImageView!
-    @IBOutlet private(set) weak var playImageView: UIImageView! {
-        didSet {
-            playImageView.layer.cornerRadius = 18
-        }
-    }
     
     let radioPlayer = RadioPlayer()
     weak var playViewController: PlayViewController?
