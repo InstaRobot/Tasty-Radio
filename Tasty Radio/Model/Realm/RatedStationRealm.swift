@@ -20,6 +20,10 @@ class RatedStationRealm: Object {
 }
 
 extension RatedStationRealm {
+    /// Сохранение станции за которую ранее голосовали чтобы избежать накрутки голосов
+    /// - Parameters:
+    ///   - stationId: ид станции
+    ///   - callback: выход по готовности
     static func save(with stationId: String, callback: @escaping () -> Void) {
         let model = RatedStationRealm()
         model.stationId = stationId
@@ -27,6 +31,8 @@ extension RatedStationRealm {
         callback()
     }
     
+    /// Выборка ИД станций из БД
+    /// - Parameter callback: массив ид в формате строки
     static func fetchStations(callback: @escaping ([String]) -> Void) {
         guard
             let objects = RealmObjects.objects(type: self) else {
