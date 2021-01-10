@@ -1,5 +1,7 @@
 PODS:
   - Bolts/Tasks (1.9.1)
+  - IceCream (1.13.2):
+    - RealmSwift
   - Kingfisher (5.15.8):
     - Kingfisher/Core (= 5.15.8)
   - Kingfisher/Core (5.15.8)
@@ -9,28 +11,41 @@ PODS:
     - Parse/Core (= 1.19.1)
   - Parse/Core (1.19.1):
     - Bolts/Tasks (= 1.9.1)
+  - Realm (10.5.0):
+    - Realm/Headers (= 10.5.0)
+  - Realm/Headers (10.5.0)
+  - RealmSwift (10.5.0):
+    - Realm (= 10.5.0)
 
 DEPENDENCIES:
+  - IceCream (= 1.13.2)
   - Kingfisher
   - lottie-ios
   - MarqueeLabel
   - Parse
+  - RealmSwift (= 10.5.0)
 
 SPEC REPOS:
   trunk:
     - Bolts
+    - IceCream
     - Kingfisher
     - lottie-ios
     - MarqueeLabel
     - Parse
+    - Realm
+    - RealmSwift
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  IceCream: 9335dfa136e260ff4ba1b969a49061f5661441d3
   Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   Parse: e40fdb9c7d665823b7fe9865949cac9a53eb2ce7
+  Realm: e1c22c3d83b229afb70ebc10e1771c91e9542d12
+  RealmSwift: 6fc078d9d3fd7e58c71bfdbb694e252462f112a5
 
-PODFILE CHECKSUM: a2ad5b12f7dda2a23d8fded5d80e85b9f4f0e49e
+PODFILE CHECKSUM: 99faf52992e1e3028630cf093786f0b1f3f57534
 
 COCOAPODS: 1.10.0
