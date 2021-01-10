@@ -77,6 +77,25 @@ extension ParseStation: PFSubclassing {
         }
     }
     
+    static func badStream(for stationId: String, callback: @escaping () -> Void) {
+        guard
+            let query = ParseStation.query() else {
+            return
+        }
+        DispatchQueue.global().async {
+            if let object = try? query.getObjectWithId(stationId) as? ParseStation {
+                object.badStream = true
+                object.saveInBackground { result, error in
+                    if result, error == nil {
+                        DispatchQueue.main.async {
+                            callback()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     /// Поставить оценку станции на сервере
     /// - Parameters:
     ///   - stationId: ид станции для оценки

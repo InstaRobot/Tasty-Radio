@@ -267,18 +267,21 @@ extension PlayViewController {
     
     private func isPlayingDidChange(_ isPlaying: Bool) {
         playingButton.isSelected = isPlaying
-        startNowPlayingAnimation(isPlaying)
+//        startNowPlayingAnimation(isPlaying)
     }
     
     func playbackStateDidChange(_ playbackState: FRadioPlaybackState, animate: Bool) {
         let message: String?
         switch playbackState {
         case .paused:
-            message = "Пауза воспроизведения"
+            message = "Пауза"
+            startNowPlayingAnimation(false)
         case .playing:
             message = nil
+            startNowPlayingAnimation(true)
         case .stopped:
             message = "Остановлено"
+            startNowPlayingAnimation(false)
         }
         updateLabels(with: message, animate: animate)
         isPlayingDidChange(radioPlayer.isPlaying)
@@ -286,16 +289,23 @@ extension PlayViewController {
     
     func playerStateDidChange(_ state: FRadioPlayerState, animate: Bool) {
         let message: String?
+        startNowPlayingAnimation(false)
         switch state {
         case .loading:
             message = "Загружаю ..."
         case .urlNotSet:
             message = "Неверная ссылка на поток"
+            ParseService().badStream(for: currentStation.stationId) { [weak self] in
+                self?.delegate?.didPressNextButton()
+            }
         case .readyToPlay, .loadingFinished:
             playbackStateDidChange(radioPlayer.playbackState, animate: animate)
             return
         case .error:
             message = "Ошибка воспроизведения"
+            DispatchQueue.main.async { [weak self] in
+                self?.delegate?.didPressNextButton()
+            }
         }
         updateLabels(with: message, animate: animate)
     }

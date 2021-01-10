@@ -35,6 +35,10 @@ class ParseService: NSObject {
         ParseStation.rateStation(with: stationId, rate: rate, callback: callback)
     }
     
+    func badStream(for stationId: String, callback: @escaping () -> Void) {
+        ParseStation.badStream(for: stationId, callback: callback)
+    }
+    
     /// PRIVATE
     
     private func connect() {

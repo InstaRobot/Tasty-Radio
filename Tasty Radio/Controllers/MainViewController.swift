@@ -198,6 +198,8 @@ extension MainViewController {
     }
     
     private func fetchGenres() {
+        HUD.show(.loading, text: "Загрузка", backgroundColor: .dark1, activityStule: .large)
+        
         service.fetchGenres(skip: genresReserved.count) { [unowned self] parseGenres in
             self.genres = parseGenres.map {
                 Genre(genreId: $0.objectId ?? "",
@@ -210,6 +212,7 @@ extension MainViewController {
             
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                HUD.dismiss()
             }
         }
     }

@@ -25,7 +25,7 @@ extension HUD {
         text: String? = nil,
         time: TimeInterval? = nil,
         completion: HUDCompletedBlock? = nil,
-        backgroundColor: UIColor = .clear,
+        backgroundColor: UIColor = .dark10,
         activityStule: UIActivityIndicatorView.Style = .medium
     ) {
         dismiss()
@@ -35,7 +35,7 @@ extension HUD {
         window.backgroundColor = UIColor.clear
         let mainView = UIView()
         mainView.layer.cornerRadius = 10
-        mainView.backgroundColor = backgroundColor
+        mainView.backgroundColor = backgroundColor.withAlphaComponent(0.75)
         
         var image = UIImage()
         var headView = UIView()
@@ -84,7 +84,7 @@ extension HUD {
         if isNone {
             height = label.frame.height + 30
         } else {
-            height = label.frame.height + 70
+            height = label.frame.height + 70 + 10
         }
         let superFrame = CGRect(x: 0, y: 0, width: label.frame.width + 50, height: height)
         window.frame = superFrame
@@ -92,7 +92,7 @@ extension HUD {
         
         // image
         if !isNone {
-            mainView.addConstraint( NSLayoutConstraint(item: headView, attribute: .centerY, relatedBy: .equal, toItem: mainView, attribute: .centerY, multiplier: 0.6, constant: 0) )
+            mainView.addConstraint( NSLayoutConstraint(item: headView, attribute: .centerY, relatedBy: .equal, toItem: mainView, attribute: .centerY, multiplier: 0.6, constant: 10) )
             mainView.addConstraint( NSLayoutConstraint(item: headView, attribute: .centerX, relatedBy: .equal, toItem: mainView, attribute: .centerX, multiplier: 1.0, constant: 0) )
             mainView.addConstraint( NSLayoutConstraint(item: headView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 36) )
             mainView.addConstraint( NSLayoutConstraint(item: headView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 36) )

@@ -317,6 +317,8 @@ extension StationsViewController: StationCollectionViewCellDelegate {
     }
     
     func reloadStations(genreName: String?) {
+        HUD.show(.loading, text: "Загрузка", backgroundColor: .dark1, activityStule: .large)
+        
         self.service.fetchStations(for: genreName) { [unowned self] parseStations in
             self.stations = parseStations.map {
                 RadioStation(
@@ -351,6 +353,7 @@ extension StationsViewController: StationCollectionViewCellDelegate {
             }
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
+                HUD.dismiss()
             }
         }
     }
@@ -459,7 +462,10 @@ extension StationsViewController {
     }
     
     func updateHandoffUserActivity(_ activity: NSUserActivity?, station: RadioStation?, track: Track?) {
-        guard let activity = activity else { return }
+        guard
+            let activity = activity else {
+            return
+        }
         activity.webpageURL = (track?.title == station?.name) ? nil : getHandoffURL(from: track)
         updateUserActivityState(activity)
     }
@@ -469,7 +475,10 @@ extension StationsViewController {
     }
     
     private func getHandoffURL(from track: Track?) -> URL? {
-        guard let track = track else { return nil }
+        guard
+            let track = track else {
+            return nil
+        }
         var components = URLComponents()
         components.scheme = "https"
         components.host = "google.com"

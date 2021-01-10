@@ -214,7 +214,10 @@ extension FavouriteViewController {
     }
     
     func updateHandoffUserActivity(_ activity: NSUserActivity?, station: RadioStation?, track: Track?) {
-        guard let activity = activity else { return }
+        guard
+            let activity = activity else {
+            return
+        }
         activity.webpageURL = (track?.title == station?.name) ? nil : getHandoffURL(from: track)
         updateUserActivityState(activity)
     }
@@ -224,7 +227,10 @@ extension FavouriteViewController {
     }
     
     private func getHandoffURL(from track: Track?) -> URL? {
-        guard let track = track else { return nil }
+        guard
+            let track = track else {
+            return nil
+        }
         var components = URLComponents()
         components.scheme = "https"
         components.host = "google.com"
