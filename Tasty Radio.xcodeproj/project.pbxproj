@@ -32,6 +32,8 @@
 		50641E612598BE30002A2E5B /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50641E602598BE30002A2E5B /* Track.swift */; };
 		507D470025738CA900C051D9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D46FF25738CA900C051D9 /* GradientView.swift */; };
 		507D577D25AB62C200FD8BCD /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D577C25AB62C200FD8BCD /* Realm+Extensions.swift */; };
+		507D578125AB645800FD8BCD /* RatedStationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D578025AB645800FD8BCD /* RatedStationRealm.swift */; };
+		507D578625AB659500FD8BCD /* FavouriteStationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D578525AB659500FD8BCD /* FavouriteStationRealm.swift */; };
 		5093E7E0259A65C2008D376F /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093E7C2259A65C2008D376F /* DesignableImageView.swift */; };
 		5093E7E1259A65C2008D376F /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093E7C3259A65C2008D376F /* KeyboardLayoutConstraint.swift */; };
 		5093E7E2259A65C2008D376F /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093E7C4259A65C2008D376F /* TransitionManager.swift */; };
@@ -114,6 +116,8 @@
 		50641E602598BE30002A2E5B /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		507D46FF25738CA900C051D9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		507D577C25AB62C200FD8BCD /* Realm+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extensions.swift"; sourceTree = "<group>"; };
+		507D578025AB645800FD8BCD /* RatedStationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedStationRealm.swift; sourceTree = "<group>"; };
+		507D578525AB659500FD8BCD /* FavouriteStationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStationRealm.swift; sourceTree = "<group>"; };
 		5093E7C2259A65C2008D376F /* DesignableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableImageView.swift; sourceTree = "<group>"; };
 		5093E7C3259A65C2008D376F /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
 		5093E7C4259A65C2008D376F /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
@@ -355,6 +359,15 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		507D577F25AB63F200FD8BCD /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				507D578025AB645800FD8BCD /* RatedStationRealm.swift */,
+				507D578525AB659500FD8BCD /* FavouriteStationRealm.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		5093E7C1259A65C2008D376F /* Spring */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,6 +417,7 @@
 		509CA3BA2572624100CFF990 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				507D577F25AB63F200FD8BCD /* Realm */,
 				50BDF4E4258F5F05004AA51B /* Parse */,
 				509912B625A07C870004145D /* Presets.swift */,
 				509CA3BB2572626400CFF990 /* Genre.swift */,
@@ -618,6 +632,7 @@
 				5093E7F1259A65C2008D376F /* DesignableView.swift in Sources */,
 				500DE83B256A7A96006D1310 /* OnboardingPageViewController.swift in Sources */,
 				5093E7F9259A65C2008D376F /* UnwindSegue.swift in Sources */,
+				507D578125AB645800FD8BCD /* RatedStationRealm.swift in Sources */,
 				50BDF4EF258F9594004AA51B /* Bundle+Extensions.swift in Sources */,
 				50641E612598BE30002A2E5B /* Track.swift in Sources */,
 				5093E7F5259A65C2008D376F /* SpringLabel.swift in Sources */,
@@ -652,6 +667,7 @@
 				5093E7E6259A65C2008D376F /* SpringImageView.swift in Sources */,
 				50296D37259748CA00F794AA /* FavouriteCollectionViewCell.swift in Sources */,
 				5093E7F2259A65C2008D376F /* DesignableTabBarController.swift in Sources */,
+				507D578625AB659500FD8BCD /* FavouriteStationRealm.swift in Sources */,
 				50DCA5E82573C09600CB2E99 /* InfoViewController.swift in Sources */,
 				5093E7FC259A65C2008D376F /* AsyncImageView.swift in Sources */,
 				504B594125725AB300B936D0 /* UIColor+Extensions.swift in Sources */,
