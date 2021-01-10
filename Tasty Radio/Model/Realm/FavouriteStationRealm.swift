@@ -30,6 +30,10 @@ class FavouriteStationRealm: Object {
 }
 
 extension FavouriteStationRealm {
+    /// Установка статуса избранной станции
+    /// - Parameters:
+    ///   - station: модель станции
+    ///   - callback: выход по готовности
     static func set(with station: RadioStation, callback: @escaping () -> Void) {
         if isFavourite(stationId: station.stationId) {
             delete(for: station.stationId, callback: callback)
@@ -39,6 +43,8 @@ extension FavouriteStationRealm {
         }
     }
     
+    /// Выборка избранных станции из БД
+    /// - Parameter callback: массив с моделями станций
     static func fetchStations(callback: @escaping ([RadioStation]) -> Void) {
         let predicate = NSPredicate(format: "isDeleted == %@", argumentArray: [false])
         guard
@@ -62,6 +68,9 @@ extension FavouriteStationRealm {
         callback(stations)
     }
     
+    /// Проверка станции в избранном она или нет
+    /// - Parameter stationId: ид станции
+    /// - Returns: результат операции
     static func isFavourite(stationId: String) -> Bool {
         let predicate = NSPredicate(format: "stationId == %@ AND isDeleted == %@", argumentArray: [stationId, false])
         if let _ = RealmObjects.objects(type: self)?.filter(predicate).first {
