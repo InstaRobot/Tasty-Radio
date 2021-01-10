@@ -38,5 +38,7 @@ extension RatedStationRealm {
     }
 }
 
+// MARK: - IceCream
+
 extension RatedStationRealm: CKRecordConvertible {}
 extension RatedStationRealm: CKRecordRecoverable {}
