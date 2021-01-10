@@ -8,10 +8,12 @@
 import UIKit
 import Parse
 import RealmSwift
+import IceCream
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    var syncEngine: SyncEngine!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -23,6 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.beginReceivingRemoteControlEvents()
         
         setRadioPlayer()
+        
+        syncEngine = SyncEngine(objects: [
+                    SyncObject<RatedStationRealm>(),
+                    SyncObject<FavouriteStationRealm>()
+                ], databaseScope: .private)
+        application.registerForRemoteNotifications()
+        
         return true
     }
     

@@ -81,7 +81,7 @@ class FavouriteViewController: UIViewController {
     }
     
     @IBAction private func onAnimation() {
-        Log.debug(#function)
+        self.showPlayController(from: .none)
     }
 }
 

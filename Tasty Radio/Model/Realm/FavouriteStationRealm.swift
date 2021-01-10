@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import IceCream
 
 class FavouriteStationRealm: Object {
     @objc dynamic var stationId: String = ""
@@ -20,6 +21,8 @@ class FavouriteStationRealm: Object {
     @objc dynamic var votes: Int = 0
     @objc dynamic var iso: String = ""
     @objc dynamic var badStream: Bool = false
+    
+    @objc dynamic var isDeleted = false
 
     override static func primaryKey() -> String? {
        return "stationId"
@@ -79,6 +82,7 @@ extension FavouriteStationRealm {
         model.imageURL = station.imageURL?.absoluteString ?? ""
         model.iso = station.iso
         model.badStream = station.badStream
+        model.isDeleted = false
         model.addWithPrimaryKey()
         callback()
     }
@@ -91,3 +95,6 @@ extension FavouriteStationRealm {
         callback()
     }
 }
+
+extension FavouriteStationRealm: CKRecordConvertible {}
+extension FavouriteStationRealm: CKRecordRecoverable {}

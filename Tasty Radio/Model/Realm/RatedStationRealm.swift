@@ -8,9 +8,11 @@
 
 import Foundation
 import RealmSwift
+import IceCream
 
 class RatedStationRealm: Object {
     @objc dynamic var stationId: String = ""
+    @objc dynamic var isDeleted = false
 
   	override static func primaryKey() -> String? {
     	 return "stationId"
@@ -35,3 +37,6 @@ extension RatedStationRealm {
         callback(ids)
     }
 }
+
+extension RatedStationRealm: CKRecordConvertible {}
+extension RatedStationRealm: CKRecordRecoverable {}

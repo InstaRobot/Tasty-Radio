@@ -120,7 +120,7 @@ class StationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupPullToRefresh()
         radioPlayer.delegate = self
         do {
             try AVAudioSession.sharedInstance().setActive(true)
@@ -133,7 +133,6 @@ class StationsViewController: UIViewController {
         self.spacingConstraint.constant = 34
         self.view.layoutIfNeeded()
         
-        setupPullToRefresh()
         setupRemoteCommandCenter()
         setupHandoffUserActivity()
         createNowPlayingAnimation()
@@ -150,7 +149,7 @@ class StationsViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction private func onAnimation() {
-        Log.debug(#function)
+        self.showPlayController(from: .none)
     }
     @IBAction private func onOrderedSegment(_ sender: UIButton) {
         sender.animateTap { [weak self] in
@@ -557,7 +556,7 @@ extension StationsViewController {
     }
     
     private func setupPullToRefresh() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Обновление станций", attributes: [.foregroundColor: UIColor.white])
+        refreshControl.attributedTitle = NSAttributedString(string: "Обновление избранного", attributes: [.foregroundColor: UIColor.white])
         refreshControl.backgroundColor = .dark1
         refreshControl.tintColor = .white
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
