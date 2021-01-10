@@ -1128,6 +1128,7 @@
                         <outlet property="albumImageView" destination="eg6-Oi-N2X" id="v9N-Iw-aeq"/>
                         <outlet property="artistLabel" destination="zUj-Kz-hbb" id="2f0-yt-Rem"/>
                         <outlet property="backAnimationView" destination="j6m-TB-1Ri" id="E4r-ib-chm"/>
+                        <outlet property="db" destination="oTg-rx-93E" id="JHF-1u-jNU"/>
                         <outlet property="dislikeButton" destination="pww-Ky-b2T" id="mTw-kA-jDY"/>
                         <outlet property="favouriteButton" destination="9HW-SW-3EZ" id="baX-WS-ubG"/>
                         <outlet property="likeButton" destination="8OL-MS-qr5" id="hZp-44-LeZ"/>
@@ -1141,12 +1142,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dlp-hx-ivZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="oTg-rx-93E" customClass="StoreService" customModule="Tasty_Radio" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1773.75" y="826.05633802816908"/>
         </scene>
     </scenes>
     <designables>
-        <designable name="4CF-oo-X8x"/>
         <designable name="Jko-Ip-Xhk">
             <size key="intrinsicContentSize" width="35" height="17"/>
         </designable>

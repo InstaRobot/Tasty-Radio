@@ -19,6 +19,8 @@ protocol PlayViewControllerDelegate: class {
 }
 
 class PlayViewController: UIViewController {
+    @IBOutlet private(set) var db: StoreService!
+    
     @IBOutlet private(set) weak var nameLabel: UILabel!
     @IBOutlet private(set) weak var stationDescLabel: UILabel!
     @IBOutlet private(set) weak var springView: SpringView!

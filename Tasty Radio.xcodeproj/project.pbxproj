@@ -34,6 +34,7 @@
 		507D577D25AB62C200FD8BCD /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D577C25AB62C200FD8BCD /* Realm+Extensions.swift */; };
 		507D578125AB645800FD8BCD /* RatedStationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D578025AB645800FD8BCD /* RatedStationRealm.swift */; };
 		507D578625AB659500FD8BCD /* FavouriteStationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D578525AB659500FD8BCD /* FavouriteStationRealm.swift */; };
+		507D578925AB667800FD8BCD /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507D578825AB667800FD8BCD /* StoreService.swift */; };
 		5093E7E0259A65C2008D376F /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093E7C2259A65C2008D376F /* DesignableImageView.swift */; };
 		5093E7E1259A65C2008D376F /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093E7C3259A65C2008D376F /* KeyboardLayoutConstraint.swift */; };
 		5093E7E2259A65C2008D376F /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5093E7C4259A65C2008D376F /* TransitionManager.swift */; };
@@ -118,6 +119,7 @@
 		507D577C25AB62C200FD8BCD /* Realm+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extensions.swift"; sourceTree = "<group>"; };
 		507D578025AB645800FD8BCD /* RatedStationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedStationRealm.swift; sourceTree = "<group>"; };
 		507D578525AB659500FD8BCD /* FavouriteStationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStationRealm.swift; sourceTree = "<group>"; };
+		507D578825AB667800FD8BCD /* StoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreService.swift; sourceTree = "<group>"; };
 		5093E7C2259A65C2008D376F /* DesignableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableImageView.swift; sourceTree = "<group>"; };
 		5093E7C3259A65C2008D376F /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
 		5093E7C4259A65C2008D376F /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 			children = (
 				50BDF4E1258F5C6A004AA51B /* ParseService.swift */,
 				50B53BCB2596972300BB6108 /* CloudKitService.swift */,
+				507D578825AB667800FD8BCD /* StoreService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				50DCA5EB2573C2A800CB2E99 /* PlayViewController.swift in Sources */,
 				509912B725A07C870004145D /* Presets.swift in Sources */,
 				5093E818259A6869008D376F /* FRadioPlayer.swift in Sources */,
+				507D578925AB667800FD8BCD /* StoreService.swift in Sources */,
 				505E4D95256935DA0090D11A /* AppDelegate.swift in Sources */,
 				5093E7E9259A65C2008D376F /* BlurView.swift in Sources */,
 				500DE838256A7A64006D1310 /* OnboardingViewController.swift in Sources */,

@@ -16,3 +16,22 @@ class RatedStationRealm: Object {
     	 return "stationId"
   	}
 }
+
+extension RatedStationRealm {
+    static func save(with stationId: String) {
+        let model = RatedStationRealm()
+        model.stationId = stationId
+        model.addWithPrimaryKey()
+    }
+    
+    static func fetchStations(callback: @escaping ([RatedStation]) -> Void) {
+        guard
+            let objects = RealmObjects.objects(type: self) else {
+            return
+        }
+        let ids: [RatedStation] = objects.map {
+            RatedStation(stationId: $0.stationId)
+        }
+        callback(ids)
+    }
+}
