@@ -32,23 +32,29 @@ extension ParseStation: PFSubclassing {
     ///   - genre: используется если выборка по имени жанра
     ///   - callback: массив моделей станций
     static func fetchStations(for genre: String?, callback: @escaping ([ParseStation]) -> Void) {
-        if let genre = genre, let query = ParseGenre.query() {
-            query.whereKey("name", equalTo: genre)
-            if let object = try? query.getFirstObject() {
-                let relation = object.relation(forKey: "stations")
-                if let stations = try? relation.query().findObjects() as? [ParseStation] {
-                    callback(stations)
+        DispatchQueue.global().async {
+            if let genre = genre, let query = ParseGenre.query() {
+                query.whereKey("name", equalTo: genre)
+                if let object = try? query.getFirstObject() {
+                    let relation = object.relation(forKey: "stations")
+                    if let stations = try? relation.query().findObjects() as? [ParseStation] {
+                        DispatchQueue.main.async {
+                            callback(stations)
+                        }
+                    }
                 }
             }
-        }
-        else {
-            guard
-                let query = ParseStation.query() else {
-                return
-            }
-            query.limit = 1000
-            if let stations = try? query.findObjects() as? [ParseStation] {
-                callback(stations)
+            else {
+                guard
+                    let query = ParseStation.query() else {
+                    return
+                }
+                query.limit = 1000
+                if let stations = try? query.findObjects() as? [ParseStation] {
+                    DispatchQueue.main.async {
+                        callback(stations)
+                    }
+                }
             }
         }
     }
@@ -60,9 +66,13 @@ extension ParseStation: PFSubclassing {
             let query = ParseStation.query() else {
             return
         }
-        query.countObjectsInBackground { count, error in
-            if count > 0, error == nil {
-                callback(Int(count))
+        DispatchQueue.global().async {
+            query.countObjectsInBackground { count, error in
+                if count > 0, error == nil {
+                    DispatchQueue.main.async {
+                        callback(Int(count))
+                    }
+                }
             }
         }
     }
@@ -77,17 +87,21 @@ extension ParseStation: PFSubclassing {
             let query = ParseStation.query() else {
             return
         }
-        if let object = try? query.getObjectWithId(stationId) as? ParseStation {
-            if var vote = object.votes?.intValue {
-                vote = vote + rate
-                if vote < 0 { // не даем уводить рейтинг станции ниже 0
-                    vote = 0
-                }
-                
-                object.votes = NSNumber(value: vote)
-                object.saveInBackground { result, error in
-                    if result, error == nil {
-                        callback()
+        DispatchQueue.global().async {
+            if let object = try? query.getObjectWithId(stationId) as? ParseStation {
+                if var vote = object.votes?.intValue {
+                    vote = vote + rate
+                    if vote < 0 { // не даем уводить рейтинг станции ниже 0
+                        vote = 0
+                    }
+                    
+                    object.votes = NSNumber(value: vote)
+                    object.saveInBackground { result, error in
+                        if result, error == nil {
+                            DispatchQueue.main.async {
+                                callback()
+                            }
+                        }
                     }
                 }
             }
