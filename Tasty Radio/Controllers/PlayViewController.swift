@@ -83,9 +83,15 @@ class PlayViewController: UIViewController {
         }
     }
     @IBAction private func onFavourite(_ sender: UIButton) {
-//        sender.animateTap { [weak self] in
-//
-//        }
+        sender.animateTap { [weak self] in
+            guard
+                let station = self?.currentStation else {
+                return
+            }
+            self?.db.setStation(with: station) {
+                self?.updateFavourite()
+            }
+        }
     }
     @IBAction private func onPrevious(_ sender: UIButton) {
         sender.animateTap { [weak self] in
@@ -163,7 +169,9 @@ extension PlayViewController {
         currentStation = station
         currentTrack = track
         newStation = isNewStation
+        
         self.updateRate()
+        self.updateFavourite()
     }
     
     private func updateRate() {
@@ -180,6 +188,21 @@ extension PlayViewController {
             else {
                 self.likeButton.isHidden = false
                 self.dislikeButton.isHidden = false
+            }
+        }
+    }
+    
+    private func updateFavourite() {
+        DispatchQueue.main.async { [weak self] in
+            guard
+                let stationId = self?.currentStation.stationId else {
+                return
+            }
+            if let favourite = self?.db.isFavourite(stationId: stationId), favourite {
+                self?.favouriteButton.tintColor = .favourite
+            }
+            else {
+                self?.favouriteButton.tintColor = .dark10
             }
         }
     }

@@ -27,27 +27,13 @@ class FavouriteStationRealm: Object {
 }
 
 extension FavouriteStationRealm {
-    static func save(with station: RadioStation, callback: @escaping () -> Void) {
-        let model = FavouriteStationRealm()
-        model.stationId = station.stationId
-        model.sortOrder = station.sortOrder
-        model.name = station.name
-        model.city = station.city
-        model.country = station.country
-        model.streamURL = station.streamURL?.absoluteString ?? ""
-        model.imageURL = station.imageURL?.absoluteString ?? ""
-        model.iso = station.iso
-        model.badStream = station.badStream
-        model.addWithPrimaryKey()
-        callback()
-    }
-    
-    static func delete(for stationId: String, callback: @escaping () -> Void) {
-        let predicate = NSPredicate(format: "stationId == %@", argumentArray: [stationId])
-        if let object = RealmObjects.objects(type: self)?.filter(predicate).first {
-            object.delete()
+    static func set(with station: RadioStation, callback: @escaping () -> Void) {
+        if isFavourite(stationId: station.stationId) {
+            delete(for: station.stationId, callback: callback)
         }
-        callback()
+        else {
+            save(with: station, callback: callback)
+        }
     }
     
     static func fetchStations(callback: @escaping ([RadioStation]) -> Void) {
@@ -80,5 +66,28 @@ extension FavouriteStationRealm {
         else {
             return false
         }
+    }
+    
+    static private func save(with station: RadioStation, callback: @escaping () -> Void) {
+        let model = FavouriteStationRealm()
+        model.stationId = station.stationId
+        model.sortOrder = station.sortOrder
+        model.name = station.name
+        model.city = station.city
+        model.country = station.country
+        model.streamURL = station.streamURL?.absoluteString ?? ""
+        model.imageURL = station.imageURL?.absoluteString ?? ""
+        model.iso = station.iso
+        model.badStream = station.badStream
+        model.addWithPrimaryKey()
+        callback()
+    }
+    
+    static private func delete(for stationId: String, callback: @escaping () -> Void) {
+        let predicate = NSPredicate(format: "stationId == %@", argumentArray: [stationId])
+        if let object = RealmObjects.objects(type: self)?.filter(predicate).first {
+            object.delete()
+        }
+        callback()
     }
 }
