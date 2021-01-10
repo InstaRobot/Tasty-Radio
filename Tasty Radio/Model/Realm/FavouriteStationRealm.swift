@@ -42,6 +42,14 @@ extension FavouriteStationRealm {
         callback()
     }
     
+    static func delete(for stationId: String, callback: @escaping () -> Void) {
+        let predicate = NSPredicate(format: "stationId == %@", argumentArray: [stationId])
+        if let object = RealmObjects.objects(type: self)?.filter(predicate).first {
+            object.delete()
+        }
+        callback()
+    }
+    
     static func fetchStations(callback: @escaping ([RadioStation]) -> Void) {
         guard
             let objects = RealmObjects.objects(type: self) else {
@@ -62,5 +70,15 @@ extension FavouriteStationRealm {
             )
         }
         callback(stations)
+    }
+    
+    static func isFavourite(stationId: String) -> Bool {
+        let predicate = NSPredicate(format: "stationId == %@", argumentArray: [stationId])
+        if let _ = RealmObjects.objects(type: self)?.filter(predicate).first {
+            return true
+        }
+        else {
+            return false
+        }
     }
 }
