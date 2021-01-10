@@ -18,7 +18,7 @@ class RatedStationRealm: Object {
 }
 
 extension RatedStationRealm {
-    static func save(with stationId: String) {
+    static func save(with stationId: String, callback: @escaping () -> Void) {
         let model = RatedStationRealm()
         model.stationId = stationId
         model.addWithPrimaryKey()

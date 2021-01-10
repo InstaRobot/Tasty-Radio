@@ -70,7 +70,6 @@
 		509CA3BC2572626400CFF990 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CA3BB2572626400CFF990 /* Genre.swift */; };
 		509CA3DA25726CCD00CFF990 /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CA3D925726CCD00CFF990 /* GenreCollectionViewCell.swift */; };
 		50B53BC8259690B100BB6108 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B53BC7259690B100BB6108 /* CloudKit.framework */; };
-		50B53BCC2596972300BB6108 /* CloudKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B53BCB2596972300BB6108 /* CloudKitService.swift */; };
 		50BDF4E2258F5C6A004AA51B /* ParseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4E1258F5C6A004AA51B /* ParseService.swift */; };
 		50BDF4E6258F5F1D004AA51B /* ParseGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4E5258F5F1D004AA51B /* ParseGenre.swift */; };
 		50BDF4EA258F5F2A004AA51B /* ParseStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4E9258F5F2A004AA51B /* ParseStation.swift */; };
@@ -157,7 +156,6 @@
 		509CA3D925726CCD00CFF990 /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCell.swift; sourceTree = "<group>"; };
 		50B53BC52596907C00BB6108 /* Tasty Radio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tasty Radio.entitlements"; sourceTree = "<group>"; };
 		50B53BC7259690B100BB6108 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		50B53BCB2596972300BB6108 /* CloudKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitService.swift; sourceTree = "<group>"; };
 		50BDF4E1258F5C6A004AA51B /* ParseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseService.swift; sourceTree = "<group>"; };
 		50BDF4E5258F5F1D004AA51B /* ParseGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseGenre.swift; sourceTree = "<group>"; };
 		50BDF4E9258F5F2A004AA51B /* ParseStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseStation.swift; sourceTree = "<group>"; };
@@ -462,7 +460,6 @@
 			isa = PBXGroup;
 			children = (
 				50BDF4E1258F5C6A004AA51B /* ParseService.swift */,
-				50B53BCB2596972300BB6108 /* CloudKitService.swift */,
 				507D578825AB667800FD8BCD /* StoreService.swift */,
 			);
 			path = Services;
@@ -652,7 +649,6 @@
 				5093E816259A6869008D376F /* Reachability.swift in Sources */,
 				5093E7E4259A65C2008D376F /* ImageLoader.swift in Sources */,
 				5093E7F3259A65C2008D376F /* AsyncButton.swift in Sources */,
-				50B53BCC2596972300BB6108 /* CloudKitService.swift in Sources */,
 				5093E7E3259A65C2008D376F /* TransitionZoom.swift in Sources */,
 				5093E7ED259A65C2008D376F /* Misc.swift in Sources */,
 				5093E7F6259A65C2008D376F /* DesignableTextView.swift in Sources */,

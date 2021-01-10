@@ -108,10 +108,10 @@ class PlayViewController: UIViewController {
                 let stationId = self?.currentStation.stationId else {
                 return
             }
-            ParseService().rateStation(with: stationId, rate: 1) {
-                CloudKitService.shared.saveRatedToCloud(with: stationId) {
+            ParseService().rateStation(with: stationId, rate: 1) { [weak self] in
+                self?.db.saveRated(with: stationId, callback: {
                     self?.loadRatedStations()
-                }
+                })
             }
         }
     }
@@ -121,10 +121,10 @@ class PlayViewController: UIViewController {
                 let stationId = self?.currentStation.stationId else {
                 return
             }
-            ParseService().rateStation(with: stationId, rate: -1) {
-                CloudKitService.shared.saveRatedToCloud(with: stationId) {
+            ParseService().rateStation(with: stationId, rate: -1) { [weak self] in
+                self?.db.saveRated(with: stationId, callback: {
                     self?.loadRatedStations()
-                }
+                })
             }
         }
     }
@@ -188,9 +188,8 @@ extension PlayViewController {
     
     private func loadRatedStations() {
         Log.debug(#function)
-        CloudKitService().fetchRatedFromCloud { [weak self] rated in
+        db.fetchRated { [weak self] rated in
             self?.ratedStations = rated
-            self?.updateRate()
         }
     }
     

@@ -14,10 +14,10 @@ class FavouriteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        CloudKitService.shared.fetchStationsFromCloud { [weak self] stations in
-            self?.stations = stations
-            self?.reloadStations()
-        }
+//        CloudKitService.shared.fetchStationsFromCloud { [weak self] stations in
+//            self?.stations = stations
+//            self?.reloadStations()
+//        }
     }
     
     @IBOutlet private(set) weak var collectionView: UICollectionView! {
