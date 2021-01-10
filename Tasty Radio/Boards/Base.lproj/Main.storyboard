@@ -741,9 +741,11 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="qKK-I1-lzN" id="mtm-Zm-CTI"/>
+                        <outlet property="db" destination="Ouo-cF-aiM" id="spj-dq-xqB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SST-nh-mAN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="Ouo-cF-aiM" customClass="StoreService" customModule="Tasty_Radio" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="2558" y="116"/>
         </scene>
