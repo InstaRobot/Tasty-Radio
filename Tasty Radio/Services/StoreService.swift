@@ -21,7 +21,15 @@ class StoreService: NSObject {
         FavouriteStationRealm.save(with: station, callback: callback)
     }
     
+    func delete(for stationId: String, callback: @escaping () -> Void) {
+        FavouriteStationRealm.delete(for: stationId, callback: callback)
+    }
+    
     func fetchFavouriteStations(callback: @escaping ([RadioStation]) -> Void) {
         FavouriteStationRealm.fetchStations(callback: callback)
+    }
+    
+    func isFavourite(stationId: String) -> Bool {
+        return FavouriteStationRealm.isFavourite(stationId: stationId)
     }
 }
