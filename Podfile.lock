@@ -2,9 +2,7 @@ PODS:
   - Bolts/Tasks (1.9.1)
   - IceCream (1.13.2):
     - RealmSwift
-  - Kingfisher (5.15.8):
-    - Kingfisher/Core (= 5.15.8)
-  - Kingfisher/Core (5.15.8)
+  - Kingfisher (6.0.1)
   - lottie-ios (3.1.9)
   - MarqueeLabel (4.0.5)
   - Parse (1.19.1):
@@ -39,7 +37,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   IceCream: 9335dfa136e260ff4ba1b969a49061f5661441d3
-  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
+  Kingfisher: adde87a4f74f6a3845395769354efff593581740
   lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   Parse: e40fdb9c7d665823b7fe9865949cac9a53eb2ce7
