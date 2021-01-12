@@ -84,7 +84,7 @@ class StationsViewController: UIViewController {
     @IBOutlet private(set) weak var previousButton: UIButton!
     @IBOutlet private(set) weak var nextButton: UIButton!
     
-    var radioPlayer: RadioPlayer!
+    var radioPlayer: RadioPlayer! { didSet { radioPlayer.delegate = self } }
     weak var playViewController: PlayViewController?
     
     var genre: Genre? {
@@ -121,7 +121,6 @@ class StationsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPullToRefresh()
-        radioPlayer.delegate = self
         do {
             try AVAudioSession.sharedInstance().setActive(true)
         }

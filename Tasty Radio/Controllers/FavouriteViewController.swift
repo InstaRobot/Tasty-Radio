@@ -28,7 +28,7 @@ class FavouriteViewController: UIViewController {
     }
     @IBOutlet private(set) weak var nowPlayingAnimationImageView: UIImageView!
     
-    var radioPlayer: RadioPlayer!
+    var radioPlayer: RadioPlayer! { didSet { radioPlayer.delegate = self } }
     weak var playViewController: PlayViewController?
     
     var stations = [RadioStation]() {
@@ -50,7 +50,6 @@ class FavouriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        radioPlayer.delegate = self
         do {
             try AVAudioSession.sharedInstance().setActive(true)
         }

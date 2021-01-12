@@ -68,3 +68,15 @@ extension InfoViewController {
         musicAnimationView.stop()
     }
 }
+
+extension InfoViewController {
+    static func make() -> InfoViewController? {
+        if let controller = UIStoryboard(
+            name: "Main",
+            bundle: .none
+        ).instantiateViewController(identifier: "InfoViewController") as? InfoViewController {
+            return controller
+        }
+        return .none
+    }
+}

@@ -14,3 +14,15 @@ class SettingsViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 }
+
+extension SettingsViewController {
+    static func make() -> SettingsViewController? {
+        if let controller = UIStoryboard(
+            name: "Main",
+            bundle: .none
+        ).instantiateViewController(identifier: "SettingsViewController") as? SettingsViewController {
+            return controller
+        }
+        return .none
+    }
+}
