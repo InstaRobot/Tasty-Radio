@@ -28,9 +28,7 @@ class FavouriteViewController: UIViewController {
     }
     @IBOutlet private(set) weak var nowPlayingAnimationImageView: UIImageView!
     
-    var player: PlayerService!
-    
-    let radioPlayer = RadioPlayer()
+    var radioPlayer: RadioPlayer!
     weak var playViewController: PlayViewController?
     
     var stations = [RadioStation]() {
@@ -45,6 +43,7 @@ class FavouriteViewController: UIViewController {
     }
     var previousStation: RadioStation?
     private var selectedStationIndex = 0
+    
     private var refreshControl: UIRefreshControl = {
         return UIRefreshControl()
     }()
@@ -334,12 +333,12 @@ extension FavouriteViewController {
 
 extension FavouriteViewController {
     static func make() -> FavouriteViewController? {
-        if let player = Configurator.resolve(service: PlayerService.self, name: "player") {
+        if let player = Configurator.resolve(service: RadioPlayer.self, name: "player") {
             if let controller = UIStoryboard(
                 name: "Main",
                 bundle: .none
             ).instantiateViewController(identifier: "FavouriteViewController") as? FavouriteViewController {
-                controller.player = player
+                controller.radioPlayer = player
                 return controller
             }
         }
