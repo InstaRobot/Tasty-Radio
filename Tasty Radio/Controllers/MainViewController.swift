@@ -166,10 +166,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let genre = genres[indexPath.item]
-        let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "StationsViewController") as! StationsViewController
-        self.navigationController?.pushViewController(stationController, animated: true)
-        stationController.genre = genre
+        if let stationController = StationsViewController.make() {
+            self.navigationController?.pushViewController(stationController, animated: true)
+            stationController.genre = genres[indexPath.item]
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

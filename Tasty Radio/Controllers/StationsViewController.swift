@@ -524,7 +524,8 @@ extension StationsViewController {
     private func stationsDidUpdate() {
         DispatchQueue.main.async { [weak self] in
             guard
-                let currentStation = self?.radioPlayer.station else {
+                let radioPlayer = self?.radioPlayer,
+                let currentStation = radioPlayer.station else {
                 return
             }
             if self?.stations.firstIndex(of: currentStation) == nil {

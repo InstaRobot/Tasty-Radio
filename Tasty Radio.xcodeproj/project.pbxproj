@@ -70,6 +70,7 @@
 		509912B725A07C870004145D /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509912B625A07C870004145D /* Presets.swift */; };
 		509CA3BC2572626400CFF990 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CA3BB2572626400CFF990 /* Genre.swift */; };
 		509CA3DA25726CCD00CFF990 /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CA3D925726CCD00CFF990 /* GenreCollectionViewCell.swift */; };
+		50ABFE2D25AE49870093B0B2 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ABFE2C25AE49870093B0B2 /* String+Extensions.swift */; };
 		50B53BC8259690B100BB6108 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B53BC7259690B100BB6108 /* CloudKit.framework */; };
 		50BDF4E2258F5C6A004AA51B /* ParseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4E1258F5C6A004AA51B /* ParseService.swift */; };
 		50BDF4E6258F5F1D004AA51B /* ParseGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4E5258F5F1D004AA51B /* ParseGenre.swift */; };
@@ -157,6 +158,7 @@
 		509912B625A07C870004145D /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		509CA3BB2572626400CFF990 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		509CA3D925726CCD00CFF990 /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCell.swift; sourceTree = "<group>"; };
+		50ABFE2C25AE49870093B0B2 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		50B53BC52596907C00BB6108 /* Tasty Radio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tasty Radio.entitlements"; sourceTree = "<group>"; };
 		50B53BC7259690B100BB6108 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		50BDF4E1258F5C6A004AA51B /* ParseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseService.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				50DCA5DB2573A9DB00CB2E99 /* UIView+Extensions.swift */,
 				50BDF4EE258F9594004AA51B /* Bundle+Extensions.swift */,
 				507D577C25AB62C200FD8BCD /* Realm+Extensions.swift */,
+				50ABFE2C25AE49870093B0B2 /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				5093E7F8259A65C2008D376F /* SpringAnimation.swift in Sources */,
 				502087D625AB489800638E2E /* Log.swift in Sources */,
 				500E6ED025A4CFA4008B80B1 /* RatedStation.swift in Sources */,
+				50ABFE2D25AE49870093B0B2 /* String+Extensions.swift in Sources */,
 				50641E5E2598BDE4002A2E5B /* RadioStation.swift in Sources */,
 				50BDF4E2258F5C6A004AA51B /* ParseService.swift in Sources */,
 				5093E7F1259A65C2008D376F /* DesignableView.swift in Sources */,
