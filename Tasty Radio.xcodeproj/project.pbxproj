@@ -75,6 +75,7 @@
 		50BDF4E6258F5F1D004AA51B /* ParseGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4E5258F5F1D004AA51B /* ParseGenre.swift */; };
 		50BDF4EA258F5F2A004AA51B /* ParseStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4E9258F5F2A004AA51B /* ParseStation.swift */; };
 		50BDF4EF258F9594004AA51B /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4EE258F9594004AA51B /* Bundle+Extensions.swift */; };
+		50BEA58525AE2846009E7A19 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEA58425AE2846009E7A19 /* Configurator.swift */; };
 		50C2C89C25728E840025B5A9 /* StationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C2C89B25728E840025B5A9 /* StationsViewController.swift */; };
 		50C2C89F25728F440025B5A9 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C2C89E25728F440025B5A9 /* NavigationController.swift */; };
 		50DC6FA9259E217D007A2768 /* snow-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 50DC6FA8259E217D007A2768 /* snow-animation.json */; };
@@ -162,6 +163,7 @@
 		50BDF4E5258F5F1D004AA51B /* ParseGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseGenre.swift; sourceTree = "<group>"; };
 		50BDF4E9258F5F2A004AA51B /* ParseStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseStation.swift; sourceTree = "<group>"; };
 		50BDF4EE258F9594004AA51B /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		50BEA58425AE2846009E7A19 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		50C2C89B25728E840025B5A9 /* StationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsViewController.swift; sourceTree = "<group>"; };
 		50C2C89E25728F440025B5A9 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		50DC6FA8259E217D007A2768 /* snow-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "snow-animation.json"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			children = (
 				502087D525AB489800638E2E /* Log.swift */,
 				5087C40225ABABE100A49262 /* HUD.swift */,
+				50BEA58425AE2846009E7A19 /* Configurator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				50DCA5E82573C09600CB2E99 /* InfoViewController.swift in Sources */,
 				5093E7FC259A65C2008D376F /* AsyncImageView.swift in Sources */,
 				504B594125725AB300B936D0 /* UIColor+Extensions.swift in Sources */,
+				50BEA58525AE2846009E7A19 /* Configurator.swift in Sources */,
 				5093E7EC259A65C2008D376F /* SpringTextView.swift in Sources */,
 				5093E7E1259A65C2008D376F /* KeyboardLayoutConstraint.swift in Sources */,
 				50641E5B2598BD9E002A2E5B /* ShareImageGenerator.swift in Sources */,
