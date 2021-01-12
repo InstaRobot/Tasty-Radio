@@ -32,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 ], databaseScope: .private)
         application.registerForRemoteNotifications()
         
+        let service = PlayerService()
+        Configurator.register(name: "player", value: service)
+        
         return true
     }
     

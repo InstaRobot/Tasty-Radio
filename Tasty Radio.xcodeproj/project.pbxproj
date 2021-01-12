@@ -76,6 +76,7 @@
 		50BDF4EA258F5F2A004AA51B /* ParseStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4E9258F5F2A004AA51B /* ParseStation.swift */; };
 		50BDF4EF258F9594004AA51B /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BDF4EE258F9594004AA51B /* Bundle+Extensions.swift */; };
 		50BEA58525AE2846009E7A19 /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEA58425AE2846009E7A19 /* Configurator.swift */; };
+		50BEA58825AE29B8009E7A19 /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BEA58725AE29B8009E7A19 /* PlayerService.swift */; };
 		50C2C89C25728E840025B5A9 /* StationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C2C89B25728E840025B5A9 /* StationsViewController.swift */; };
 		50C2C89F25728F440025B5A9 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C2C89E25728F440025B5A9 /* NavigationController.swift */; };
 		50DC6FA9259E217D007A2768 /* snow-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 50DC6FA8259E217D007A2768 /* snow-animation.json */; };
@@ -164,6 +165,7 @@
 		50BDF4E9258F5F2A004AA51B /* ParseStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseStation.swift; sourceTree = "<group>"; };
 		50BDF4EE258F9594004AA51B /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		50BEA58425AE2846009E7A19 /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
+		50BEA58725AE29B8009E7A19 /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		50C2C89B25728E840025B5A9 /* StationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsViewController.swift; sourceTree = "<group>"; };
 		50C2C89E25728F440025B5A9 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		50DC6FA8259E217D007A2768 /* snow-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "snow-animation.json"; sourceTree = "<group>"; };
@@ -467,6 +469,7 @@
 			children = (
 				50BDF4E1258F5C6A004AA51B /* ParseService.swift */,
 				507D578825AB667800FD8BCD /* StoreService.swift */,
+				50BEA58725AE29B8009E7A19 /* PlayerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				50DCA5DF2573B49600CB2E99 /* StationCollectionViewCell.swift in Sources */,
 				5093E7E0259A65C2008D376F /* DesignableImageView.swift in Sources */,
 				50F5B624256AB1890008F4E0 /* MainViewController.swift in Sources */,
+				50BEA58825AE29B8009E7A19 /* PlayerService.swift in Sources */,
 				500DE83F256A8EF3006D1310 /* ItemView.swift in Sources */,
 				50DCA5E22573C07600CB2E99 /* FavouriteViewController.swift in Sources */,
 				5093E7EB259A65C2008D376F /* SpringButton.swift in Sources */,

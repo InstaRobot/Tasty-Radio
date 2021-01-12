@@ -113,20 +113,21 @@ class MainViewController: UIViewController {
     }
     @IBAction private func onFavourite(_ sender: UIButton) {
         sender.animateTap {
-            let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "FavouriteViewController") as! FavouriteViewController
-            self.navigationController?.pushViewController(stationController, animated: true)
+            if let favouriteController = FavouriteViewController.make() {
+                self.navigationController?.pushViewController(favouriteController, animated: true)
+            }
         }
     }
     @IBAction private func onSettings(_ sender: UIButton) {
         sender.animateTap {
-            let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SettingsViewController") as! SettingsViewController
-            self.navigationController?.pushViewController(stationController, animated: true)
+            let settingsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SettingsViewController") as! SettingsViewController
+            self.navigationController?.pushViewController(settingsController, animated: true)
         }
     }
     @IBAction private func onInfo(_ sender: UIButton) {
         sender.animateTap {
-            let stationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "InfoViewController") as! InfoViewController
-            self.navigationController?.pushViewController(stationController, animated: true)
+            let aboutController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "InfoViewController") as! InfoViewController
+            self.navigationController?.pushViewController(aboutController, animated: true)
         }
     }
 }

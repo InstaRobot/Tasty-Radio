@@ -28,6 +28,8 @@ class FavouriteViewController: UIViewController {
     }
     @IBOutlet private(set) weak var nowPlayingAnimationImageView: UIImageView!
     
+    var player: PlayerService!
+    
     let radioPlayer = RadioPlayer()
     weak var playViewController: PlayViewController?
     
@@ -327,5 +329,17 @@ extension FavouriteViewController {
             self?.refreshControl.endRefreshing()
             self?.view.setNeedsDisplay()
         }
+    }
+}
+
+extension FavouriteViewController {
+    static func make() -> FavouriteViewController? {
+        if let player = Configurator.resolve(service: PlayerService.self, name: "player") {
+            if let controller = UIStoryboard(name: "Main", bundle: .none).instantiateViewController(identifier: "FavouriteViewController") as? FavouriteViewController {
+                controller.player = player
+                return controller
+            }
+        }
+        return .none
     }
 }
