@@ -26,12 +26,12 @@ class LaunchManager {
 //        launch = false
         
         if launch {
-            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainController")
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainViewController")
             let navigationController = NavigationController(rootViewController: controller)
             window?.rootViewController = navigationController
         }
         else {
-            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "onboardingController")
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "OnboardingViewController")
             let navigationController = NavigationController(rootViewController: controller)
             window?.rootViewController = navigationController
             launch = true

@@ -14,7 +14,7 @@ class OnboardingViewController: UIViewController {
             let window = UIApplication.shared.windows.first else {
             return
         }
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "mainController")
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainViewController")
         let navigationController = NavigationController(rootViewController: controller)
 
         UIView.transition(with: window, duration: 0.4, options: [.transitionFlipFromLeft], animations: {
