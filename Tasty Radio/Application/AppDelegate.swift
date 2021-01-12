@@ -33,7 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         let player = RadioPlayer()
-        Configurator.register(name: "player", value: player)
+        Configurator.register(name: ServiceName.player.rawValue, value: player)
+        
+        if let playController = PlayViewController.make() {
+            Configurator.register(name: ServiceName.playController.rawValue, value: playController)
+        }
         
         return true
     }

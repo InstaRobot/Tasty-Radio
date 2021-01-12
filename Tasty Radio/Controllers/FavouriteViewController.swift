@@ -333,12 +333,21 @@ extension FavouriteViewController {
 
 extension FavouriteViewController {
     static func make() -> FavouriteViewController? {
-        if let player = Configurator.resolve(service: RadioPlayer.self, name: "player") {
+        if let player = Configurator.resolve(
+            service: RadioPlayer.self,
+            name: ServiceName.player.rawValue
+        ) {
             if let controller = UIStoryboard(
                 name: "Main",
                 bundle: .none
             ).instantiateViewController(identifier: "FavouriteViewController") as? FavouriteViewController {
                 controller.radioPlayer = player
+                if let playController = Configurator.resolve(
+                    service: PlayViewController.self,
+                    name: ServiceName.playController.rawValue)
+                {
+                    controller.playViewController = playController
+                }
                 return controller
             }
         }

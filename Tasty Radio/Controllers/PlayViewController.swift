@@ -363,3 +363,15 @@ extension PlayViewController {
         nowPlayingImageView.tintColor = .dark10
     }
 }
+
+extension PlayViewController {
+    static func make() -> PlayViewController? {
+        if let controller = UIStoryboard(
+            name: "Main",
+            bundle: .none
+        ).instantiateViewController(identifier: "PlayViewController") as? PlayViewController {
+                return controller
+        }
+        return .none
+    }
+}

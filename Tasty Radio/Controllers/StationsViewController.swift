@@ -84,7 +84,7 @@ class StationsViewController: UIViewController {
     @IBOutlet private(set) weak var previousButton: UIButton!
     @IBOutlet private(set) weak var nextButton: UIButton!
     
-    let radioPlayer = RadioPlayer()
+    var radioPlayer: RadioPlayer!
     weak var playViewController: PlayViewController?
     
     var genre: Genre? {
@@ -579,5 +579,23 @@ extension StationsViewController {
             self?.refreshControl.endRefreshing()
             self?.view.setNeedsDisplay()
         }
+    }
+}
+
+extension StationsViewController {
+    static func make() -> StationsViewController? {
+        if let player = Configurator.resolve(
+            service: RadioPlayer.self,
+            name: ServiceName.player.rawValue
+        ) {
+            if let controller = UIStoryboard(
+                name: "Main",
+                bundle: .none
+            ).instantiateViewController(identifier: "StationsViewController") as? StationsViewController {
+                controller.radioPlayer = player
+                return controller
+            }
+        }
+        return .none
     }
 }
