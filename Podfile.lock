@@ -16,6 +16,7 @@ PODS:
   - Realm/Headers (10.5.0)
   - RealmSwift (10.5.0):
     - Realm (= 10.5.0)
+  - Swinject (2.7.1)
 
 DEPENDENCIES:
   - IceCream (= 1.13.2)
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - MarqueeLabel
   - Parse
   - RealmSwift (= 10.5.0)
+  - Swinject
 
 SPEC REPOS:
   trunk:
@@ -35,6 +37,7 @@ SPEC REPOS:
     - Parse
     - Realm
     - RealmSwift
+    - Swinject
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
@@ -45,7 +48,8 @@ SPEC CHECKSUMS:
   Parse: e40fdb9c7d665823b7fe9865949cac9a53eb2ce7
   Realm: e1c22c3d83b229afb70ebc10e1771c91e9542d12
   RealmSwift: 6fc078d9d3fd7e58c71bfdbb694e252462f112a5
+  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
 
-PODFILE CHECKSUM: 99faf52992e1e3028630cf093786f0b1f3f57534
+PODFILE CHECKSUM: ebdbe47f7dd590efa0c795fd3ff715a2ee065f8f
 
 COCOAPODS: 1.10.0

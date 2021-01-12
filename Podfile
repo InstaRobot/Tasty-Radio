@@ -10,6 +10,7 @@ target 'Tasty Radio' do
     pod 'MarqueeLabel'
     pod 'RealmSwift', '10.5.0'
     pod 'IceCream', '1.13.2'
+    pod 'Swinject'
 end
 
 post_install do |installer|
