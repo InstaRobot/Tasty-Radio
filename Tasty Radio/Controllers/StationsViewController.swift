@@ -593,12 +593,6 @@ extension StationsViewController {
                 bundle: .none
             ).instantiateViewController(identifier: "StationsViewController") as? StationsViewController {
                 controller.radioPlayer = player
-                if let playController = Configurator.resolve(
-                    service: PlayViewController.self,
-                    name: ServiceName.playController.rawValue)
-                {
-                    controller.playViewController = playController
-                }
                 return controller
             }
         }
