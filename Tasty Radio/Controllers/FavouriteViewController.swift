@@ -335,7 +335,10 @@ extension FavouriteViewController {
 extension FavouriteViewController {
     static func make() -> FavouriteViewController? {
         if let player = Configurator.resolve(service: PlayerService.self, name: "player") {
-            if let controller = UIStoryboard(name: "Main", bundle: .none).instantiateViewController(identifier: "FavouriteViewController") as? FavouriteViewController {
+            if let controller = UIStoryboard(
+                name: "Main",
+                bundle: .none
+            ).instantiateViewController(identifier: "FavouriteViewController") as? FavouriteViewController {
                 controller.player = player
                 return controller
             }
