@@ -257,3 +257,15 @@ extension MainViewController {
         return Array(indexPathsIntersection)
     }
 }
+
+extension MainViewController {
+    static func make() -> MainViewController? {
+        if let controller = UIStoryboard(
+            name: "Main",
+            bundle: .none
+        ).instantiateViewController(identifier: "MainViewController") as? MainViewController {
+            return controller
+        }
+        return .none
+    }
+}
