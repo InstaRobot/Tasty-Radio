@@ -9,7 +9,7 @@
 import UIKit
 import Lottie
 
-class InfoViewController: UIViewController {
+final class InfoViewController: UIViewController {
     @IBOutlet private(set) weak var musicAnimationView: AnimationView!
     @IBOutlet private(set) weak var containerView: UIView! {
         didSet {
@@ -35,11 +35,7 @@ class InfoViewController: UIViewController {
             }
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.startAnimation()

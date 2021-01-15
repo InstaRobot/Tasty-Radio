@@ -10,7 +10,7 @@ import UIKit
 import MediaPlayer
 import AVFoundation
 
-class StationsViewController: UIViewController {
+final class StationsViewController: UIViewController {
     @IBOutlet private(set) var service: ParseService!
     @IBOutlet private(set) weak var bottonConstraint: NSLayoutConstraint!
     @IBOutlet private(set) weak var spacingConstraint: NSLayoutConstraint!

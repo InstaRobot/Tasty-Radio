@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     @IBOutlet private(set) var service: ParseService!
     @IBOutlet private(set) weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet private(set) weak var searchBar: UISearchBar! {

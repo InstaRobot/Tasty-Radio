@@ -15,14 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var syncEngine: SyncEngine!
     
-    fileprivate func injectPlayer() {
-        let player = RadioPlayer()
-        Configurator.register(
-            name: ServiceName.player.rawValue,
-            value: player
-        )
-    }
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         LaunchManager().createWindow(window: window)
@@ -87,6 +79,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FRadioPlayer.shared.isAutoPlay = true
         FRadioPlayer.shared.enableArtwork = true
         FRadioPlayer.shared.artworkSize = 600
+    }
+    
+    private func injectPlayer() {
+        let player = RadioPlayer()
+        Configurator.register(
+            name: ServiceName.player.rawValue,
+            value: player
+        )
     }
     
     private func migration() {

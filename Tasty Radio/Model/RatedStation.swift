@@ -7,17 +7,12 @@
 //
 
 import Foundation
-import CloudKit
 
 struct RatedStation {
     var stationId: String
     
     init(stationId: String) {
         self.stationId = stationId
-    }
-    
-    init(record: CKRecord) {
-        self.stationId  = record.value(forKey: "stationId") as? String ?? ""
     }
     
     init(object: RatedStationRealm) {

@@ -10,7 +10,7 @@ import UIKit
 import MediaPlayer
 import AVFoundation
 
-class FavouriteViewController: UIViewController {
+final class FavouriteViewController: UIViewController {
     
     @IBOutlet private(set) var db: StoreService!
     @IBOutlet private(set) weak var collectionView: UICollectionView! {

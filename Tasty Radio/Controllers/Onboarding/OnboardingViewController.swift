@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OnboardingViewController: UIViewController {
+final class OnboardingViewController: UIViewController {
     @IBAction private func onSkip(_ sender: UIButton) {
         guard
             let window = UIApplication.shared.windows.first else {

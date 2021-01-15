@@ -18,7 +18,7 @@ protocol PlayViewControllerDelegate: class {
     func didPressPreviousButton()
 }
 
-class PlayViewController: UIViewController {
+final class PlayViewController: UIViewController {
     @IBOutlet private(set) var db: StoreService!
     
     @IBOutlet private(set) weak var nameLabel: UILabel!

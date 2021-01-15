@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CloudKit
 
 struct RadioStation: Codable {
     var stationId: String
@@ -47,21 +46,6 @@ struct RadioStation: Codable {
         self.votes      = rating
         self.iso        = iso
         self.badStream  = badStream
-    }
-    
-    init(
-        record: CKRecord
-    ) {
-        self.stationId  = record.value(forKey: "stationId") as? String ?? ""
-        self.name       = record.value(forKey: "name") as? String ?? ""
-        self.city       = record.value(forKey: "city") as? String ?? ""
-        self.country    = record.value(forKey: "country") as? String ?? ""
-        self.imageURL   = URL(string: record.value(forKey: "imageURL") as? String ?? "")
-        self.streamURL  = URL(string: record.value(forKey: "streamURL") as? String ?? "")
-        self.sortOrder  = record.value(forKey: "sortOrder") as? Int ?? 0
-        self.votes      = 0
-        self.iso        = ""
-        self.badStream  = false
     }
 }
 

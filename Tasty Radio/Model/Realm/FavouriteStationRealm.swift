@@ -10,17 +10,17 @@ import Foundation
 import RealmSwift
 import IceCream
 
-class FavouriteStationRealm: Object {
-    @objc dynamic var stationId: String = ""
-    @objc dynamic var sortOrder: Int = 0
-    @objc dynamic var name: String = ""
-    @objc dynamic var city: String = ""
-    @objc dynamic var country: String = ""
-    @objc dynamic var streamURL: String = ""
-    @objc dynamic var imageURL: String = ""
-    @objc dynamic var votes: Int = 0
-    @objc dynamic var iso: String = ""
-    @objc dynamic var badStream: Bool = false
+final class FavouriteStationRealm: Object {
+    @objc dynamic var stationId : String = ""
+    @objc dynamic var sortOrder : Int    = 0
+    @objc dynamic var name      : String = ""
+    @objc dynamic var city      : String = ""
+    @objc dynamic var country   : String = ""
+    @objc dynamic var streamURL : String = ""
+    @objc dynamic var imageURL  : String = ""
+    @objc dynamic var votes     : Int    = 0
+    @objc dynamic var iso       : String = ""
+    @objc dynamic var badStream : Bool   = false
     
     @objc dynamic var isDeleted = false
 

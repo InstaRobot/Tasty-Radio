@@ -8,8 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
-    
+final class SettingsViewController: UIViewController {
     @IBAction private func onBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }

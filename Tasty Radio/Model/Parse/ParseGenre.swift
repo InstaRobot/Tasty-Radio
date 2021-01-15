@@ -9,7 +9,7 @@
 import Foundation
 import Parse
 
-class ParseGenre: PFObject {
+final class ParseGenre: PFObject {
     @NSManaged var name: String?
     @NSManaged var cover: PFFileObject?
 }

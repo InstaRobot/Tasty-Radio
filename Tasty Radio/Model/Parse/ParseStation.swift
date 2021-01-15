@@ -9,7 +9,7 @@
 import Foundation
 import Parse
 
-class ParseStation: PFObject {
+final class ParseStation: PFObject {
     @NSManaged var name: String?
     @NSManaged var cover: PFFileObject?
     @NSManaged var stream: String?

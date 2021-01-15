@@ -8,9 +8,8 @@
 
 import UIKit
 
-class LaunchManager {
+final class LaunchManager {
     private var window: UIWindow?
-    
     private var launch: Bool {
         set {
             UserDefaults.standard.set(newValue, forKey: "launch")

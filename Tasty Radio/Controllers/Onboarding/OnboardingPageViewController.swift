@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OnboardingPageViewController: UIPageViewController {
+final class OnboardingPageViewController: UIPageViewController {
     private var items: [UIViewController] = []
     
     override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
