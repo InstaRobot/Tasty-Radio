@@ -204,19 +204,23 @@ extension MainViewController {
     private func fetchGenres() {
         HUD.show(.loading, text: "Загрузка", backgroundColor: .dark1, activityStule: .large)
         
-        service.fetchGenres(skip: genresReserved.count) { [unowned self] parseGenres in
-            self.genres = parseGenres.map {
+        service.fetchGenres(skip: genresReserved.count) { [weak self] parseGenres in
+            self?.genres = parseGenres.map {
                 Genre(genreId: $0.objectId ?? "",
                       sortOrder: 0,
                       name: $0.name ?? "",
                       imageURL: URL(string: $0.cover?.url ?? "")
                 )
             }
-            self.genresReserved = self.genres
+            self?.genresReserved = self?.genres ?? []
             
             DispatchQueue.main.async {
-                self.collectionView.reloadData()
                 HUD.dismiss()
+                guard
+                    let self = self else {
+                    return
+                }
+                self.collectionView.reloadData()
             }
         }
     }
