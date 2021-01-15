@@ -16,6 +16,8 @@
 		500E6ED025A4CFA4008B80B1 /* RatedStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E6ECF25A4CFA4008B80B1 /* RatedStation.swift */; };
 		502087D625AB489800638E2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502087D525AB489800638E2E /* Log.swift */; };
 		502769BB25B19A2700A6C169 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502769BA25B19A2700A6C169 /* UIImageView+Extensions.swift */; };
+		502769BF25B1A7D600A6C169 /* GenresOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502769BE25B1A7D600A6C169 /* GenresOperation.swift */; };
+		502769C225B1A7E500A6C169 /* StationsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502769C125B1A7E500A6C169 /* StationsOperation.swift */; };
 		50296D37259748CA00F794AA /* FavouriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50296D36259748CA00F794AA /* FavouriteCollectionViewCell.swift */; };
 		50461EA8256A63FF0076CDB1 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 50461EA7256A63FF0076CDB1 /* Podfile */; };
 		504B593E2572555500B936D0 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504B593D2572555500B936D0 /* UISearchBar+Extensions.swift */; };
@@ -102,6 +104,8 @@
 		500E6ECF25A4CFA4008B80B1 /* RatedStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedStation.swift; sourceTree = "<group>"; };
 		502087D525AB489800638E2E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		502769BA25B19A2700A6C169 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		502769BE25B1A7D600A6C169 /* GenresOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresOperation.swift; sourceTree = "<group>"; };
+		502769C125B1A7E500A6C169 /* StationsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsOperation.swift; sourceTree = "<group>"; };
 		50296D36259748CA00F794AA /* FavouriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		50461EA7256A63FF0076CDB1 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		504B593D2572555500B936D0 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
@@ -260,6 +264,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		502769BD25B1A7B500A6C169 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				502769BE25B1A7D600A6C169 /* GenresOperation.swift */,
+				502769C125B1A7E500A6C169 /* StationsOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
 		50461EA6256A63C50076CDB1 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +292,7 @@
 		504B593B2572552300B936D0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				502769BD25B1A7B500A6C169 /* Operations */,
 				502087D425AB488D00638E2E /* Utils */,
 				50641E062598BA63002A2E5B /* LIBs */,
 				504B593C2572553000B936D0 /* Extensions */,
@@ -631,6 +645,7 @@
 				5087C40325ABABE100A49262 /* HUD.swift in Sources */,
 				50641E612598BE30002A2E5B /* Track.swift in Sources */,
 				5093E7F5259A65C2008D376F /* SpringLabel.swift in Sources */,
+				502769C225B1A7E500A6C169 /* StationsOperation.swift in Sources */,
 				507D470025738CA900C051D9 /* GradientView.swift in Sources */,
 				50641E502598BD51002A2E5B /* RadioPlayer.swift in Sources */,
 				50DCA5E52573C08600CB2E99 /* SettingsViewController.swift in Sources */,
@@ -669,6 +684,7 @@
 				504B594125725AB300B936D0 /* UIColor+Extensions.swift in Sources */,
 				50BEA58525AE2846009E7A19 /* Configurator.swift in Sources */,
 				5093E7EC259A65C2008D376F /* SpringTextView.swift in Sources */,
+				502769BF25B1A7D600A6C169 /* GenresOperation.swift in Sources */,
 				5093E7E1259A65C2008D376F /* KeyboardLayoutConstraint.swift in Sources */,
 				50641E5B2598BD9E002A2E5B /* ShareImageGenerator.swift in Sources */,
 				50641E582598BD9E002A2E5B /* LogoShareView.swift in Sources */,
