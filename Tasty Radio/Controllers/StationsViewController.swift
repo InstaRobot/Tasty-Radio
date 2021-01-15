@@ -318,7 +318,7 @@ extension StationsViewController: StationCollectionViewCellDelegate {
     func reloadStations(genreName: String?) {
         HUD.show(.loading, text: "Загрузка", backgroundColor: .dark1, activityStule: .large)
         
-        self.service.fetchStations(for: genreName) { [unowned self] parseStations in
+        self.service.fetchStations(for: genreName, skip: 0) { [unowned self] parseStations in
             self.stations = parseStations.map {
                 RadioStation(
                     stationId: $0.objectId ?? "",

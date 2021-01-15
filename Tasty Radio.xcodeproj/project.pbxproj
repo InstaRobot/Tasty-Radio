@@ -15,6 +15,7 @@
 		500DE842256A8F08006D1310 /* ItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 500DE841256A8F08006D1310 /* ItemView.xib */; };
 		500E6ED025A4CFA4008B80B1 /* RatedStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E6ECF25A4CFA4008B80B1 /* RatedStation.swift */; };
 		502087D625AB489800638E2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502087D525AB489800638E2E /* Log.swift */; };
+		502769BB25B19A2700A6C169 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502769BA25B19A2700A6C169 /* UIImageView+Extensions.swift */; };
 		50296D37259748CA00F794AA /* FavouriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50296D36259748CA00F794AA /* FavouriteCollectionViewCell.swift */; };
 		50461EA8256A63FF0076CDB1 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 50461EA7256A63FF0076CDB1 /* Podfile */; };
 		504B593E2572555500B936D0 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504B593D2572555500B936D0 /* UISearchBar+Extensions.swift */; };
@@ -100,6 +101,7 @@
 		500DE841256A8F08006D1310 /* ItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemView.xib; sourceTree = "<group>"; };
 		500E6ECF25A4CFA4008B80B1 /* RatedStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedStation.swift; sourceTree = "<group>"; };
 		502087D525AB489800638E2E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		502769BA25B19A2700A6C169 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		50296D36259748CA00F794AA /* FavouriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		50461EA7256A63FF0076CDB1 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		504B593D2572555500B936D0 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				504B593D2572555500B936D0 /* UISearchBar+Extensions.swift */,
 				504B594025725AB300B936D0 /* UIColor+Extensions.swift */,
 				50DCA5D82573A65800CB2E99 /* UIImage+Extensions.swift */,
+				502769BA25B19A2700A6C169 /* UIImageView+Extensions.swift */,
 				50DCA5DB2573A9DB00CB2E99 /* UIView+Extensions.swift */,
 				50BDF4EE258F9594004AA51B /* Bundle+Extensions.swift */,
 				507D577C25AB62C200FD8BCD /* Realm+Extensions.swift */,
@@ -646,6 +649,7 @@
 				5093E7F6259A65C2008D376F /* DesignableTextView.swift in Sources */,
 				5093E7FA259A65C2008D376F /* LoadingView.swift in Sources */,
 				5093E7E2259A65C2008D376F /* TransitionManager.swift in Sources */,
+				502769BB25B19A2700A6C169 /* UIImageView+Extensions.swift in Sources */,
 				5093E7EF259A65C2008D376F /* DesignableButton.swift in Sources */,
 				50C2C89C25728E840025B5A9 /* StationsViewController.swift in Sources */,
 				5093E817259A6869008D376F /* FRadioAPI.swift in Sources */,
