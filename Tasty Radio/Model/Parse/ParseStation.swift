@@ -81,6 +81,10 @@ extension ParseStation: PFSubclassing {
         }
     }
     
+    /// Пометить плохой стрим
+    /// - Parameters:
+    ///   - stationId: ид станции
+    ///   - callback: выход по готовности
     static func badStream(for stationId: String, callback: @escaping () -> Void) {
         guard
             let query = ParseStation.query() else {
