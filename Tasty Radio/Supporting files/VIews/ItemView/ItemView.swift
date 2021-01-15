@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemView: UIView {
+final class ItemView: UIView {
     static let itemName = "ItemView"
 
     @IBOutlet private(set) weak var contentView: UIView!

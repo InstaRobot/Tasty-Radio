@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class FavouriteCollectionViewCell: UICollectionViewCell {
+final class FavouriteCollectionViewCell: UICollectionViewCell {
     @IBOutlet private(set) weak var stationImageView: UIImageView! {
         didSet {
             stationImageView.layer.cornerRadius = 8

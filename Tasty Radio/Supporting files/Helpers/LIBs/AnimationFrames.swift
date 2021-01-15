@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnimationFrames {
+final class AnimationFrames {
     class func createFrames() -> [UIImage] {
         var animationFrames = [UIImage]()
         for i in 0...3 {

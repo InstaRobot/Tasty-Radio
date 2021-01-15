@@ -9,7 +9,7 @@
 import Foundation
 import Parse
 
-class ParseService: NSObject {
+final class ParseService: NSObject {
     override init() {
         super.init()
         self.connect()

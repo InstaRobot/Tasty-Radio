@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LogoShareView: UIView {
+final class LogoShareView: UIView {
     @IBOutlet private(set) weak var albumArtImageView: UIImageView! {
         didSet {
             albumArtImageView.layer.cornerRadius = 12

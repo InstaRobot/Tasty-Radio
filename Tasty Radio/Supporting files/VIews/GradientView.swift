@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GradientView: UIView {
+final class GradientView: UIView {
     lazy private var gradientLayer: CAGradientLayer = {
         let firstColor = UIColor.clear.cgColor
         let secondColor = UIColor.dark2.cgColor

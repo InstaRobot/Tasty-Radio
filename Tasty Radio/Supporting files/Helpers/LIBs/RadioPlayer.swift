@@ -19,7 +19,7 @@ protocol RadioPlayerDelegate: class {
 // RadioPlayer: App Radio Player
 //*****************************************************************
 
-class RadioPlayer {
+final class RadioPlayer {
     weak var delegate: RadioPlayerDelegate?
     
     let player = FRadioPlayer.shared

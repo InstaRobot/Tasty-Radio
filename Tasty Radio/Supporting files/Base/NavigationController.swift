@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NavigationController: UINavigationController {
+final class NavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.isHidden = true

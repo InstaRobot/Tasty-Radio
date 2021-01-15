@@ -9,7 +9,7 @@
 import Foundation
 import Swinject
 
-class Configurator {
+final class Configurator {
     private static let container = Container()
     
     static func register<T>(name: String, value: T) {

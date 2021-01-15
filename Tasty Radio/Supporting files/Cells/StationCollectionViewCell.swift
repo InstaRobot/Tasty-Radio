@@ -13,7 +13,7 @@ protocol StationCollectionViewCellDelegate: class {
     func playStation(with station: RadioStation)
 }
 
-class StationCollectionViewCell: UICollectionViewCell {
+final class StationCollectionViewCell: UICollectionViewCell {
     @IBOutlet private(set) weak var stationImageView: UIImageView!
     @IBOutlet private(set) weak var nameLabel: UILabel!
     @IBOutlet private(set) weak var infoLabel: UILabel!

@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class GenreCollectionViewCell: UICollectionViewCell {
+final class GenreCollectionViewCell: UICollectionViewCell {
     @IBOutlet private(set) weak var containerView: UIView! {
         didSet {
             containerView.layer.cornerRadius = 5

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShareImageGenerator {
+final class ShareImageGenerator {
     private let radioShoutout: String
     private let track: Track
     

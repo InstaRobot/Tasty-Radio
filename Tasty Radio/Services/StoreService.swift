@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StoreService: NSObject {
+final class StoreService: NSObject {
     func saveRated(with stationId: String, callback: @escaping () -> Void) {
         RatedStationRealm.save(with: stationId, callback: callback)
     }

@@ -128,7 +128,7 @@ extension HUD {
     }
 }
 
-class HUD: NSObject {
+final class HUD: NSObject {
     fileprivate static var windowsTemp = [UIWindow]()
     fileprivate static var timer: DispatchSourceTimer?
     fileprivate static let instance = HUD()
