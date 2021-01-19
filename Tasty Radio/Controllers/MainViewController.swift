@@ -70,7 +70,16 @@ final class MainViewController: UIViewController {
     private var genres: [Genre] = []
     private var genresReserved: [Genre] = []
     
-    private var totalGenresCount = 0
+    private var totalGenresCount = 0 {
+        didSet {
+            guard totalGenresCount != oldValue else {
+                return
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,16 +87,17 @@ final class MainViewController: UIViewController {
         setupPullToRefresh()
         hideTabBar()
         
+        HUD.show(.loading, text: "Загрузка", backgroundColor: .dark1, activityStule: .large)
         service.countGenres { [weak self] count in
             self?.totalGenresCount = count
+            self?.fetchGenres()
+            
             Log.info("genres: \(count)")
         }
         
         service.countStations{ count in
             Log.info("stations: \(count)")
         }
-        
-        fetchGenres()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -203,24 +213,27 @@ extension MainViewController {
     }
     
     private func fetchGenres() {
-        HUD.show(.loading, text: "Загрузка", backgroundColor: .dark1, activityStule: .large)
-        
         service.fetchGenres(skip: genresReserved.count) { [weak self] parseGenres in
-            self?.genres = parseGenres.map {
+            guard
+                let self = self else {
+                return
+            }
+            
+            let genres = parseGenres.map {
                 Genre(genreId: $0.objectId ?? "",
                       sortOrder: 0,
                       name: $0.name ?? "",
                       imageURL: URL(string: $0.cover?.url ?? "")
                 )
             }
-            self?.genresReserved = self?.genres ?? []
-            
-            DispatchQueue.main.async {
-                HUD.dismiss()
-                guard
-                    let self = self else {
-                    return
+            genres.forEach { genre in
+                if !self.genresReserved.contains(genre) {
+                    self.genresReserved.append(genre)
                 }
+            }
+            self.genres = self.genresReserved
+            HUD.dismiss()
+            DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         }

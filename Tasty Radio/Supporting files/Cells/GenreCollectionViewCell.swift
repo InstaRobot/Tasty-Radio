@@ -17,15 +17,33 @@ final class GenreCollectionViewCell: UICollectionViewCell {
     }
     @IBOutlet private(set) weak var genreImageView: UIImageView!
     @IBOutlet private(set) weak var nameLabel: UILabel!
+    @IBOutlet var indicatorView: UIActivityIndicatorView! {
+        didSet {
+            indicatorView.color = .white
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        configure(with: .none)
+    }
     
     func configure(with genre: Genre?) {
-        if let url = genre?.imageURL {
-            genreImageView.kf.indicatorType = .activity
-            genreImageView.kf.setImage(with: url)
+        if let genre = genre {
+            nameLabel.text = genre.name
+            if let url = genre.imageURL {
+                genreImageView.kf.indicatorType = .activity
+                genreImageView.kf.setImage(with: url)
+            }
+            else {
+                genreImageView.image = UIImage(named: "back_genre_cell")
+            }
+            indicatorView.stopAnimating()
         }
         else {
-            genreImageView.image = UIImage(named: "back_genre_cell")
+            nameLabel.text = .none
+            genreImageView.image = .none
+            indicatorView.startAnimating()
         }
-        nameLabel.text = genre?.name ?? ""
     }
 }
