@@ -11,12 +11,6 @@ import Foundation
 final class GenresOperation: Operation {
     var loadingFinishHandler: (([Genre]) -> Void) = { _ in }
     
-    private var genres: [Genre]
-    
-    init(genres: [Genre]) {
-        self.genres = genres
-    }
-    
     override func main() {
         if isCancelled {
             return
