@@ -70,23 +70,24 @@ final class MainViewController: UIViewController {
     private var genres: [Genre] = []
     private var genresReserved: [Genre] = []
     
-    private var totalGenres = 0
+    private var totalGenresCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(gestureRecognizer)
         setupPullToRefresh()
         hideTabBar()
-        fetchGenres()
         
         service.countGenres { [weak self] count in
-            self?.totalGenres = count
+            self?.totalGenresCount = count
             Log.info("genres: \(count)")
         }
         
         service.countStations{ count in
             Log.info("stations: \(count)")
         }
+        
+        fetchGenres()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -151,7 +152,7 @@ extension MainViewController: UISearchBarDelegate {
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return genres.count
+        return totalGenresCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
