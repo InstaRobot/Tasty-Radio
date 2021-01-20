@@ -34,12 +34,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         injectPlayer()
         
+        addObservers()
         return true
     }
     
-    private func configureParseSubclasses() {
-        ParseGenre.registerSubclass()
-        ParseStation.registerSubclass()
+    override func observeValue(
+        forKeyPath keyPath: String?,
+        of object: Any?,
+        change: [NSKeyValueChangeKey : Any]?,
+        context: UnsafeMutableRawPointer?)
+    {
+        if keyPath == "display_preference" {
+            self.updateSettings()
+        }
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -69,6 +76,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         default:
             break
         }
+    }
+}
+
+extension AppDelegate {
+    private func addObservers() {
+        UserDefaults.standard.addObserver(
+            self,
+            forKeyPath: "display_preference",
+            options: .initial,
+            context: nil
+        )
+    }
+    
+    private func updateSettings() {
+        let overrideDisplaySettings = UserDefaults.standard.bool(forKey: "display_preference")
+        if overrideDisplaySettings {
+            UIApplication.shared.isIdleTimerDisabled = true
+        }
+        else {
+            UIApplication.shared.isIdleTimerDisabled = false
+        }
+    }
+    
+    private func configureParseSubclasses() {
+        ParseGenre.registerSubclass()
+        ParseStation.registerSubclass()
     }
     
     private func postName(name: String) {
