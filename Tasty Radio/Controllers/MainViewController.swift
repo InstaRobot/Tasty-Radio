@@ -272,12 +272,6 @@ extension MainViewController {
     private func isLoadingCell(for indexPath: IndexPath) -> Bool {
         return indexPath.item >= genres.count
     }
-    
-    private func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
-        let indexPathsForVisibleItems = collectionView.indexPathsForVisibleItems
-        let indexPathsIntersection = Set(indexPathsForVisibleItems).intersection(indexPaths)
-        return Array(indexPathsIntersection)
-    }
 }
 
 extension MainViewController {
