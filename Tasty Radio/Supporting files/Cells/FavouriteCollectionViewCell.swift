@@ -18,7 +18,7 @@ final class FavouriteCollectionViewCell: UICollectionViewCell {
     }
     @IBOutlet weak var stationNameLabel: UILabel!
     
-    func congigure(with station: RadioStation) {
+    func configure(with station: RadioStation) {
         self.stationNameLabel.text = station.name
         if let url = station.imageURL {
             self.stationImageView.kf.setImage(with: url)

@@ -92,7 +92,7 @@ extension FavouriteViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavouriteCollectionViewCell", for: indexPath) as! FavouriteCollectionViewCell
-        cell.congigure(with: stations[indexPath.item])
+        cell.configure(with: stations[indexPath.item])
         return cell
     }
     
