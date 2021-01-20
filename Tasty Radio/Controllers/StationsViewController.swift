@@ -92,7 +92,11 @@ final class StationsViewController: UIViewController {
             self.reloadStations(genreName: genre?.name)
         }
     }
-    var isPlaying = false
+    var isPlaying = false {
+        didSet {
+            updatePlayView()
+        }
+    }
     
     var reservedStations: [RadioStation] = []
     var stations = [RadioStation]() {
@@ -254,6 +258,7 @@ extension StationsViewController: StationCollectionViewCellDelegate {
     }
     
     func playStation(with station: RadioStation) {
+        isPlaying = true
         if let index = stations.firstIndex(of: station) {
             self.selectedStationIndex = index
             self.updateButtonsState()
@@ -265,6 +270,12 @@ extension StationsViewController: StationCollectionViewCellDelegate {
         }
         playTitleLabel.text = station.name
         playSubtitleLabel.text = station.info
+        
+        let playController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "PlayViewController") as! PlayViewController
+        playController.modalPresentationStyle = .fullScreen
+        self.playViewController = playController
+        playController.load(station: radioPlayer.station, track: radioPlayer.track, isNewStation: true)
+        playController.delegate = self
     }
     
     /// Отображение индикатора на сегмент контроле

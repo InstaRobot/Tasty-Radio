@@ -34,7 +34,7 @@ extension ParseStation: PFSubclassing {
     ///   - callback: массив моделей станций
     static func fetchStations(for genre: String?, skip: Int, callback: @escaping ([ParseStation]) -> Void) {
         DispatchQueue.global().async {
-            let limit = 20
+            let limit = 2000
             if let genre = genre, let query = ParseGenre.query() {
                 query.whereKey("name", equalTo: genre)
                 query.limit = limit
