@@ -14,6 +14,7 @@
 		500DE83F256A8EF3006D1310 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500DE83E256A8EF2006D1310 /* ItemView.swift */; };
 		500DE842256A8F08006D1310 /* ItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 500DE841256A8F08006D1310 /* ItemView.xib */; };
 		500E6ED025A4CFA4008B80B1 /* RatedStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500E6ECF25A4CFA4008B80B1 /* RatedStation.swift */; };
+		50192E4D25B8D0CD00EE67EC /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50192E4C25B8D0CD00EE67EC /* Settings.bundle */; };
 		502087D625AB489800638E2E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502087D525AB489800638E2E /* Log.swift */; };
 		502769BB25B19A2700A6C169 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502769BA25B19A2700A6C169 /* UIImageView+Extensions.swift */; };
 		50296D37259748CA00F794AA /* FavouriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50296D36259748CA00F794AA /* FavouriteCollectionViewCell.swift */; };
@@ -100,6 +101,7 @@
 		500DE83E256A8EF2006D1310 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		500DE841256A8F08006D1310 /* ItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemView.xib; sourceTree = "<group>"; };
 		500E6ECF25A4CFA4008B80B1 /* RatedStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedStation.swift; sourceTree = "<group>"; };
+		50192E4C25B8D0CD00EE67EC /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		502087D525AB489800638E2E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		502769BA25B19A2700A6C169 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		50296D36259748CA00F794AA /* FavouriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				505E4DA2256935DC0090D11A /* Info.plist */,
 				50DF3EB5259BDF51002CD325 /* ConfigParse.swift */,
 				50B53BC52596907C00BB6108 /* Tasty Radio.entitlements */,
+				50192E4C25B8D0CD00EE67EC /* Settings.bundle */,
 			);
 			path = "Supporting files";
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				500DE842256A8F08006D1310 /* ItemView.xib in Resources */,
 				50FD33242598AA8B009E2DF7 /* fly-music.json in Resources */,
 				505E4D9E256935DC0090D11A /* Assets.xcassets in Resources */,
+				50192E4D25B8D0CD00EE67EC /* Settings.bundle in Resources */,
 				505E4D9C256935DA0090D11A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
