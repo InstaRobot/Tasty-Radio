@@ -29,7 +29,8 @@ extension ParseGenre: PFSubclassing {
             return
         }
         DispatchQueue.global().async {
-            query.limit = 10
+            let limit = 20
+            query.limit = limit
             query.skip = skip
             if let objects = try? query.findObjects() as? [ParseGenre] {
                 DispatchQueue.main.async {
