@@ -70,11 +70,13 @@ final class MainViewController: UIViewController {
     private var genres: [Genre] = []
     private var genresReserved: [Genre] = []
     
+    private var genresCount = 0
     private var totalGenresCount = 0 {
         didSet {
             guard totalGenresCount != oldValue else {
                 return
             }
+            self.genresCount = totalGenresCount
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
             }
@@ -149,12 +151,14 @@ final class MainViewController: UIViewController {
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
+            self.genresCount = self.totalGenresCount
             self.genres = self.genresReserved
         }
         else {
             self.genres = self.genresReserved.filter {
                 $0.name.lowercased().contains(searchText.lowercased())
             }
+            self.genresCount = self.genres.count
         }
         self.collectionView.reloadData()
     }
@@ -162,7 +166,7 @@ extension MainViewController: UISearchBarDelegate {
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return totalGenresCount
+        return genresCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
