@@ -798,11 +798,35 @@
                                     <action selector="onBack:" destination="WbR-cD-nie" eventType="touchUpInside" id="nZ7-m7-9iv"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выключать экран" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbK-m3-5hx">
+                                <rect key="frame" x="136.5" y="210" width="141" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Эквалайзер" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f23-Fh-PqP">
+                                <rect key="frame" x="159" y="298" width="96" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Очистить избранное" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viL-OO-4es">
+                                <rect key="frame" x="124" y="396" width="166" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="d80-H1-ndb"/>
                         <color key="backgroundColor" name="Dark1"/>
                         <constraints>
+                            <constraint firstItem="viL-OO-4es" firstAttribute="top" secondItem="f23-Fh-PqP" secondAttribute="bottom" constant="77" id="5CK-8K-T6f"/>
+                            <constraint firstItem="f23-Fh-PqP" firstAttribute="centerX" secondItem="4GM-Ps-gyJ" secondAttribute="centerX" id="8nh-Ul-xcl"/>
+                            <constraint firstItem="f23-Fh-PqP" firstAttribute="top" secondItem="CbK-m3-5hx" secondAttribute="bottom" constant="67" id="HAQ-s1-jha"/>
+                            <constraint firstItem="viL-OO-4es" firstAttribute="centerX" secondItem="4GM-Ps-gyJ" secondAttribute="centerX" id="L2a-dY-wi4"/>
+                            <constraint firstItem="CbK-m3-5hx" firstAttribute="top" secondItem="d80-H1-ndb" secondAttribute="top" constant="166" id="Vnu-kr-qWf"/>
                             <constraint firstItem="imi-Bz-ogq" firstAttribute="leading" secondItem="d80-H1-ndb" secondAttribute="leading" constant="15" id="clO-pl-Lvs"/>
+                            <constraint firstItem="CbK-m3-5hx" firstAttribute="centerX" secondItem="4GM-Ps-gyJ" secondAttribute="centerX" id="ja1-7C-x2p"/>
                             <constraint firstItem="imi-Bz-ogq" firstAttribute="top" secondItem="d80-H1-ndb" secondAttribute="top" constant="30" id="yhC-gz-yIX"/>
                         </constraints>
                     </view>
@@ -879,6 +903,19 @@
                                 <color key="textColor" name="TextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIY-BB-aXP">
+                                <rect key="frame" x="354" y="76" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="8Wu-pc-Rwa"/>
+                                    <constraint firstAttribute="width" constant="40" id="ecG-FM-7nh"/>
+                                </constraints>
+                                <color key="tintColor" name="Dark10"/>
+                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" image="mail-icon"/>
+                                <connections>
+                                    <action selector="onMail:" destination="xdH-WW-ERB" eventType="touchUpInside" id="q4E-sc-gNN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wzk-0L-UC9"/>
                         <color key="backgroundColor" name="Dark1"/>
@@ -887,7 +924,9 @@
                             <constraint firstItem="44A-Xi-lmE" firstAttribute="leading" secondItem="Wzk-0L-UC9" secondAttribute="leading" constant="40" id="3kI-H8-P7U"/>
                             <constraint firstItem="kqj-Ep-K4g" firstAttribute="top" secondItem="Wzk-0L-UC9" secondAttribute="top" constant="30" id="7z0-08-qMk"/>
                             <constraint firstItem="3uh-NR-QUN" firstAttribute="centerY" secondItem="kqj-Ep-K4g" secondAttribute="centerY" id="Clh-Zy-beD"/>
+                            <constraint firstItem="hIY-BB-aXP" firstAttribute="centerY" secondItem="3uh-NR-QUN" secondAttribute="centerY" id="Jmg-QK-pUM"/>
                             <constraint firstItem="44A-Xi-lmE" firstAttribute="top" secondItem="Wzk-0L-UC9" secondAttribute="top" constant="80" id="Vnj-0e-JUu"/>
+                            <constraint firstItem="Wzk-0L-UC9" firstAttribute="trailing" secondItem="hIY-BB-aXP" secondAttribute="trailing" constant="20" id="XvV-tq-Bdh"/>
                             <constraint firstItem="Wzk-0L-UC9" firstAttribute="bottom" secondItem="44A-Xi-lmE" secondAttribute="bottom" constant="80" id="YJS-gc-JE5"/>
                             <constraint firstItem="Wzk-0L-UC9" firstAttribute="trailing" secondItem="44A-Xi-lmE" secondAttribute="trailing" constant="40" id="apq-pQ-Hpu"/>
                             <constraint firstItem="i0O-kl-Neh" firstAttribute="centerX" secondItem="WRs-RF-0GP" secondAttribute="centerX" id="hRR-ay-b9b"/>
@@ -1195,6 +1234,7 @@
         <image name="info-icon" width="939" height="939"/>
         <image name="like-icon" width="511" height="512"/>
         <image name="logo" width="341.5" height="341.5"/>
+        <image name="mail-icon" width="60" height="60"/>
         <image name="microphone-icon" width="512" height="512"/>
         <image name="next-button" width="330" height="330"/>
         <image name="pause-button" width="330" height="330"/>

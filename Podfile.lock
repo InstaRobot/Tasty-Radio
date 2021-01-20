@@ -9,12 +9,13 @@ PODS:
     - Parse/Core (= 1.19.1)
   - Parse/Core (1.19.1):
     - Bolts/Tasks (= 1.9.1)
-  - Realm (10.5.0):
-    - Realm/Headers (= 10.5.0)
-  - Realm/Headers (10.5.0)
-  - RealmSwift (10.5.0):
-    - Realm (= 10.5.0)
+  - Realm (10.5.1):
+    - Realm/Headers (= 10.5.1)
+  - Realm/Headers (10.5.1)
+  - RealmSwift (10.5.1):
+    - Realm (= 10.5.1)
   - Swinject (2.7.1)
+  - ThirdPartyMailer (1.7.1)
 
 DEPENDENCIES:
   - IceCream (= 1.13.2)
@@ -22,8 +23,9 @@ DEPENDENCIES:
   - lottie-ios
   - MarqueeLabel
   - Parse
-  - RealmSwift (= 10.5.0)
+  - RealmSwift (= 10.5.1)
   - Swinject
+  - ThirdPartyMailer
 
 SPEC REPOS:
   trunk:
@@ -36,6 +38,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - Swinject
+    - ThirdPartyMailer
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
@@ -44,10 +47,11 @@ SPEC CHECKSUMS:
   lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   Parse: e40fdb9c7d665823b7fe9865949cac9a53eb2ce7
-  Realm: e1c22c3d83b229afb70ebc10e1771c91e9542d12
-  RealmSwift: 6fc078d9d3fd7e58c71bfdbb694e252462f112a5
+  Realm: 77fcb4e0b9f2963ea06f584749a0d7dc9cab95e1
+  RealmSwift: 6abe6aa6cd8b70cc1a87afcb9232cabea74ff1ac
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
+  ThirdPartyMailer: c81737dd330f8359dc5d15c5bc6ebc3e7a910653
 
-PODFILE CHECKSUM: ebdbe47f7dd590efa0c795fd3ff715a2ee065f8f
+PODFILE CHECKSUM: 5f54a9b9b12c7aa58ade3307250bbe33adf43bab
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

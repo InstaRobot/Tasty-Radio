@@ -8,6 +8,7 @@
 
 import UIKit
 import Lottie
+import ThirdPartyMailer
 
 final class InfoViewController: UIViewController {
     @IBOutlet private(set) weak var musicAnimationView: AnimationView!
@@ -49,9 +50,49 @@ final class InfoViewController: UIViewController {
     @IBAction private func onBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction private func onMail(_ sender: UIButton) {
+        sender.animateTap { [weak self] in
+            self?.mail()
+        }
+    }
+    
 }
 
 extension InfoViewController {
+    private func mail() {
+        let clients = ThirdPartyMailClient.clients()
+        var supportedClients: [ThirdPartyMailClient] = []
+        let application = UIApplication.shared
+        clients.forEach { client in
+            if ThirdPartyMailer.application(application, isMailClientAvailable: client) {
+                supportedClients.append(client)
+            }
+        }
+        
+        let optionMenu = UIAlertController(title: nil, message: "Выберите почтовую программу",
+                                           preferredStyle: .actionSheet)
+        optionMenu.view.tintColor = .dark1
+        supportedClients.forEach { client in
+            let action = UIAlertAction(title: client.name, style: .default) { _ in
+                _ = ThirdPartyMailer.application(application, openMailClient: client)
+            }
+            optionMenu.addAction(action)
+        }
+        
+        let action = UIAlertAction(title: "Apple Mail", style: .default) { _ in
+            if let url = URL(string: "message://"), UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        optionMenu.addAction(action)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        optionMenu.addAction(cancelAction)
+        DispatchQueue.main.async { [weak self] in
+            self?.present(optionMenu, animated: true, completion: nil)
+        }
+    }
+    
     private func startAnimation() {
         musicAnimationView.loopMode = .loop
         musicAnimationView.animationSpeed = 0.5

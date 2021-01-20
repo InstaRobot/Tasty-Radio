@@ -8,9 +8,10 @@ target 'Tasty Radio' do
     pod 'Parse'
     pod 'lottie-ios'
     pod 'MarqueeLabel'
-    pod 'RealmSwift', '10.5.0'
+    pod 'RealmSwift', '10.5.1'
     pod 'IceCream', '1.13.2'
     pod 'Swinject'
+    pod 'ThirdPartyMailer'
 end
 
 post_install do |installer|
