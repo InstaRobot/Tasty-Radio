@@ -90,6 +90,8 @@
 		50DCA5E82573C09600CB2E99 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCA5E72573C09600CB2E99 /* InfoViewController.swift */; };
 		50DCA5EB2573C2A800CB2E99 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCA5EA2573C2A800CB2E99 /* PlayViewController.swift */; };
 		50DF3EB6259BDF51002CD325 /* ConfigParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF3EB5259BDF51002CD325 /* ConfigParse.swift */; };
+		50F0F43925BCE35600D4F62C /* EqualizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F0F43725BCE35600D4F62C /* EqualizerViewController.swift */; };
+		50F0F43A25BCE35600D4F62C /* EqualizerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50F0F43825BCE35600D4F62C /* EqualizerViewController.xib */; };
 		50F5B624256AB1890008F4E0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5B623256AB1890008F4E0 /* MainViewController.swift */; };
 		50FD33242598AA8B009E2DF7 /* fly-music.json in Resources */ = {isa = PBXBuildFile; fileRef = 50FD33232598AA8B009E2DF7 /* fly-music.json */; };
 /* End PBXBuildFile section */
@@ -181,6 +183,8 @@
 		50DCA5E72573C09600CB2E99 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		50DCA5EA2573C2A800CB2E99 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		50DF3EB5259BDF51002CD325 /* ConfigParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigParse.swift; sourceTree = "<group>"; };
+		50F0F43725BCE35600D4F62C /* EqualizerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualizerViewController.swift; sourceTree = "<group>"; };
+		50F0F43825BCE35600D4F62C /* EqualizerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EqualizerViewController.xib; sourceTree = "<group>"; };
 		50F5B623256AB1890008F4E0 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		50FD33232598AA8B009E2DF7 /* fly-music.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "fly-music.json"; sourceTree = "<group>"; };
 		62662CDB9B23DBEE5C543DCF /* Pods_Tasty_Radio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tasty_Radio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +226,7 @@
 		500DE82C256A66D6006D1310 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				50F0F43625BCE32500D4F62C /* Equalizer */,
 				509CA3D625726C2700CFF990 /* Onboarding */,
 				50F5B623256AB1890008F4E0 /* MainViewController.swift */,
 				50C2C89B25728E840025B5A9 /* StationsViewController.swift */,
@@ -480,6 +485,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		50F0F43625BCE32500D4F62C /* Equalizer */ = {
+			isa = PBXGroup;
+			children = (
+				50F0F43825BCE35600D4F62C /* EqualizerViewController.xib */,
+				50F0F43725BCE35600D4F62C /* EqualizerViewController.swift */,
+			);
+			path = Equalizer;
+			sourceTree = "<group>";
+		};
 		9438E3E955CE50F04BAA1E02 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -559,6 +573,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50461EA8256A63FF0076CDB1 /* Podfile in Resources */,
+				50F0F43A25BCE35600D4F62C /* EqualizerViewController.xib in Resources */,
 				5093E7F4259A65C2008D376F /* LoadingView.xib in Resources */,
 				50641E572598BD9E002A2E5B /* LogoShareView.xib in Resources */,
 				505E4DA1256935DC0090D11A /* LaunchScreen.storyboard in Resources */,
@@ -665,6 +680,7 @@
 				5093E7E7259A65C2008D376F /* DesignableLabel.swift in Sources */,
 				5093E7F0259A65C2008D376F /* SpringTextField.swift in Sources */,
 				5093E7E6259A65C2008D376F /* SpringImageView.swift in Sources */,
+				50F0F43925BCE35600D4F62C /* EqualizerViewController.swift in Sources */,
 				50296D37259748CA00F794AA /* FavouriteCollectionViewCell.swift in Sources */,
 				5093E7F2259A65C2008D376F /* DesignableTabBarController.swift in Sources */,
 				507D578625AB659500FD8BCD /* FavouriteStationRealm.swift in Sources */,
