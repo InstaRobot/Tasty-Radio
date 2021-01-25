@@ -60,7 +60,7 @@ final class RadioPlayer {
     
     // Update the track artwork with a UIImage
     func updateTrackArtwork(with image: UIImage, artworkLoaded: Bool) {
-        track?.artworkImage = image
+        track?.artworkImage  = image
         track?.artworkLoaded = artworkLoaded
         delegate?.trackArtworkDidUpdate(track)
     }
