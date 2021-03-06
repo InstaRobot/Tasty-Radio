@@ -1,9 +1,8 @@
 platform :ios, '13.0'
 inhibit_all_warnings!
+use_frameworks!
 
-target 'Tasty Radio' do
-  	use_frameworks!
-
+def pods
 	pod 'Kingfisher'
     pod 'Parse'
     pod 'lottie-ios'
@@ -14,16 +13,15 @@ target 'Tasty Radio' do
     pod 'ThirdPartyMailer'
 end
 
-post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-            if config.name == 'Debug'
-                config.build_settings['OTHER_SWIFT_FLAGS'] = ['$(inherited)', '-Onone']
-                config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Owholemodule'
+target 'Tasty Radio' do
+  	pods
+end
 
-                config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
-				config.build_settings['ONLY_ACTIVE_ARCH'] = 'YES'
-            end
-        end
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
     end
+  end
 end
